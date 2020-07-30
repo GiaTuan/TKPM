@@ -1,4 +1,4 @@
-package sample;
+package sample.Window;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,13 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class SignInWindow extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/SignInFXML.fxml"));
+        primaryStage.setTitle("Đăng nhập hệ thống");
+        primaryStage.setScene(new Scene(root, 1000, 600));
         primaryStage.show();
     }
 

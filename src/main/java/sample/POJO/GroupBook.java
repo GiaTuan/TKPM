@@ -1,27 +1,21 @@
-package sample.Model;
+package sample.POJO;
 
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
 @Table(name = "groupbook")
 public class GroupBook {
     @Id
-    @Column(name = "idgroupbook", columnDefinition = "serial")
-    @Generated(GenerationTime.INSERT)
+    @Column(name = "idgroupbook")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     int idGroupBook;
 
     @Column(name = "namebook")
     String nameBook;
 
     @Column(name = "typebook")
-    int typeBook;
+    int idTypeBook;
 
     @Column(name = "authorbook")
     String author;
@@ -33,13 +27,33 @@ public class GroupBook {
     Date importDate;
 
     @Column(name = "publisher")
-    int publisher;
+    int idPublisher;
 
     @Column(name = "quantity")
     int quantity;
 
     @Column(name = "isavailable")
     Integer isAvailable;
+
+    @ManyToOne
+    @JoinColumn(name = "typebook",insertable = false,updatable = false)
+    TypeBook typeBook;
+
+    @ManyToOne
+    @JoinColumn(name = "publisher", insertable = false , updatable = false)
+    Publisher publisher;
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
+    public TypeBook getTypeBook() {
+        return typeBook;
+    }
+
+    public void setTypeBook(TypeBook typeBook) {
+        this.typeBook = typeBook;
+    }
 
     public int getIdGroupBook() {
         return idGroupBook;
@@ -57,12 +71,12 @@ public class GroupBook {
         this.nameBook = nameBook;
     }
 
-    public int getTypeBook() {
-        return typeBook;
+    public int getIdTypeBook() {
+        return idTypeBook;
     }
 
-    public void setTypeBook(int typeBook) {
-        this.typeBook = typeBook;
+    public void setIdTypeBook(int idTypeBook) {
+        this.idTypeBook = idTypeBook;
     }
 
     public String getAuthor() {
@@ -90,11 +104,11 @@ public class GroupBook {
     }
 
     public int getPublisher() {
-        return publisher;
+        return idPublisher;
     }
 
-    public void setPublisher(int publisher) {
-        this.publisher = publisher;
+    public void setPublisher(int idPublisher) {
+        this.idPublisher = idPublisher;
     }
 
     public int getQuantity() {

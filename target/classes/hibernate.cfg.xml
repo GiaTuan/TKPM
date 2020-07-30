@@ -25,7 +25,9 @@
             Adgt123456
         </property>
 
-        <mapping class="sample.Model.GroupBook"></mapping>
+        <mapping class="sample.POJO.GroupBook"></mapping>
+        <mapping class="sample.POJO.TypeBook"></mapping>
+        <mapping class="sample.POJO.Publisher"></mapping>
 
 
     </session-factory>

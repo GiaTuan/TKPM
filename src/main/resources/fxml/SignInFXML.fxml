@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="center" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.SignInController">
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="50.0" />
+      <RowConstraints minHeight="10.0" prefHeight="100.0" />
+      <RowConstraints minHeight="10.0" prefHeight="50.0" />
+      <RowConstraints minHeight="10.0" prefHeight="80.0" />
+      <RowConstraints minHeight="10.0" prefHeight="80.0" />
+      <RowConstraints minHeight="10.0" prefHeight="100.0" />
+      <RowConstraints minHeight="10.0" prefHeight="50.0" />
+   </rowConstraints>
+   <columnConstraints>
+      <ColumnConstraints minWidth="10.0" prefWidth="200.0" />
+      <ColumnConstraints minWidth="10.0" prefWidth="200.0" />
+      <ColumnConstraints minWidth="10.0" prefWidth="200.0" />
+      <ColumnConstraints minWidth="10.0" prefWidth="200.0" />
+   </columnConstraints>
+   <children>
+      <Label text="ĐĂNG NHẬP HỆ THỐNG" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Label>
+      <Label text="Tên đăng nhập:" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Label text="Mật khẩu: " GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <TextField fx:id="username" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <PasswordField fx:id="password" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+      <Button onAction="#signinBtnClick" defaultButton="true" mnemonicParsing="false" styleClass="green-btn-background" text="Đăng nhập" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+   </children>
+</GridPane>

@@ -1,0 +1,21 @@
+.white-background{
+    -fx-background-color: white;
+}
+
+.green-btn-background{
+    -fx-background-color: #93D468
+}
+
+.green-btn-background:hover{
+     -fx-background-color: #e5e5e5
+ }
+
+.green-btn-background-2{
+    -fx-background-color: #6AAC3E;
+}
+
+.green-btn-background-2:hover{
+     -fx-background-color: #e5e5e5
+ }
+
+
