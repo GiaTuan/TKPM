@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane prefHeight="500.0" prefWidth="400" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AdminController.DetailReaderController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <Label text="THÔNG TIN ĐỘC GIẢ CHI TIẾT" GridPane.columnSpan="5" GridPane.halignment="CENTER">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <Label text="Họ tên: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <TextField fx:id="name" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+      <TextField fx:id="addr" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+      <TextField fx:id="phone" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+      <TextField fx:id="email" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+      <TextField fx:id="point" disable="true" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="7" />
+      <Label text="Địa chỉ: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label text="Ngày sinh: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label text="Số điện thoại: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label text="Email: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label text="Ngày tạo thẻ: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label text="Điểm: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label text="Loại độc giả: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label text="Độc giả bị đánh dấu: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label text="Đã xóa: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="10">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Button mnemonicParsing="false" text="Thay đổi" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+      <Button mnemonicParsing="false" text="Hủy bỏ" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+      <DatePicker fx:id="dob" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+      <DatePicker fx:id="dateMember" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+      <TextField fx:id="type" disable="true" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="8" />
+      <CheckBox fx:id="isMarked" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+      <CheckBox fx:id="isDeleted" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+   </children>
+</GridPane>
