@@ -28,6 +28,7 @@
         <mapping class="sample.POJO.GroupBook"></mapping>
         <mapping class="sample.POJO.TypeBook"></mapping>
         <mapping class="sample.POJO.Publisher"></mapping>
+        <mapping class="sample.POJO.Reader"></mapping>
 
 
     </session-factory>

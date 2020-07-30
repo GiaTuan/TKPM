@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -48,23 +49,23 @@
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Button onAction="#manageRentBtnClick" mnemonicParsing="false" styleClass="round-btn" text="Quản lý mượn sách">
+            <Button mnemonicParsing="false" onAction="#manageRentBtnClick" styleClass="round-btn" text="Quản lý mượn sách">
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Button onAction="#manageBookBtnClick" mnemonicParsing="false" styleClass="round-btn" text="Quản lý sách">
+            <Button mnemonicParsing="false" onAction="#manageBookBtnClick" styleClass="round-btn" text="Quản lý sách">
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Button onAction="#manageLibrarianBtnClick" mnemonicParsing="false" styleClass="round-btn" text="Quản lý thủ thư">
+            <Button mnemonicParsing="false" onAction="#manageLibrarianBtnClick" styleClass="round-btn" text="Quản lý thủ thư">
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Button onAction="#manageReaderBtnClick" mnemonicParsing="false" styleClass="round-btn" text="Quản lý độc giả">
+            <Button mnemonicParsing="false" onAction="#manageReaderBtnClick" styleClass="round-btn" text="Quản lý độc giả">
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Button onAction="#mangeRegulationBtnClick" mnemonicParsing="false" styleClass="round-btn" text="Tạo quy định">
+            <Button mnemonicParsing="false" onAction="#mangeRegulationBtnClick" styleClass="round-btn" text="Tạo quy định">
                <font>
                   <Font size="14.0" />
                </font></Button>
@@ -79,12 +80,60 @@
         <tabs>
           <Tab text="Doanh thu">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <VBox alignment="CENTER" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Từ ngày: ">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <DatePicker fx:id="statisticTotalFromDate" promptText="Ngày bắt đầu">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </DatePicker>
+                              <Label text="Đến ngày:">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <DatePicker fx:id="statisticTotalToDate" promptText="Ngày kết thúc" />
+                              <Button mnemonicParsing="false" onAction="#watchStatisticTotalClick" text="Xem">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin></Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <LineChart fx:id="lineChart" prefHeight="312.0" prefWidth="450.0" title="Biểu đồ thống kê doanh thu">
+                          <xAxis>
+                            <NumberAxis label="Thời gian" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="Doanh thu" side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                     </children></VBox>
             </content>
           </Tab>
-          <Tab text="Sách">
+          <Tab onSelectionChanged="#statisticBookTabSelected" text="Sách">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <VBox minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BarChart fx:id="barchartBook" title="Biểu đồ thống kê số lượng sách theo thể loại">
+                          <xAxis>
+                            <CategoryAxis label="Thể loại" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="Số lượng" side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                        <PieChart />
+                     </children></VBox>
             </content>
           </Tab>
         </tabs>
