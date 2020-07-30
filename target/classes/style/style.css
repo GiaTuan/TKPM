@@ -18,4 +18,11 @@
      -fx-background-color: #e5e5e5
  }
 
+.green-vbox-background{
+    -fx-background-color: #6AAC3E;
+}
+
+.round-btn{
+    -fx-background-radius: 50px;
+}
 
