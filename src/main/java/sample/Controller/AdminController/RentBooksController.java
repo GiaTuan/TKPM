@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import org.apache.commons.mail.EmailException;
 import sample.BUS.LibraryBUS;
 import sample.POJO.RentBook;
+import sample.Window.DetailRentBookWindow;
 
 import java.io.IOException;
 import java.net.URL;
@@ -51,7 +52,7 @@ public class RentBooksController implements Initializable {
     List<RentBook> rentBookList;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        rentBookList = LibraryBUS.getRentBookList();
+        rentBookList = LibraryBUS.getRentBookList(false);
         rentBookObservableList = FXCollections.observableArrayList();
         rentBookObservableList.addAll(rentBookList);
         IdRentCol.setCellValueFactory(new PropertyValueFactory<>("idRentBook"));
@@ -136,6 +137,18 @@ public class RentBooksController implements Initializable {
         {
             alert.setContentText("Gửi email không thành công");
             alert.showAndWait();
+        }
+    }
+
+    public void detailRentBookBtnClick(ActionEvent actionEvent) throws IOException {
+        RentBook rentBook = (RentBook) rentBookTableView.getSelectionModel().getSelectedItem();
+        DetailRentBookWindow.display(rentBook);
+        if(DetailRentBookController.isChanged)
+        {
+            rentBookList = LibraryBUS.getRentBookList(true);
+            rentBookObservableList.clear();
+            rentBookObservableList.addAll(rentBookList);
+            rentBookTableView.refresh();
         }
     }
 }

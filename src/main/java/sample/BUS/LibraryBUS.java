@@ -82,8 +82,8 @@ public class LibraryBUS {
         }
     }
 
-    public static List<RentBook> getRentBookList() {
-        List<RentBook> result = LibraryDAO.getRentBookList();
+    public static List<RentBook> getRentBookList(boolean isRequery) {
+        List<RentBook> result = LibraryDAO.getRentBookList(isRequery);
         return result;
     }
 
@@ -140,4 +140,8 @@ public class LibraryBUS {
         LibraryDAO.updateRegulation(newRegulationData, listIdOfChangingRule);
     }
 
+    public static boolean updateIsReturnedRentBook(int idRentBook, boolean isReturned) {
+        boolean res = LibraryDAO.updateIsReturnedRentBook(idRentBook,isReturned);
+        return res;
+    }
 }

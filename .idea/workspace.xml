@@ -2,24 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="thêm cập nhật quy định">
+      <change afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/DetailRentBookController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/sample/Window/DetailRentBookWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/DetailRentBookFXML.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sample/BUS/LibraryBUS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/BUS/LibraryBUS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/ReaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/ReaderController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/RentBooksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/RentBooksController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/UpdateRegulationDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/UpdateRegulationDialogController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/UpdateRuleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/UpdateRuleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/UpdateRuleDialogWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/UpdateRuleDialogWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sample/DAO/LibraryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/DAO/LibraryDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/UpdateRegulationDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/UpdateRegulationDialog.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/UpdateRuleFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/UpdateRuleFXML.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/hibernate.cfg.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/POJO/RentBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/POJO/RentBook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Window/DetailReaderWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Window/DetailReaderWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/RentBooksFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/RentBooksFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/AdminFXML/RentBooksFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/AdminFXML/RentBooksFXML.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/sample/BUS/LibraryBUS.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/BUS/LibraryBUS.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/AdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/ReaderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/ReaderController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/RentBooksController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/RentBooksController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/sample/DAO/LibraryDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/DAO/LibraryDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sample/POJO/RentBook.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/POJO/RentBook.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sample/Window/DetailReaderWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Window/DetailReaderWindow.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,10 +244,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="thêm cập nhật quy định" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="446" y="25" key="#com.intellij.ide.util.MemberChooser" timestamp="1596171627909">
+    <state x="446" y="25" key="#com.intellij.ide.util.MemberChooser" timestamp="1596195249127">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="446" y="25" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1596171627909" />
+    <state x="446" y="25" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1596195249127" />
     <state x="366" y="30" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1596036390662">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -270,38 +268,38 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1596127540322" />
-    <state width="1237" height="182" key="GridCell.Tab.0.bottom" timestamp="1596192828374">
+    <state width="1237" height="203" key="GridCell.Tab.0.bottom" timestamp="1596198447632">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="182" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596192828374" />
-    <state width="1237" height="182" key="GridCell.Tab.0.center" timestamp="1596192828373">
+    <state width="1237" height="203" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596198447632" />
+    <state width="1237" height="203" key="GridCell.Tab.0.center" timestamp="1596198447630">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="182" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1596192828373" />
-    <state width="1237" height="182" key="GridCell.Tab.0.left" timestamp="1596192828373">
+    <state width="1237" height="203" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1596198447630" />
+    <state width="1237" height="203" key="GridCell.Tab.0.left" timestamp="1596198447629">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="182" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1596192828373" />
-    <state width="1237" height="182" key="GridCell.Tab.0.right" timestamp="1596192828374">
+    <state width="1237" height="203" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1596198447629" />
+    <state width="1237" height="203" key="GridCell.Tab.0.right" timestamp="1596198447632">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="182" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1596192828374" />
-    <state width="1237" height="203" key="GridCell.Tab.1.bottom" timestamp="1596176675084">
+    <state width="1237" height="203" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1596198447632" />
+    <state width="1237" height="203" key="GridCell.Tab.1.bottom" timestamp="1596198447633">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="203" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596176675084" />
-    <state width="1237" height="203" key="GridCell.Tab.1.center" timestamp="1596176675084">
+    <state width="1237" height="203" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596198447633" />
+    <state width="1237" height="203" key="GridCell.Tab.1.center" timestamp="1596198447633">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="203" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1596176675084" />
-    <state width="1237" height="203" key="GridCell.Tab.1.left" timestamp="1596176675083">
+    <state width="1237" height="203" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1596198447633" />
+    <state width="1237" height="203" key="GridCell.Tab.1.left" timestamp="1596198447633">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="203" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1596176675083" />
-    <state width="1237" height="203" key="GridCell.Tab.1.right" timestamp="1596176675084">
+    <state width="1237" height="203" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1596198447633" />
+    <state width="1237" height="203" key="GridCell.Tab.1.right" timestamp="1596198447633">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="203" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1596176675084" />
+    <state width="1237" height="203" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1596198447633" />
     <state x="171" y="0" key="Maven.ArtifactSearchDialog" timestamp="1596175489280">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

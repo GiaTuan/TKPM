@@ -159,7 +159,7 @@
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin></Button>
-                  <Button mnemonicParsing="false" text="Xem chi tiết">
+                  <Button onAction="#detailRentBookBtnClick" mnemonicParsing="false" text="Xem chi tiết">
                      <font>
                         <Font size="16.0" />
                      </font>
