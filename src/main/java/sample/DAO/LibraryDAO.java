@@ -19,17 +19,16 @@ public class LibraryDAO {
 
     public static void setUpData() {
         setUpTypeBookList();
+        setUpReaderList();
     }
 
     private static void setUpTypeBookList()
     {
         Session session = SessionUtil.getSession();
-        Transaction transaction = session.getTransaction();
         try {
             String hql = "select t from TypeBook t";
             Query query = session.createQuery(hql);
             typeBookList = query.getResultList();
-           // transaction.commit();
         } catch (HibernateException ex) {
             ex.printStackTrace();
         } finally {
@@ -46,15 +45,13 @@ public class LibraryDAO {
         else return typeBookList;
     }
 
-    private static void getReader()
+    private static void setUpReaderList()
     {
         Session session = SessionUtil.getSession();
-        Transaction transaction = session.getTransaction();
         try {
             String hql = "select r from Reader r";
             Query query = session.createQuery(hql);
-            typeBookList = query.getResultList();
-            transaction.commit();
+            readerList = query.getResultList();
         } catch (HibernateException ex) {
             ex.printStackTrace();
         } finally {
@@ -69,14 +66,12 @@ public class LibraryDAO {
 
     public static int getNumberOfBooksByIdTypeBook(int id) {
         Session session = SessionUtil.getSession();
-        Transaction transaction = session.getTransaction();
         int totalNumberOfBooks = 0;
         try {
             String hql = "select sum(b.quantity) from GroupBook b where b.idTypeBook = :id";
             Query query = session.createQuery(hql);
             query.setParameter("id",id);
             totalNumberOfBooks = Integer.parseInt(query.getResultList().get(0).toString());
-            transaction.commit();
         } catch (HibernateException ex) {
             ex.printStackTrace();;
         } finally {

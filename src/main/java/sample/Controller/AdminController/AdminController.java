@@ -1,4 +1,4 @@
-package sample.Controller;
+package sample.Controller.AdminController;
 
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -14,7 +14,6 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 import sample.BUS.LibraryBUS;
-import sample.DAO.LibraryDAO;
 import sample.POJO.TypeBook;
 
 import java.io.IOException;
@@ -35,7 +34,7 @@ public class AdminController implements Initializable {
 
     public void backBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ChooseAuthorizationFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/ChooseAuthorizationFXML.fxml"));
         stage.setTitle("Phân hệ quản lý");
         stage.setScene(new Scene(root, 1000, 600));
     }
@@ -65,7 +64,7 @@ public class AdminController implements Initializable {
 
     public void manageReaderBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ReaderFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/ReaderFXML.fxml"));
         stage.setTitle("Phân hệ quản lý");
         stage.setScene(new Scene(root, 1000, 600));
     }

@@ -1,5 +1,7 @@
-package sample.Controller;
+package sample.Controller.AdminController;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,9 +11,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import sample.BUS.LibraryBUS;
 import sample.POJO.Reader;
+import sample.Window.DetailReaderWindow;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,14 +41,23 @@ public class ReaderController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-       // List<Reader> readerList = LibraryBUS.getReaderList();
+        List<Reader> readerList = LibraryBUS.getReaderList();
+        ObservableList<Reader> readerObservableList = FXCollections.observableArrayList();
+        readerObservableList.addAll(readerList);
+        idReaderCol.setCellValueFactory(new PropertyValueFactory<>("idReader"));
+        nameReaderCol.setCellValueFactory(new PropertyValueFactory<>("nameReader"));
+        emailReaderCol.setCellValueFactory(new PropertyValueFactory<>("emailReader"));
+        phoneReaderCol.setCellValueFactory(new PropertyValueFactory<>("phoneReader"));
+        pointReaderCol.setCellValueFactory(new PropertyValueFactory<>("point"));
+        statusReaderCol.setCellValueFactory(new PropertyValueFactory<>("isMarked"));
+        readerTableView.setItems(readerObservableList);
 
         //initialize table reader
     }
 
     public void backBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ChooseAuthorizationFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/ChooseAuthorizationFXML.fxml"));
         stage.setTitle("Phân hệ quản lý");
         stage.setScene(new Scene(root, 1000, 600));
     }
@@ -81,9 +94,14 @@ public class ReaderController implements Initializable {
 
     public void manageStatisticBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/AdminFXML.fxml"));
         stage.setTitle("Phân hệ quản lý");
         stage.setScene(new Scene(root, 1000, 600));
     }
 
+    public void detailReaderBtnClick(ActionEvent actionEvent) throws IOException {
+        Reader selectedReader = (Reader) readerTableView.getSelectionModel().getSelectedItem();
+        System.out.println(selectedReader);
+        DetailReaderWindow.display(selectedReader);
+    }
 }
