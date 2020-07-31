@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane prefHeight="400.0" prefWidth="600.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AdminController.ReaderController">
+<GridPane prefHeight="400.0" prefWidth="600.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AdminController.RentBooksController">
     <columnConstraints>
         <ColumnConstraints minWidth="10.0" prefWidth="150.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -48,7 +50,7 @@
                     <font>
                         <Font size="14.0" />
                     </font></Button>
-                <Button mnemonicParsing="false" onAction="#manageRentBtnClick" styleClass="round-btn" text="Quản lý mượn sách">
+                <Button mnemonicParsing="false" styleClass="round-btn" text="Quản lý mượn sách">
                     <font>
                         <Font size="14.0" />
                     </font></Button>
@@ -60,7 +62,7 @@
                     <font>
                         <Font size="14.0" />
                     </font></Button>
-                <Button mnemonicParsing="false" styleClass="round-btn" text="Quản lý độc giả">
+                <Button mnemonicParsing="false" onAction="#manageReaderBtnClick" styleClass="round-btn" text="Quản lý độc giả">
                     <font>
                         <Font size="14.0" />
                     </font></Button>
@@ -75,16 +77,22 @@
                 <Font name="System Bold" size="25.0" />
             </font>
         </Label>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="1" GridPane.rowSpan="7">
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="1" GridPane.rowSpan="7">
          <children>
-            <Label text="DANH SÁCH ĐỘC GIẢ">
+            <Label text="QUẢN LÝ MƯỢN SÁCH">
                <font>
                   <Font name="System Italic" size="16.0" />
                </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </Label>
-            <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="450.0">
+            <HBox prefHeight="32.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
                <children>
-                  <Label text="Lọc:">
+                  <Label text="Lọc: ">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -97,13 +105,13 @@
                      </HBox.margin>
                   </TextField>
                </children>
+            </HBox>
+            <HBox prefHeight="32.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
-            </HBox>
-            <HBox prefHeight="32.0" prefWidth="200.0">
                <children>
-                  <Label text="Hiển thị:">
+                  <Label text="Hiển thị: ">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -111,63 +119,55 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <ComboBox prefWidth="150.0">
+                  <ComboBox fx:id="typeViewComboBox" prefWidth="150.0" value="Tất cả phiếu mượn">
+                      <items>
+                          <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Tất cả phiếu mượn" />
+                                <String fx:value="Phiếu mượn sắp đến hạn" />
+                                <String fx:value="Phiếu mượn quá hạn" />
+                          </FXCollections>
+                      </items>
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </ComboBox>
+                  <Button onAction="#findRentBookListBtnClick" mnemonicParsing="false" text="Tìm kiếm" />
                </children>
+            </HBox>
+            <TableView fx:id="rentBookTableView" prefHeight="500.0" prefWidth="200.0">
+              <columns>
+                  <TableColumn fx:id="IdRentCol" prefWidth="75.0" text="ID" />
+                  <TableColumn fx:id="numberBooksRentCol" prefWidth="75.0" text="Quantity" />
+                  <TableColumn fx:id="listRentCol" prefWidth="75.0" text="List Rent Books" />
+                  <TableColumn fx:id="idReaderCol" prefWidth="75.0" text="ID Reader" />
+                  <TableColumn fx:id="rentDateCol" prefWidth="75.0" text="Rent date" />
+                  <TableColumn fx:id="statusCol" prefWidth="75.0" text="Status" />
+              </columns>
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
-            </HBox>
-            <TableView fx:id="readerTableView" prefHeight="500.0" prefWidth="200.0">
-              <columns>
-                  <TableColumn fx:id="idReaderCol" prefWidth="75.0" text="ID" />
-                  <TableColumn fx:id="nameReaderCol" prefWidth="75.0" text="Họ tên" />
-                  <TableColumn fx:id="emailReaderCol" prefWidth="75.0" text="Email" />
-                  <TableColumn fx:id="phoneReaderCol" prefWidth="75.0" text="SĐT" />
-                  <TableColumn fx:id="pointReaderCol" prefWidth="75.0" text="Điểm" />
-                  <TableColumn fx:id="statusReaderCol" prefWidth="75.0" text="Status" />
-              </columns>
+            </TableView>
+            <HBox prefHeight="32.0" prefWidth="200.0" spacing="20.0">
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
-            </TableView>
-            <HBox prefHeight="32.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" text="Gửi mail cho tất cả">
+                  <Button onAction="#sendEmailBtnClick" mnemonicParsing="false" text="Gửi mail">
                      <font>
                         <Font size="16.0" />
                      </font>
-                  </Button>
-                  <Button mnemonicParsing="false" text="Gửi mail">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Button>
-                  <Button onAction="#exportReaderFromBtnClick" mnemonicParsing="false" text="Xuất biểu mẩu">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Button>
-                  <Button onAction="#detailReaderBtnClick" mnemonicParsing="false" text="Xem chi tiết">
                      <HBox.margin>
-                        <Insets left="150.0" />
-                     </HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin></Button>
+                  <Button mnemonicParsing="false" text="Xem chi tiết">
                      <font>
                         <Font size="16.0" />
                      </font>
-                  </Button>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></Button>
                </children>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
             </HBox>
-         </children>
-      </VBox>
+         </children></VBox>
     </children>
 </GridPane>

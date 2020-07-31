@@ -9,10 +9,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import sample.BUS.LibraryBUS;
 import sample.POJO.Reader;
 import sample.Window.DetailReaderWindow;
@@ -64,11 +66,11 @@ public class ReaderController implements Initializable {
 
     //tạo file fxml rồi nhét cái tên file vào thôi
 
-    public void manageRentBtnClick(ActionEvent actionEvent) {
-//        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-//        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ChooseAuthorizationFXML.fxml"));
-//        stage.setTitle("Phân hệ quản lý");
-//        stage.setScene(new Scene(root, 1000, 600));
+    public void manageRentBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/RentBooksFXML.fxml"));
+        stage.setTitle("Phân hệ quản lý");
+        stage.setScene(new Scene(root, 1000, 600));
     }
 
     public void manageBookBtnClick(ActionEvent actionEvent) {
@@ -101,7 +103,22 @@ public class ReaderController implements Initializable {
 
     public void detailReaderBtnClick(ActionEvent actionEvent) throws IOException {
         Reader selectedReader = (Reader) readerTableView.getSelectionModel().getSelectedItem();
-        System.out.println(selectedReader);
         DetailReaderWindow.display(selectedReader);
+    }
+
+    public void exportReaderFromBtnClick(ActionEvent actionEvent) throws IOException, InvalidFormatException {
+        Reader selectedReader = (Reader) readerTableView.getSelectionModel().getSelectedItem();
+        boolean isExported = LibraryBUS.printReader(selectedReader);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        if(isExported)
+        {
+            alert.setContentText("Xuất thẻ độc giả thành công!");
+            alert.showAndWait();
+        }
+        else
+        {
+            alert.setContentText("Không thể xuất thẻ độc giả!");
+            alert.showAndWait();
+        }
     }
 }

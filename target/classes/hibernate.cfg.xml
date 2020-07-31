@@ -29,7 +29,6 @@
         <mapping class="sample.POJO.TypeBook"></mapping>
         <mapping class="sample.POJO.Publisher"></mapping>
         <mapping class="sample.POJO.Reader"></mapping>
-
-
+        <mapping class="sample.POJO.RentBook"></mapping>
     </session-factory>
 </hibernate-configuration>
