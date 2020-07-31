@@ -73,4 +73,5 @@ public class SignInController implements Initializable {
         stage.setTitle("Phân hệ quản lý");
         stage.setScene(new Scene(root, 1000, 600));
     }
+
 }

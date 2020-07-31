@@ -1,9 +1,12 @@
 package sample.BUS;
 
+import javafx.collections.ObservableList;
 import sample.DAO.LibraryDAO;
 import sample.POJO.Reader;
+import sample.POJO.Regulation;
 import sample.POJO.TypeBook;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryBUS {
@@ -27,4 +30,16 @@ public class LibraryBUS {
         List<Reader> result = LibraryDAO.getReaderList();
         return result;
     }
+
+    public static List<Regulation> getRegulationList() // khong co trong doc4
+    {
+        List<Regulation> result = LibraryDAO.getRegulationList(false);
+        return result;
+    }
+
+    public static void updateRegulation(ObservableList<Regulation> newRegulationData, ArrayList<Integer> listIdOfChangingRule)
+    {
+        LibraryDAO.updateRegulation(newRegulationData, listIdOfChangingRule);
+    }
+
 }
