@@ -131,7 +131,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </ComboBox>
-                  <Button onAction="#findRentBookListBtnClick" mnemonicParsing="false" text="Tìm kiếm" />
+                  <Button mnemonicParsing="false" onAction="#findRentBookListBtnClick" text="Tìm kiếm" />
                </children>
             </HBox>
             <TableView fx:id="rentBookTableView" prefHeight="500.0" prefWidth="200.0">
@@ -152,14 +152,22 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
                <children>
-                  <Button onAction="#sendEmailBtnClick" mnemonicParsing="false" text="Gửi mail">
+                  <Button onAction="#sendEmailToAllBtnClick" mnemonicParsing="false" text="Gửi mail cho tất cả">
                      <font>
                         <Font size="16.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#sendEmailBtnClick" text="Gửi mail ">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
                      </HBox.margin></Button>
-                  <Button onAction="#detailRentBookBtnClick" mnemonicParsing="false" text="Xem chi tiết">
+                  <Button mnemonicParsing="false" onAction="#detailRentBookBtnClick" text="Xem chi tiết">
                      <font>
                         <Font size="16.0" />
                      </font>

@@ -41,10 +41,11 @@ public class ReaderController implements Initializable {
     @FXML
     TableColumn<Reader, Integer> statusReaderCol;
 
+    ObservableList<Reader> readerObservableList;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        List<Reader> readerList = LibraryBUS.getReaderList();
-        ObservableList<Reader> readerObservableList = FXCollections.observableArrayList();
+        List<Reader> readerList = LibraryBUS.getReaderList(false);
+        readerObservableList = FXCollections.observableArrayList();
         readerObservableList.addAll(readerList);
         idReaderCol.setCellValueFactory(new PropertyValueFactory<>("idReader"));
         nameReaderCol.setCellValueFactory(new PropertyValueFactory<>("nameReader"));
@@ -104,6 +105,14 @@ public class ReaderController implements Initializable {
     public void detailReaderBtnClick(ActionEvent actionEvent) throws IOException {
         Reader selectedReader = (Reader) readerTableView.getSelectionModel().getSelectedItem();
         DetailReaderWindow.display(selectedReader);
+        if(DetailReaderController.isChanged)
+        {
+            DetailReaderController.isChanged = false;
+            List<Reader> readerList = LibraryBUS.getReaderList(true);
+            readerObservableList.clear();
+            readerObservableList.addAll(readerList);
+            readerTableView.refresh();
+        }
     }
 
     public void exportReaderFromBtnClick(ActionEvent actionEvent) throws IOException, InvalidFormatException {

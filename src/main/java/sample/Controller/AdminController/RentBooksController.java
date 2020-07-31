@@ -108,19 +108,20 @@ public class RentBooksController implements Initializable {
 
     @FXML
     ComboBox typeViewComboBox;
+
+    ObservableList<RentBook> tempRentBooksObservableList = rentBookObservableList;
     public void findRentBookListBtnClick(ActionEvent actionEvent) {
         int type = typeViewComboBox.getSelectionModel().getSelectedIndex();
         LocalDate localDate = LocalDate.now();
-        ObservableList<RentBook> temp = rentBookObservableList;
         if(type == 1)
         {
 
         }
         else if(type == 2)
         {
-            temp = rentBookObservableList.filtered(rentBook ->  ChronoUnit.DAYS.between(rentBook.getRentDate().toLocalDate(),localDate) > 14);
+            tempRentBooksObservableList = rentBookObservableList.filtered(rentBook ->  ChronoUnit.DAYS.between(rentBook.getRentDate().toLocalDate(),localDate) > 14);
         }
-        rentBookTableView.setItems(temp);
+        rentBookTableView.setItems(tempRentBooksObservableList);
     }
 
     public void sendEmailBtnClick(ActionEvent actionEvent) throws EmailException {
@@ -145,10 +146,26 @@ public class RentBooksController implements Initializable {
         DetailRentBookWindow.display(rentBook);
         if(DetailRentBookController.isChanged)
         {
+            DetailRentBookController.isChanged = false;
             rentBookList = LibraryBUS.getRentBookList(true);
             rentBookObservableList.clear();
             rentBookObservableList.addAll(rentBookList);
             rentBookTableView.refresh();
+        }
+    }
+
+    public void sendEmailToAllBtnClick(ActionEvent actionEvent) {
+        boolean isSent = LibraryBUS.sendEmailToAll(tempRentBooksObservableList);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        if(isSent)
+        {
+            alert.setContentText("Gửi email thành công");
+            alert.showAndWait();
+        }
+        else
+        {
+            alert.setContentText("Gửi email không thành công");
+            alert.showAndWait();
         }
     }
 }

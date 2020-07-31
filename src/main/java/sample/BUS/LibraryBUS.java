@@ -16,6 +16,9 @@ import sample.POJO.Regulation;
 import java.io.*;
 import java.math.BigInteger;
 import javafx.collections.ObservableList;
+
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,8 +39,8 @@ public class LibraryBUS {
         return result;
     }
 
-    public static List<Reader> getReaderList() {
-        List<Reader> result = LibraryDAO.getReaderList();
+    public static List<Reader> getReaderList(boolean isRequey) {
+        List<Reader> result = LibraryDAO.getReaderList(isRequey);
         return result;
     }
 
@@ -114,7 +117,7 @@ public class LibraryBUS {
             // Nội dung email
             email.setMsg("Chào bạn, \n" +
                     "Theo thông tin được lưu trong dữ liệu của thư viện thì hiện tại bạn đang mượn sách của thư viện và đã quá hạn trả sách. " +
-                    "Độc giả vui lòng đến thư viện để trả lại sách và thanh toán phí mượn. " +
+                    "Độc giả vui lòng đến thư viện để trả lại sách và thanh toán phí mượn.\n" +
                     "Xin cảm ơn!");
 
             // send message
@@ -143,5 +146,55 @@ public class LibraryBUS {
     public static boolean updateIsReturnedRentBook(int idRentBook, boolean isReturned) {
         boolean res = LibraryDAO.updateIsReturnedRentBook(idRentBook,isReturned);
         return res;
+    }
+
+    public static boolean updateReader(int idReader, String nameReader, String addReader, String phoneReader, String emailReader, LocalDate dobReader, LocalDate memberDate, boolean isMarked, boolean isDeleted) {
+        boolean res = LibraryDAO.updateReader(idReader,nameReader,addReader,phoneReader,emailReader, Date.valueOf(dobReader),Date.valueOf(memberDate),isMarked,isDeleted);
+        return res;
+    }
+
+    public static boolean sendEmailToAll(ObservableList<RentBook> tempRentBooksObservableList) {
+        boolean isSent = true;
+
+        try {
+            // Tạo đối tượng Email
+            Email email = new SimpleEmail();
+
+            // Cấu hình thông tin Email Server
+            email.setHostName("smtp.gmail.com");
+            email.setSmtpPort(465);
+            email.setAuthenticator(new DefaultAuthenticator("tuan0949@gmail.com", "Tuantun123"));
+            email.setSSLOnConnect(true);
+
+            // Người gửi
+            email.setFrom("tuan0949@gmail.com");
+
+            tempRentBooksObservableList.forEach(rentBook -> {
+                try {
+                    email.addTo(rentBook.getReader().getEmailReader());
+                } catch (EmailException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            // Tiêu đề
+            email.setSubject("Thư viện Paylak_2/5 - Thông báo trả sách");
+
+            // Nội dung email
+            email.setMsg("Chào bạn, \n" +
+                    "Theo thông tin được lưu trong dữ liệu của thư viện thì hiện tại bạn đang mượn sách của thư viện và đã quá hạn trả sách. " +
+                    "Độc giả vui lòng đến thư viện để trả lại sách và thanh toán phí mượn.\n" +
+                    "Xin cảm ơn!");
+
+            // send message
+            email.send();
+        }catch (EmailException ex) {
+            ex.printStackTrace();
+            isSent = false;
+
+        }
+        finally {
+            return isSent;
+        }
     }
 }
