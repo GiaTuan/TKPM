@@ -1,15 +1,18 @@
 package sample.DAO;
 
+import javafx.collections.ObservableList;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import sample.POJO.GroupBook;
 import sample.POJO.Reader;
+import sample.POJO.Regulation;
 import sample.POJO.RentBook;
 import sample.POJO.TypeBook;
 import sample.SessionUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryDAO {
@@ -17,12 +20,15 @@ public class LibraryDAO {
     private static List<TypeBook> typeBookList;
     private static List<GroupBook> groupBookList;
     private static List<Reader> readerList;
+    private static List<Regulation> regulationList;
+<<<<<<< HEAD
     private static List<RentBook> rentBookList;
 
     public static void setUpData() {
         setUpTypeBookList();
         setUpReaderList();
         setUpRentBookList();
+	setupRegulationList();
     }
 
     private static void setUpRentBookList() {
@@ -97,6 +103,57 @@ public class LibraryDAO {
             session.close();
             return totalNumberOfBooks;
 
+        }
+    }
+
+    private static void setupRegulationList() // khong co trong doc4
+    {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.getTransaction();
+        try {
+            String hql = "select t from Regulation t";
+            Query query = session.createQuery(hql);
+            regulationList = query.getResultList();
+            // transaction.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public static List<Regulation> getRegulationList(boolean isRequery) // khong co trong doc4
+    {
+        if(isRequery)
+        {
+            setupRegulationList();
+            return  regulationList;
+        }
+        else return regulationList;
+    }
+
+    public static void updateRegulation(ObservableList<Regulation> newRegulationData, ArrayList<Integer> listIdOfChangingRule)
+    {
+        for(int item : listIdOfChangingRule)
+        {
+            for(int i = 0; i < newRegulationData.size(); i++)
+            {
+                if(newRegulationData.get(i).getId() == item)
+                {
+                    Session session = SessionUtil.getSession();
+                    Transaction transaction = session.beginTransaction();
+                    try {
+                        Regulation newRegulation = session.get(Regulation.class, item);
+                        newRegulation.setName(newRegulationData.get(i).getName());
+                        newRegulation.setDetail((newRegulationData.get(i).getDetail()));
+                        transaction.commit();
+                    } catch (HibernateException ex) {
+                        ex.printStackTrace();
+                    } finally {
+                        session.close();
+                    }
+                }
+            }
         }
     }
 }

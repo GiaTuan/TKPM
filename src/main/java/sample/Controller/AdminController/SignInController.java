@@ -53,4 +53,5 @@ public class SignInController {
         stage.setTitle("Phân hệ quản lý");
         stage.setScene(new Scene(root, 1000, 600));
     }
+
 }

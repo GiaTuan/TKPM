@@ -7,13 +7,16 @@ import org.apache.commons.mail.SimpleEmail;
 import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTblWidth;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.STTblWidth;
+
 import sample.DAO.LibraryDAO;
 import sample.POJO.Reader;
 import sample.POJO.RentBook;
 import sample.POJO.TypeBook;
-
+import sample.POJO.Regulation;
 import java.io.*;
 import java.math.BigInteger;
+import javafx.collections.ObservableList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryBUS {
@@ -126,4 +129,15 @@ public class LibraryBUS {
         }
 
     }
+    public static List<Regulation> getRegulationList() // khong co trong doc4
+    {
+        List<Regulation> result = LibraryDAO.getRegulationList(false);
+        return result;
+    }
+
+    public static void updateRegulation(ObservableList<Regulation> newRegulationData, ArrayList<Integer> listIdOfChangingRule)
+    {
+        LibraryDAO.updateRegulation(newRegulationData, listIdOfChangingRule);
+    }
+
 }
