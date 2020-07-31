@@ -2,6 +2,7 @@ package sample.POJO;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "reader" )
@@ -37,6 +38,18 @@ public class Reader {
 
     @Column(name = "point")
     int point = 0;
+
+    @OneToMany(mappedBy = "reader" ,fetch = FetchType.LAZY)
+    List<RentBook> rentBookList;
+
+    public void addRentBookList(RentBook rentBook) {
+        rentBookList.add(rentBook);
+        rentBook.setReader(this);
+    }
+
+    public void setRentBookList(List<RentBook> rentBookList) {
+        this.rentBookList = rentBookList;
+    }
 
     public int getIdReader() {
         return idReader;

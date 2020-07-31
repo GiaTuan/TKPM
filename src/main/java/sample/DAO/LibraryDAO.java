@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import sample.POJO.GroupBook;
 import sample.POJO.Reader;
+import sample.POJO.RentBook;
 import sample.POJO.TypeBook;
 import sample.SessionUtil;
 
@@ -16,10 +17,29 @@ public class LibraryDAO {
     private static List<TypeBook> typeBookList;
     private static List<GroupBook> groupBookList;
     private static List<Reader> readerList;
+    private static List<RentBook> rentBookList;
 
     public static void setUpData() {
         setUpTypeBookList();
         setUpReaderList();
+        setUpRentBookList();
+    }
+
+    private static void setUpRentBookList() {
+        Session session = SessionUtil.getSession();
+        try {
+            String hql = "select r from RentBook r";
+            Query query = session.createQuery(hql);
+            rentBookList = query.getResultList();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public static List<RentBook> getRentBookList() {
+        return rentBookList;
     }
 
     private static void setUpTypeBookList()
@@ -58,7 +78,6 @@ public class LibraryDAO {
             session.close();
         }
     }
-
 
     public static List<Reader> getReaderList() {
         return readerList;

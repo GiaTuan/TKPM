@@ -41,11 +41,11 @@ public class AdminController implements Initializable {
 
     //tạo file fxml rồi nhét cái tên file vào thôi
 
-    public void manageRentBtnClick(ActionEvent actionEvent) {
-//        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-//        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ChooseAuthorizationFXML.fxml"));
-//        stage.setTitle("Phân hệ quản lý");
-//        stage.setScene(new Scene(root, 1000, 600));
+    public void manageRentBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/RentBooksFXML.fxml"));
+        stage.setTitle("Phân hệ quản lý");
+        stage.setScene(new Scene(root, 1000, 600));
     }
 
     public void manageBookBtnClick(ActionEvent actionEvent) {

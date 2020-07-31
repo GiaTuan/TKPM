@@ -52,8 +52,8 @@ public class DetailReaderController implements Initializable {
             email.setText(reader.getEmailReader());
             point.setText(String.valueOf(reader.getPoint()));
             type.setText(reader.getTypeReader());
-            dob.setValue(reader.getDateOfBirth().toLocalDate());
-            dateMember.setValue(reader.getDateMember().toLocalDate());
+           // dob.setValue(reader.getDateOfBirth().toLocalDate());
+            //dateMember.setValue(reader.getDateMember().toLocalDate());
             if(reader.getIsMarked() == 1)
             {
                 isMarked.setSelected(true);
