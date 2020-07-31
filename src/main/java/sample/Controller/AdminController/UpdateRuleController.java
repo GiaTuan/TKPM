@@ -1,4 +1,4 @@
-package sample.Controller;
+package sample.Controller.AdminController;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,17 +12,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.BUS.LibraryBUS;
-import sample.DAO.LibraryDAO;
 import sample.POJO.Regulation;
 
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class UpdateRuleController implements Initializable {
@@ -39,18 +36,18 @@ public class UpdateRuleController implements Initializable {
 
     public void backBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/UpdateRuleFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/UpdateRuleFXML.fxml"));
         stage.setTitle("Phân hệ quản lý");
         stage.setScene(new Scene(root, 1000, 600));
     }
 
     //tạo file fxml rồi nhét cái tên file vào thôi
 
-    public void manageRentBtnClick(ActionEvent actionEvent) {
-//        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-//        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ChooseAuthorizationFXML.fxml"));
-//        stage.setTitle("Phân hệ quản lý");
-//        stage.setScene(new Scene(root, 1000, 600));
+    public void manageRentBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/RentBooksFXML.fxml"));
+        stage.setTitle("Phân hệ quản lý");
+        stage.setScene(new Scene(root, 1000, 600));
     }
 
     public void manageBookBtnClick(ActionEvent actionEvent) {
@@ -67,22 +64,16 @@ public class UpdateRuleController implements Initializable {
 //        stage.setScene(new Scene(root, 1000, 600));
     }
 
-    public void manageReaderBtnClick(ActionEvent actionEvent) {
-//        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-//        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ChooseAuthorizationFXML.fxml"));
-//        stage.setTitle("Phân hệ quản lý");
-//        stage.setScene(new Scene(root, 1000, 600));
+    public void manageReaderBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/ReaderFXML.fxml"));
+        stage.setTitle("Phân hệ quản lý");
+        stage.setScene(new Scene(root, 1000, 600));
     }
-
-    public void mangeRegulationBtnClick(ActionEvent actionEvent) {
-//        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-//        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ChooseAuthorizationFXML.fxml"));
-//        stage.setTitle("Phân hệ quản lý");
-//        stage.setScene(new Scene(root, 1000, 600));
-    }
+    
     public void manageStatisticBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/AdminFXML.fxml"));
         stage.setTitle("Phân hệ quản lý");
         stage.setScene(new Scene(root, 1000, 600));
     }

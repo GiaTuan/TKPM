@@ -21,7 +21,6 @@ public class LibraryDAO {
     private static List<GroupBook> groupBookList;
     private static List<Reader> readerList;
     private static List<Regulation> regulationList;
-<<<<<<< HEAD
     private static List<RentBook> rentBookList;
 
     public static void setUpData() {

@@ -105,14 +105,14 @@ public class LibraryBUS {
             email.setFrom("tuan0949@gmail.com");
 
             // Người nhận
-            email.addTo("la.manhtuan412@gmail.com");
+            email.addTo(emailReader);
             // addTo nhiều để gửi nhiều email
 
             // Tiêu đề
             email.setSubject("Thư viện Paylak_2/5 - Thông báo trả sách");
 
             // Nội dung email
-            email.setMsg("Chào ban, \n" +
+            email.setMsg("Chào bạn, \n" +
                     "Theo thông tin được lưu trong dữ liệu của thư viện thì hiện tại bạn đang mượn sách của thư viện và đã quá hạn trả sách. " +
                     "Độc giả vui lòng đến thư viện để trả lại sách và thanh toán phí mượn. " +
                     "Xin cảm ơn!");

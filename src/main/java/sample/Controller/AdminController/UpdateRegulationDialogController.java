@@ -1,4 +1,4 @@
-package sample.Controller;
+package sample.Controller.AdminController;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;

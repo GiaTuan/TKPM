@@ -89,7 +89,7 @@ public class ReaderController implements Initializable {
 
     public void mangeRegulationBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/UpdateRuleFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/UpdateRuleFXML.fxml"));
         stage.setTitle("Phân hệ quản lý");
         stage.setScene(new Scene(root, 1000, 600));
     }
