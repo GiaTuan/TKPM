@@ -39,6 +39,9 @@ public class Reader {
     @Column(name = "point")
     int point = 0;
 
+    @Column(name = "isdeleted")
+    Integer isDeleted = 0 ;
+
     @OneToMany(mappedBy = "reader" ,fetch = FetchType.LAZY)
     List<RentBook> rentBookList;
 
@@ -139,9 +142,8 @@ public class Reader {
         this.isDeleted = isDeleted;
     }
 
-    @Column(name = "isdeleted")
-    Integer isDeleted = 0 ;
 
-
-
+    public List<RentBook> getRentBookList() {
+        return rentBookList;
+    }
 }

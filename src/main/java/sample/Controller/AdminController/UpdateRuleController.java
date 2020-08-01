@@ -15,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import sample.BUS.LibraryBUS;
 import sample.POJO.Regulation;
+import sample.Window.UpdateRuleDialogWindow;
 
 
 import java.io.IOException;

@@ -9,17 +9,22 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTblWidth;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.STTblWidth;
 
 import sample.DAO.LibraryDAO;
-import sample.POJO.Reader;
-import sample.POJO.RentBook;
-import sample.POJO.TypeBook;
-import sample.POJO.Regulation;
+import sample.POJO.*;
+
 import java.io.*;
 import java.math.BigInteger;
 import javafx.collections.ObservableList;
 
+
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+
+import sample.POJO.Reader;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -271,5 +276,56 @@ public class LibraryBUS {
         }
 
         return tempRentBooksObservableList;
+    }
+    public static boolean isEmailDuplicate(String emailCheck)
+    {
+        return LibraryDAO.isEmailDuplicate(emailCheck);
+    }
+
+    public static boolean isUsernameDuplicate(String usernameCheck)
+    {
+        return LibraryDAO.isUsernameDuplicate(usernameCheck);
+    }
+
+    public static boolean isPhoneDuplicate(String phoneCheck)
+    {
+        return LibraryDAO.isPhoneDuplicate(phoneCheck);
+    }
+
+    public static String hashPassword(String input)
+    {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+
+            byte[] messageDigest = md.digest(input.getBytes());
+            BigInteger no = new BigInteger(1, messageDigest);
+
+            String hashText = no.toString(16);
+            while(hashText.length() < 32)
+                hashText = "0" + hashText;
+
+            System.out.println(hashText);
+            return hashText;
+        }
+        catch (NoSuchAlgorithmException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static boolean checkVerifyPassword(String password)
+    {
+        return LibraryDAO.checkVerifyPassword(hashPassword(password), 1);
+    }
+
+    public static void addStaff(Staff newStaff)
+    {
+        LibraryDAO.addStaff(newStaff);
+    }
+
+    public static List<Staff> getStaffList(boolean isReQuery) // khong co trong doc4
+    {
+        List<Staff> result = LibraryDAO.getStaffList(isReQuery);
+        return result;
     }
 }

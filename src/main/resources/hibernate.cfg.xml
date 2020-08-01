@@ -31,5 +31,6 @@
         <mapping class="sample.POJO.Reader"></mapping>
         <mapping class="sample.POJO.RentBook"></mapping>
         <mapping class="sample.POJO.Regulation"></mapping>
+        <mapping class="sample.POJO.Staff"></mapping>
     </session-factory>
 </hibernate-configuration>
