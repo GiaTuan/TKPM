@@ -9,15 +9,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.apache.commons.mail.EmailException;
 import sample.BUS.LibraryBUS;
 import sample.POJO.RentBook;
+import sample.Window.DetailRentBookWindow;
 
 import java.io.IOException;
 import java.net.URL;
@@ -46,13 +44,25 @@ public class RentBooksController implements Initializable {
     TableColumn<RentBook, Date> rentDateCol;
     @FXML
     TableColumn<RentBook,Integer> statusCol;
+    @FXML
+    ComboBox typeFilterComboBox;
+    @FXML
+    ComboBox typeViewComboBox;
+    @FXML
+    DatePicker dateRentPicker;
+    @FXML
+    ComboBox typeStatusComboBox;
+    @FXML
+    TextField infoRent;
 
     ObservableList<RentBook> rentBookObservableList;
+    ObservableList<RentBook> tempRentBooksObservableList;
     List<RentBook> rentBookList;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        rentBookList = LibraryBUS.getRentBookList();
+        rentBookList = LibraryBUS.getRentBookList(false);
         rentBookObservableList = FXCollections.observableArrayList();
+        tempRentBooksObservableList = rentBookObservableList;
         rentBookObservableList.addAll(rentBookList);
         IdRentCol.setCellValueFactory(new PropertyValueFactory<>("idRentBook"));
         numberBooksRentCol.setCellValueFactory(new PropertyValueFactory<>("numberBooksRent"));
@@ -105,27 +115,49 @@ public class RentBooksController implements Initializable {
         stage.setScene(new Scene(root, 1000, 600));
     }
 
-    @FXML
-    ComboBox typeViewComboBox;
-    public void findRentBookListBtnClick(ActionEvent actionEvent) {
-        int type = typeViewComboBox.getSelectionModel().getSelectedIndex();
-        LocalDate localDate = LocalDate.now();
-        ObservableList<RentBook> temp = rentBookObservableList;
-        if(type == 1)
-        {
 
-        }
-        else if(type == 2)
-        {
-            temp = rentBookObservableList.filtered(rentBook ->  ChronoUnit.DAYS.between(rentBook.getRentDate().toLocalDate(),localDate) > 14);
-        }
-        rentBookTableView.setItems(temp);
+    public void findRentBookListBtnClick(ActionEvent actionEvent) {
+        String info = infoRent.getText();
+        int typeFilter = typeFilterComboBox.getSelectionModel().getSelectedIndex();
+        int typeView = typeViewComboBox.getSelectionModel().getSelectedIndex();
+        int typeStatus = typeStatusComboBox.getSelectionModel().getSelectedIndex();
+        LocalDate rentDate = dateRentPicker.getValue();
+        tempRentBooksObservableList = LibraryBUS.filterRentBook(rentBookObservableList,info,typeFilter,typeView,typeStatus,rentDate);
+        rentBookTableView.setItems(tempRentBooksObservableList);
     }
 
     public void sendEmailBtnClick(ActionEvent actionEvent) throws EmailException {
         RentBook selectedRentBook = (RentBook) rentBookTableView.getSelectionModel().getSelectedItem();
 
         boolean isSent = LibraryBUS.sendEmail(selectedRentBook.getReader().getEmailReader());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        if(isSent)
+        {
+            alert.setContentText("Gửi email thành công");
+            alert.showAndWait();
+        }
+        else
+        {
+            alert.setContentText("Gửi email không thành công");
+            alert.showAndWait();
+        }
+    }
+
+    public void detailRentBookBtnClick(ActionEvent actionEvent) throws IOException {
+        RentBook rentBook = (RentBook) rentBookTableView.getSelectionModel().getSelectedItem();
+        DetailRentBookWindow.display(rentBook);
+        if(DetailRentBookController.isChanged)
+        {
+            DetailRentBookController.isChanged = false;
+            rentBookList = LibraryBUS.getRentBookList(true);
+            rentBookObservableList.clear();
+            rentBookObservableList.addAll(rentBookList);
+            rentBookTableView.refresh();
+        }
+    }
+
+    public void sendEmailToAllBtnClick(ActionEvent actionEvent) {
+        boolean isSent = LibraryBUS.sendEmailToAll(tempRentBooksObservableList);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         if(isSent)
         {

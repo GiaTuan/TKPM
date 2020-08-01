@@ -16,6 +16,10 @@ import sample.POJO.Regulation;
 import java.io.*;
 import java.math.BigInteger;
 import javafx.collections.ObservableList;
+
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,8 +40,8 @@ public class LibraryBUS {
         return result;
     }
 
-    public static List<Reader> getReaderList() {
-        List<Reader> result = LibraryDAO.getReaderList();
+    public static List<Reader> getReaderList(boolean isRequey) {
+        List<Reader> result = LibraryDAO.getReaderList(isRequey);
         return result;
     }
 
@@ -82,8 +86,8 @@ public class LibraryBUS {
         }
     }
 
-    public static List<RentBook> getRentBookList() {
-        List<RentBook> result = LibraryDAO.getRentBookList();
+    public static List<RentBook> getRentBookList(boolean isRequery) {
+        List<RentBook> result = LibraryDAO.getRentBookList(isRequery);
         return result;
     }
 
@@ -114,7 +118,7 @@ public class LibraryBUS {
             // Nội dung email
             email.setMsg("Chào bạn, \n" +
                     "Theo thông tin được lưu trong dữ liệu của thư viện thì hiện tại bạn đang mượn sách của thư viện và đã quá hạn trả sách. " +
-                    "Độc giả vui lòng đến thư viện để trả lại sách và thanh toán phí mượn. " +
+                    "Độc giả vui lòng đến thư viện để trả lại sách và thanh toán phí mượn.\n" +
                     "Xin cảm ơn!");
 
             // send message
@@ -140,4 +144,132 @@ public class LibraryBUS {
         LibraryDAO.updateRegulation(newRegulationData, listIdOfChangingRule);
     }
 
+    public static boolean updateIsReturnedRentBook(int idRentBook, boolean isReturned) {
+        boolean res = LibraryDAO.updateIsReturnedRentBook(idRentBook,isReturned);
+        return res;
+    }
+
+    public static boolean updateReader(int idReader, String nameReader, String addReader, String phoneReader, String emailReader, LocalDate dobReader, LocalDate memberDate, boolean isMarked, boolean isDeleted) {
+        boolean res = LibraryDAO.updateReader(idReader,nameReader,addReader,phoneReader,emailReader, Date.valueOf(dobReader),Date.valueOf(memberDate),isMarked,isDeleted);
+        return res;
+    }
+
+    public static boolean sendEmailToAll(ObservableList<RentBook> tempRentBooksObservableList) {
+        boolean isSent = true;
+
+        try {
+            // Tạo đối tượng Email
+            Email email = new SimpleEmail();
+
+            // Cấu hình thông tin Email Server
+            email.setHostName("smtp.gmail.com");
+            email.setSmtpPort(465);
+            email.setAuthenticator(new DefaultAuthenticator("tuan0949@gmail.com", "Tuantun123"));
+            email.setSSLOnConnect(true);
+
+            // Người gửi
+            email.setFrom("tuan0949@gmail.com");
+
+            tempRentBooksObservableList.forEach(rentBook -> {
+                try {
+                    email.addTo(rentBook.getReader().getEmailReader());
+                } catch (EmailException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            // Tiêu đề
+            email.setSubject("Thư viện Paylak_2/5 - Thông báo trả sách");
+
+            // Nội dung email
+            email.setMsg("Chào bạn, \n" +
+                    "Theo thông tin được lưu trong dữ liệu của thư viện thì hiện tại bạn đang mượn sách của thư viện và đã quá hạn trả sách. " +
+                    "Độc giả vui lòng đến thư viện để trả lại sách và thanh toán phí mượn.\n" +
+                    "Xin cảm ơn!");
+
+            // send message
+            email.send();
+        }catch (EmailException ex) {
+            ex.printStackTrace();
+            isSent = false;
+
+        }
+        finally {
+            return isSent;
+        }
+    }
+
+    public static ObservableList<Reader> filterReader(ObservableList<Reader> readerObservableList, String info, int typeFilter, int typeDisplay) {
+        ObservableList<Reader> result = readerObservableList;
+        if(typeFilter == 0)
+        {
+            if(!info.equals("")) {
+                result = result.filtered(reader -> reader.getNameReader().toLowerCase().contains(info));
+            }
+
+        }
+        if(typeFilter == 1)
+        {
+            if(!info.equals("")) {
+                result = result.filtered(reader -> reader.getPhoneReader().contains(info));
+            }
+
+        }
+        if(typeFilter == 2)
+        {
+            if(!info.equals("")) {
+                result = result.filtered(reader -> reader.getEmailReader().toLowerCase().contains(info));
+            }
+        }
+        if(typeDisplay == 1)
+        {
+            result = result.filtered(reader -> reader.getIsDeleted() == 0);
+        }
+        if(typeDisplay == 2)
+        {
+            result = result.filtered(reader -> reader.getIsMarked() == 1 && reader.getIsDeleted() == 0);
+        }
+        if(typeDisplay == 3)
+        {
+            result = result.filtered(reader -> reader.getIsDeleted() == 1);
+        }
+        return result;
+    }
+
+    public static ObservableList<RentBook> filterRentBook(ObservableList<RentBook> rentBooksObservableList, String info, int typeFilter, int typeView, int typeStatus, LocalDate rentDate) {
+        ObservableList<RentBook> tempRentBooksObservableList = rentBooksObservableList;
+
+        if(typeFilter == 0)
+        {
+            tempRentBooksObservableList = tempRentBooksObservableList.filtered(rentBook -> String.valueOf(rentBook.getIdRentBook()).contains(info));
+        }
+        if(typeFilter == 1)
+        {
+            tempRentBooksObservableList = tempRentBooksObservableList.filtered(rentBook -> String.valueOf(rentBook.getIdReaderRent()).contains(info));
+        }
+        if(rentDate != null)
+        {
+            tempRentBooksObservableList = tempRentBooksObservableList.filtered(rentBook -> rentBook.getRentDate().compareTo(Date.valueOf(rentDate)) == 0);
+        }
+        if(typeStatus == 1)
+        {
+            tempRentBooksObservableList = tempRentBooksObservableList.filtered(rentBook -> rentBook.getStateRent() == 1);
+        }
+        if(typeStatus == 2)
+        {
+            tempRentBooksObservableList = tempRentBooksObservableList.filtered(rentBook -> rentBook.getStateRent() == 0);
+        }
+        if(typeView == 1)
+        {
+            LocalDate dateNow = LocalDate.now();
+            tempRentBooksObservableList = tempRentBooksObservableList.filtered(rentBook -> ChronoUnit.DAYS.between(rentBook.getRentDate().toLocalDate(),dateNow) > 15 && ChronoUnit.DAYS.between(rentBook.getRentDate().toLocalDate(),dateNow) <= 20);
+        }
+        if(typeView == 2)
+        {
+            LocalDate dateNow = LocalDate.now();
+            tempRentBooksObservableList = tempRentBooksObservableList.filtered(rentBook -> ChronoUnit.DAYS.between(rentBook.getRentDate().toLocalDate(),dateNow) > 20);
+        }
+
+        return tempRentBooksObservableList;
+    }
 }

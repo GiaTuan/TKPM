@@ -33,7 +33,7 @@ public class RentBook {
     Double depositFee;
 
     @Column(name = "state")
-    Integer stateRent;
+    Integer stateRent = 0;
 
     @ManyToOne
     @JoinColumn(name = "idreader" ,insertable = false,updatable = false)

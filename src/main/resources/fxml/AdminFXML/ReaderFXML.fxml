@@ -6,6 +6,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <GridPane prefHeight="400.0" prefWidth="600.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AdminController.ReaderController">
     <columnConstraints>
         <ColumnConstraints minWidth="10.0" prefWidth="150.0" />
@@ -91,11 +93,23 @@
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin></Label>
-                  <TextField>
+                  <TextField fx:id="infoReader" promptText="Điền thông tin độc giả">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </TextField>
+                   <ComboBox fx:id="typeFilterComboBox" prefWidth="150.0" value="Lọc theo tên">
+                       <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Lọc theo tên"></String>
+                                <String fx:value="Lọc theo số điện thoại"></String>
+                                <String fx:value="Lọc theo email"></String>
+                            </FXCollections>
+                       </items>
+                       <HBox.margin>
+                           <Insets left="10.0" />
+                       </HBox.margin>
+                   </ComboBox>
                </children>
                <VBox.margin>
                   <Insets top="10.0" />
@@ -111,11 +125,24 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <ComboBox prefWidth="150.0">
+                  <ComboBox fx:id="typeDisplayComboBox" prefWidth="150.0" value="Tất cả độc giả">
+                      <items>
+                          <FXCollections fx:factory="observableArrayList">
+                              <String fx:value="Tất cả độc giả"></String>
+                              <String fx:value="Độc giả còn hoạt động"></String>
+                              <String fx:value="Độc giả bị đánh dấu"></String>
+                              <String fx:value="Độc giả bị xóa"></String>
+                          </FXCollections>
+                      </items>
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </ComboBox>
+                  <Button onAction="#findReaderBtnClick" mnemonicParsing="false" text="Tìm kiếm">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
                <VBox.margin>
                   <Insets top="10.0" />
@@ -128,7 +155,7 @@
                   <TableColumn fx:id="emailReaderCol" prefWidth="75.0" text="Email" />
                   <TableColumn fx:id="phoneReaderCol" prefWidth="75.0" text="SĐT" />
                   <TableColumn fx:id="pointReaderCol" prefWidth="75.0" text="Điểm" />
-                  <TableColumn fx:id="statusReaderCol" prefWidth="75.0" text="Status" />
+                  <TableColumn fx:id="statusReaderCol" prefWidth="75.0" text="Bị đánh dấu" />
               </columns>
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
@@ -136,24 +163,14 @@
             </TableView>
             <HBox prefHeight="32.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" text="Gửi mail cho tất cả">
+                  <Button mnemonicParsing="false" onAction="#exportReaderFromBtnClick" text="XUẤT BIỂU MẨU ĐỘC GIẢ">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" text="Gửi mail">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Button>
-                  <Button onAction="#exportReaderFromBtnClick" mnemonicParsing="false" text="Xuất biểu mẩu">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Button>
-                  <Button onAction="#detailReaderBtnClick" mnemonicParsing="false" text="Xem chi tiết">
+                  <Button mnemonicParsing="false" onAction="#detailReaderBtnClick" text="XEM CHI TIẾT &amp; THAY ĐỔI">
                      <HBox.margin>
-                        <Insets left="150.0" />
+                        <Insets />
                      </HBox.margin>
                      <font>
                         <Font size="16.0" />

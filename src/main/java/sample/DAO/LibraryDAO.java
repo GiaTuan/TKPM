@@ -12,6 +12,7 @@ import sample.POJO.RentBook;
 import sample.POJO.TypeBook;
 import sample.SessionUtil;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class LibraryDAO {
         setUpTypeBookList();
         setUpReaderList();
         setUpRentBookList();
-	setupRegulationList();
+	    setupRegulationList();
     }
 
     private static void setUpRentBookList() {
@@ -43,8 +44,13 @@ public class LibraryDAO {
         }
     }
 
-    public static List<RentBook> getRentBookList() {
-        return rentBookList;
+    public static List<RentBook> getRentBookList(boolean isRequery) {
+        if(isRequery)
+        {
+            setUpRentBookList();
+            return rentBookList;
+        }
+        else return rentBookList;
     }
 
     private static void setUpTypeBookList()
@@ -84,8 +90,13 @@ public class LibraryDAO {
         }
     }
 
-    public static List<Reader> getReaderList() {
-        return readerList;
+    public static List<Reader> getReaderList(boolean isRequery) {
+
+        if(isRequery){
+            setUpReaderList();
+            return readerList;
+        }
+        else return readerList;
     }
 
     public static int getNumberOfBooksByIdTypeBook(int id) {
@@ -108,12 +119,11 @@ public class LibraryDAO {
     private static void setupRegulationList() // khong co trong doc4
     {
         Session session = SessionUtil.getSession();
-        Transaction transaction = session.getTransaction();
+        Transaction transaction = session.beginTransaction();
         try {
             String hql = "select t from Regulation t";
             Query query = session.createQuery(hql);
             regulationList = query.getResultList();
-            // transaction.commit();
         } catch (HibernateException ex) {
             ex.printStackTrace();
         } finally {
@@ -155,4 +165,64 @@ public class LibraryDAO {
             }
         }
     }
+
+    public static boolean updateIsReturnedRentBook(int idRentBook, boolean isReturned) {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        boolean res = true;
+        try {
+            RentBook rentBook = session.get(RentBook.class,idRentBook);
+            if(isReturned)
+            {
+                rentBook.setStateRent(1);
+            }
+            else
+            {
+                rentBook.setStateRent(0);
+            }
+            session.update(rentBook);
+            transaction.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            res = false;
+        } finally {
+            session.close();
+            return res;
+        }
+    }
+
+    public static boolean updateReader(int idReader, String nameReader, String addReader, String phoneReader, String emailReader, Date dob, Date memDate, boolean isMarked, boolean isDeleted) {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        boolean res = true;
+        try {
+            Reader reader = session.get(Reader.class,idReader);
+
+            reader.setNameReader(nameReader);
+            reader.setAddressReader(addReader);
+            reader.setPhoneReader(phoneReader);
+            reader.setEmailReader(emailReader);
+            reader.setDateOfBirth(dob);
+            reader.setDateMember(memDate);
+            if(isMarked)
+            {
+                reader.setIsMarked(1);
+            }
+            if(isDeleted)
+            {
+                reader.setIsDeleted(1);
+            }
+            session.update(reader);
+            transaction.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            res = false;
+        } finally {
+            session.close();
+            return res;
+        }
+    }
+
+
+
 }
