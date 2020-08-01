@@ -94,11 +94,11 @@ public class RentBooksController implements Initializable {
 //        stage.setScene(new Scene(root, 1000, 600));
     }
 
-    public void manageLibrarianBtnClick(ActionEvent actionEvent) {
-//        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-//        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ChooseAuthorizationFXML.fxml"));
-//        stage.setTitle("Phân hệ quản lý");
-//        stage.setScene(new Scene(root, 1000, 600));
+    public void manageLibrarianBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/StaffManagerFXML.fxml"));
+        stage.setTitle("Phân hệ quản lý");
+        stage.setScene(new Scene(root, 1000, 600));
     }
 
     public void manageReaderBtnClick(ActionEvent actionEvent) throws IOException {
