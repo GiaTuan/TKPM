@@ -2,18 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="thêm cập nhật quy định">
+      <change afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/BookManagerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/sample/POJO/Books.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/BookManagerFXML.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/ReaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/ReaderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/RentBooksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/RentBooksController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/StaffMangerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/StaffMangerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/UpdateRuleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/UpdateRuleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/StaffManagerFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/StaffManagerFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/POJO/GroupBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/POJO/GroupBook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/hibernate.cfg.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sample/BUS/LibraryBUS.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/BUS/LibraryBUS.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/AdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/UpdateRuleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/UpdateRuleController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/sample/DAO/LibraryDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/DAO/LibraryDAO.class" afterDir="false" />
     </list>
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,8 +59,125 @@
     <ui_properties converted="true" />
     <breakpoint_rules converted="true" />
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1377466941">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="fxml" value="2" />
+          <entry key="java" value="13" />
+          <entry key="xml" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="13" />
+          <entry key="XML" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="dummy" value="1" />
+          <entry key="fxml" value="57" />
+          <entry key="java" value="491" />
+          <entry key="xml" value="17" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="491" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="XML" value="74" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages">
+        <counts>
+          <entry key="git.branch.merge" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="JavaFxApplication" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="609">
+              <caret line="29" column="57" lean-forward="true" selection-start-line="29" selection-start-column="57" selection-end-line="29" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/BookManagerFXML.fxml">
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="110">
+              <caret line="126" column="98" selection-start-line="126" selection-start-column="98" selection-end-line="126" selection-end-column="98" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/BookManagerController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-8">
+              <caret line="20" column="9" lean-forward="true" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/sample/POJO/Books.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/sample/POJO/GroupBook.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="294">
+              <caret line="53" column="5" lean-forward="true" selection-start-line="49" selection-start-column="3" selection-end-line="53" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/sample/POJO/TypeBook.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="21" column="37" lean-forward="true" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/sample/POJO/Publisher.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="62">
+              <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -74,6 +190,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>setUpTypeBookList</find>
+      <find>groupBookList</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -88,6 +205,17 @@
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/BooksFXML.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/BookManagerController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sample/POJO/GroupBook.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sample/POJO/Books.java" />
+      </list>
     </option>
   </component>
   <component name="MavenImportPreferences">
@@ -109,6 +237,86 @@
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
   </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="TKPM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TKPM" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TKPM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TKPM" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TKPM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TKPM" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TKPM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TKPM" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TKPM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TKPM" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TKPM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TKPM" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="AdminController" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TKPM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TKPM" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="POJO" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TKPM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TKPM" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TKPM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TKPM" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="AdminFXML" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -124,7 +332,7 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1596250071979" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1596297827662" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="recentsLimit" value="5" />
@@ -137,13 +345,19 @@
       <recent name="C:\Users\PV\IdeaProjects\TKPM\src\main\resources" />
     </key>
   </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
   <component name="RunManager">
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -155,6 +369,12 @@
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="sample.Window.SignInWindow" />
@@ -179,7 +399,6 @@
       </method>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
-      <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="moduleWithDependencies" />
@@ -188,8 +407,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="TestNG">
-      <option name="TEST_OBJECT" value="CLASS" />
+    <configuration default="true" type="TestNG" factoryName="TestNG">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="moduleWithDependencies" />
@@ -200,11 +418,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
       <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file enabled="true" id="idea.log" />
+      <predefined_log_file id="idea.log" enabled="true" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -242,6 +460,69 @@
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="1302000" />
   </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1386" height="788" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24962293" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32874617" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Maven Projects" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Image Layers" order="0" />
+      <window_info id="Designer" order="1" />
+      <window_info id="UI Designer" order="2" />
+      <window_info id="Capture Tool" order="3" />
+      <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.24962293" />
+      <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="0" />
+      <window_info anchor="bottom" id="Terminal" order="1" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="3" />
+      <window_info anchor="bottom" id="Message" order="4" />
+      <window_info anchor="bottom" id="Find" order="5" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.32874617" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="10" />
+      <window_info anchor="right" id="Palette" order="0" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Theme Preview" order="2" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Maven Projects" order="4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
+    </layout-to-restore>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
@@ -250,82 +531,44 @@
     <option name="LAST_COMMIT_MESSAGE" value="thêm cập nhật quy định" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="446" y="25" key="#com.intellij.ide.util.MemberChooser" timestamp="1596195249127">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="446" y="25" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1596195249127" />
-    <state x="366" y="30" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1596036390662">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="366" y="30" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1280.680@0.0.1280.680" timestamp="1596036390662" />
-    <state x="320" y="266" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1596037776724">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="320" y="266" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.680@0.0.1280.680" timestamp="1596037776724" />
-    <state x="371" y="88" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1596119299603">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="371" y="88" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1596119299603" />
-    <state x="74" y="100" width="1095" height="495" key="DiffContextDialog" timestamp="1596187159238">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="74" y="100" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1596187159238" />
-    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1596199012011">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1596199012011" />
-    <state width="1237" height="166" key="GridCell.Tab.0.bottom" timestamp="1596259078665">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596259078665" />
-    <state width="1237" height="166" key="GridCell.Tab.0.center" timestamp="1596259078664">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1596259078664" />
-    <state width="1237" height="166" key="GridCell.Tab.0.left" timestamp="1596259078664">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1596259078664" />
-    <state width="1237" height="166" key="GridCell.Tab.0.right" timestamp="1596259078665">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1596259078665" />
-    <state width="1237" height="261" key="GridCell.Tab.1.bottom" timestamp="1596256657039">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1237" height="261" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596256657039" />
-    <state width="1237" height="261" key="GridCell.Tab.1.center" timestamp="1596256657038">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1237" height="261" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1596256657038" />
-    <state width="1237" height="261" key="GridCell.Tab.1.left" timestamp="1596256657038">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1237" height="261" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1596256657038" />
-    <state width="1237" height="261" key="GridCell.Tab.1.right" timestamp="1596256657039">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1237" height="261" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1596256657039" />
-    <state x="171" y="0" key="Maven.ArtifactSearchDialog" timestamp="1596175489280">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="171" y="0" key="Maven.ArtifactSearchDialog/0.0.1280.680@0.0.1280.680" timestamp="1596175489280" />
-    <state x="383" y="75" key="VcsDiffUtil.ChangesDialog" timestamp="1596187006816">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="383" y="75" key="VcsDiffUtil.ChangesDialog/0.0.1280.680@0.0.1280.680" timestamp="1596187006816" />
-    <state x="337" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1596258332091">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="337" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1596258332091" />
-    <state x="605" y="98" width="609" height="536" key="find.popup" timestamp="1596174640770">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="605" y="98" width="609" height="536" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1596174640770" />
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1596125394809">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1596125394809" />
+    <state x="446" y="25" key="#com.intellij.ide.util.MemberChooser" />
+    <state x="446" y="25" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" />
+    <state x="366" y="30" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" />
+    <state x="366" y="30" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1280.680@0.0.1280.680" />
+    <state x="320" y="266" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" />
+    <state x="320" y="266" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.680@0.0.1280.680" />
+    <state x="371" y="88" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" />
+    <state x="371" y="88" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" />
+    <state x="74" y="100" width="1095" height="495" key="DiffContextDialog" />
+    <state x="74" y="100" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" />
+    <state x="421" y="96" key="FileChooserDialogImpl" />
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" />
+    <state width="1237" height="166" key="GridCell.Tab.0.bottom" />
+    <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" />
+    <state width="1237" height="166" key="GridCell.Tab.0.center" />
+    <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" />
+    <state width="1237" height="166" key="GridCell.Tab.0.left" />
+    <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" />
+    <state width="1237" height="166" key="GridCell.Tab.0.right" />
+    <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" />
+    <state width="1237" height="261" key="GridCell.Tab.1.bottom" />
+    <state width="1237" height="261" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" />
+    <state width="1237" height="261" key="GridCell.Tab.1.center" />
+    <state width="1237" height="261" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" />
+    <state width="1237" height="261" key="GridCell.Tab.1.left" />
+    <state width="1237" height="261" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" />
+    <state width="1237" height="261" key="GridCell.Tab.1.right" />
+    <state width="1237" height="261" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" />
+    <state x="171" y="0" key="Maven.ArtifactSearchDialog" />
+    <state x="171" y="0" key="Maven.ArtifactSearchDialog/0.0.1280.680@0.0.1280.680" />
+    <state x="383" y="75" key="VcsDiffUtil.ChangesDialog" />
+    <state x="383" y="75" key="VcsDiffUtil.ChangesDialog/0.0.1280.680@0.0.1280.680" />
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog" />
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" />
+    <state x="605" y="98" width="609" height="536" key="find.popup" />
+    <state x="605" y="98" width="609" height="536" key="find.popup/0.0.1280.680@0.0.1280.680" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -333,11 +576,13 @@
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/sample/Controller/SignInController.java</url>
           <line>20</line>
+          <properties />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/StaffDetailDialogController.java</url>
           <line>35</line>
+          <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
@@ -347,5 +592,92 @@
         <watch expression="groupBook" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/ReaderFXML.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" column="20" lean-forward="true" selection-end-line="190" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/AdminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="32" column="26" lean-forward="true" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="29" column="57" lean-forward="true" selection-start-line="29" selection-start-column="57" selection-end-line="29" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/DetailReaderController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/StaffMangerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/BookManagerFXML.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="126" column="98" selection-start-line="126" selection-start-column="98" selection-end-line="126" selection-end-column="98" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sample/POJO/Publisher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/BookManagerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="20" column="9" lean-forward="true" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sample/POJO/TypeBook.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="21" column="37" lean-forward="true" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sample/POJO/Books.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sample/POJO/GroupBook.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="53" column="5" lean-forward="true" selection-start-line="49" selection-start-column="3" selection-end-line="53" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
