@@ -132,12 +132,11 @@ public class LibraryDAO {
     private static void setupStaffList() // khong co trong doc4
     {
         Session session = SessionUtil.getSession();
-        Transaction transaction = session.getTransaction();
         try {
             String hql = "select t from Staff t";
             Query query = session.createQuery(hql);
             staffList = query.getResultList();
-            // transaction.commit();
+
         } catch (HibernateException ex) {
             ex.printStackTrace();
         } finally {
@@ -293,5 +292,28 @@ public class LibraryDAO {
         } finally {
             session.close();
         }
+    }
+
+    private static void setupGroupBookList()
+    {
+        Session session = SessionUtil.getSession();
+        try {
+            String hql = "select t from GroupBook t";
+            Query query = session.createQuery(hql);
+            groupBookList = query.getResultList();
+
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public static List<GroupBook> getGroupBookList(boolean isReQuery)
+    {
+        if(isReQuery)
+            setupStaffList();
+
+        return groupBookList;
     }
 }

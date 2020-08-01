@@ -328,4 +328,9 @@ public class LibraryBUS {
         List<Staff> result = LibraryDAO.getStaffList(isReQuery);
         return result;
     }
+
+    public static List<GroupBook> getGroupBookList(boolean isReQuery)
+    {
+        return LibraryDAO.getGroupBookList(isReQuery);
+    }
 }
