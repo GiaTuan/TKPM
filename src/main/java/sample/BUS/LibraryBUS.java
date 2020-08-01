@@ -19,6 +19,7 @@ import javafx.collections.ObservableList;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -196,5 +197,79 @@ public class LibraryBUS {
         finally {
             return isSent;
         }
+    }
+
+    public static ObservableList<Reader> filterReader(ObservableList<Reader> readerObservableList, String info, int typeFilter, int typeDisplay) {
+        ObservableList<Reader> result = readerObservableList;
+        if(typeFilter == 0)
+        {
+            if(!info.equals("")) {
+                result = result.filtered(reader -> reader.getNameReader().toLowerCase().contains(info));
+            }
+
+        }
+        if(typeFilter == 1)
+        {
+            if(!info.equals("")) {
+                result = result.filtered(reader -> reader.getPhoneReader().contains(info));
+            }
+
+        }
+        if(typeFilter == 2)
+        {
+            if(!info.equals("")) {
+                result = result.filtered(reader -> reader.getEmailReader().toLowerCase().contains(info));
+            }
+        }
+        if(typeDisplay == 1)
+        {
+            result = result.filtered(reader -> reader.getIsDeleted() == 0);
+        }
+        if(typeDisplay == 2)
+        {
+            result = result.filtered(reader -> reader.getIsMarked() == 1 && reader.getIsDeleted() == 0);
+        }
+        if(typeDisplay == 3)
+        {
+            result = result.filtered(reader -> reader.getIsDeleted() == 1);
+        }
+        return result;
+    }
+
+    public static ObservableList<RentBook> filterRentBook(ObservableList<RentBook> rentBooksObservableList, String info, int typeFilter, int typeView, int typeStatus, LocalDate rentDate) {
+        ObservableList<RentBook> tempRentBooksObservableList = rentBooksObservableList;
+
+        if(typeFilter == 0)
+        {
+            tempRentBooksObservableList = tempRentBooksObservableList.filtered(rentBook -> String.valueOf(rentBook.getIdRentBook()).contains(info));
+        }
+        if(typeFilter == 1)
+        {
+            tempRentBooksObservableList = tempRentBooksObservableList.filtered(rentBook -> String.valueOf(rentBook.getIdReaderRent()).contains(info));
+        }
+        if(rentDate != null)
+        {
+            tempRentBooksObservableList = tempRentBooksObservableList.filtered(rentBook -> rentBook.getRentDate().compareTo(Date.valueOf(rentDate)) == 0);
+        }
+        if(typeStatus == 1)
+        {
+            tempRentBooksObservableList = tempRentBooksObservableList.filtered(rentBook -> rentBook.getStateRent() == 1);
+        }
+        if(typeStatus == 2)
+        {
+            tempRentBooksObservableList = tempRentBooksObservableList.filtered(rentBook -> rentBook.getStateRent() == 0);
+        }
+        if(typeView == 1)
+        {
+            LocalDate dateNow = LocalDate.now();
+            tempRentBooksObservableList = tempRentBooksObservableList.filtered(rentBook -> ChronoUnit.DAYS.between(rentBook.getRentDate().toLocalDate(),dateNow) > 15 && ChronoUnit.DAYS.between(rentBook.getRentDate().toLocalDate(),dateNow) <= 20);
+        }
+        if(typeView == 2)
+        {
+            LocalDate dateNow = LocalDate.now();
+            tempRentBooksObservableList = tempRentBooksObservableList.filtered(rentBook -> ChronoUnit.DAYS.between(rentBook.getRentDate().toLocalDate(),dateNow) > 20);
+        }
+
+        return tempRentBooksObservableList;
     }
 }

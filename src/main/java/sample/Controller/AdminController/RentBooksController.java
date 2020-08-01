@@ -9,10 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.apache.commons.mail.EmailException;
@@ -47,13 +44,25 @@ public class RentBooksController implements Initializable {
     TableColumn<RentBook, Date> rentDateCol;
     @FXML
     TableColumn<RentBook,Integer> statusCol;
+    @FXML
+    ComboBox typeFilterComboBox;
+    @FXML
+    ComboBox typeViewComboBox;
+    @FXML
+    DatePicker dateRentPicker;
+    @FXML
+    ComboBox typeStatusComboBox;
+    @FXML
+    TextField infoRent;
 
     ObservableList<RentBook> rentBookObservableList;
+    ObservableList<RentBook> tempRentBooksObservableList;
     List<RentBook> rentBookList;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         rentBookList = LibraryBUS.getRentBookList(false);
         rentBookObservableList = FXCollections.observableArrayList();
+        tempRentBooksObservableList = rentBookObservableList;
         rentBookObservableList.addAll(rentBookList);
         IdRentCol.setCellValueFactory(new PropertyValueFactory<>("idRentBook"));
         numberBooksRentCol.setCellValueFactory(new PropertyValueFactory<>("numberBooksRent"));
@@ -106,21 +115,14 @@ public class RentBooksController implements Initializable {
         stage.setScene(new Scene(root, 1000, 600));
     }
 
-    @FXML
-    ComboBox typeViewComboBox;
 
-    ObservableList<RentBook> tempRentBooksObservableList = rentBookObservableList;
     public void findRentBookListBtnClick(ActionEvent actionEvent) {
-        int type = typeViewComboBox.getSelectionModel().getSelectedIndex();
-        LocalDate localDate = LocalDate.now();
-        if(type == 1)
-        {
-
-        }
-        else if(type == 2)
-        {
-            tempRentBooksObservableList = rentBookObservableList.filtered(rentBook ->  ChronoUnit.DAYS.between(rentBook.getRentDate().toLocalDate(),localDate) > 14);
-        }
+        String info = infoRent.getText();
+        int typeFilter = typeFilterComboBox.getSelectionModel().getSelectedIndex();
+        int typeView = typeViewComboBox.getSelectionModel().getSelectedIndex();
+        int typeStatus = typeStatusComboBox.getSelectionModel().getSelectedIndex();
+        LocalDate rentDate = dateRentPicker.getValue();
+        tempRentBooksObservableList = LibraryBUS.filterRentBook(rentBookObservableList,info,typeFilter,typeView,typeStatus,rentDate);
         rentBookTableView.setItems(tempRentBooksObservableList);
     }
 

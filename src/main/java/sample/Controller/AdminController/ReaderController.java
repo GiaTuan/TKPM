@@ -9,9 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -40,6 +38,13 @@ public class ReaderController implements Initializable {
     TableColumn<Reader, Integer> pointReaderCol;
     @FXML
     TableColumn<Reader, Integer> statusReaderCol;
+    @FXML
+    ComboBox typeDisplayComboBox;
+    @FXML
+    ComboBox typeFilterComboBox;
+    @FXML
+    TextField infoReader;
+
 
     ObservableList<Reader> readerObservableList;
     @Override
@@ -129,5 +134,13 @@ public class ReaderController implements Initializable {
             alert.setContentText("Không thể xuất thẻ độc giả!");
             alert.showAndWait();
         }
+    }
+
+    public void findReaderBtnClick(ActionEvent actionEvent) {
+        String info = infoReader.getText();
+        int typeFilter = typeFilterComboBox.getSelectionModel().getSelectedIndex();
+        int typeDisplay = typeDisplayComboBox.getSelectionModel().getSelectedIndex();
+        ObservableList<Reader> filteredReaderList = LibraryBUS.filterReader(readerObservableList,info,typeFilter,typeDisplay);
+        readerTableView.setItems(filteredReaderList);
     }
 }

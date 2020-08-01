@@ -81,6 +81,8 @@ public class AdminController implements Initializable {
     }
 
     public void statisticBookTabSelected(Event event) {
+        barchartBook.getData().clear();
+
         List<TypeBook> list = LibraryBUS.getTypeBookList();
         int numberBooksOfEachType = 0;
         for(TypeBook typeBook : list)

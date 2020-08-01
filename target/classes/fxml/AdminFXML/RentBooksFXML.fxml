@@ -87,61 +87,92 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <HBox prefHeight="32.0" prefWidth="200.0">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-               <children>
-                  <Label text="Lọc: ">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin></Label>
-                  <TextField>
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </TextField>
-               </children>
-            </HBox>
-            <HBox prefHeight="32.0" prefWidth="200.0">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-               <children>
-                  <Label text="Hiển thị: ">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Label>
-                  <ComboBox fx:id="typeViewComboBox" prefWidth="150.0" value="Tất cả phiếu mượn">
-                      <items>
-                          <FXCollections fx:factory="observableArrayList">
-                                <String fx:value="Tất cả phiếu mượn" />
-                                <String fx:value="Phiếu mượn sắp đến hạn" />
-                                <String fx:value="Phiếu mượn quá hạn" />
-                          </FXCollections>
-                      </items>
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </ComboBox>
-                  <Button mnemonicParsing="false" onAction="#findRentBookListBtnClick" text="Tìm kiếm" />
-               </children>
-            </HBox>
+             <HBox prefHeight="32.0" prefWidth="200.0">
+                 <VBox.margin>
+                     <Insets top="10.0" />
+                 </VBox.margin>
+                 <children>
+                     <Label text="Lọc: ">
+                         <font>
+                             <Font size="16.0" />
+                         </font>
+                         <HBox.margin>
+                             <Insets left="10.0" />
+                         </HBox.margin></Label>
+                     <TextField fx:id="infoRent" promptText="Điền thông tin cần lọc">
+                         <HBox.margin>
+                             <Insets left="10.0" />
+                         </HBox.margin>
+                     </TextField>
+                     <ComboBox fx:id="typeFilterComboBox" prefWidth="150.0" value="Lọc theo mã phiếu">
+                         <items>
+                             <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="Lọc theo mã phiếu" />
+                                 <String fx:value="Lọc theo mã độc giả" />
+                             </FXCollections>
+                         </items>
+                         <HBox.margin>
+                             <Insets left="10.0" />
+                         </HBox.margin>
+                     </ComboBox>
+                     <DatePicker fx:id="dateRentPicker" promptText="Ngày mượn sách">
+                         <HBox.margin>
+                             <Insets left="10.0" />
+                         </HBox.margin>
+                     </DatePicker>
+                 </children>
+             </HBox>
+             <HBox prefHeight="32.0" prefWidth="200.0">
+                 <VBox.margin>
+                     <Insets top="10.0" />
+                 </VBox.margin>
+                 <children>
+                     <Label text="Hiển thị: ">
+                         <font>
+                             <Font size="16.0" />
+                         </font>
+                         <HBox.margin>
+                             <Insets left="10.0" />
+                         </HBox.margin>
+                     </Label>
+                     <ComboBox fx:id="typeStatusComboBox" prefWidth="150.0" value="Tất cả phiếu mượn">
+                         <items>
+                             <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="Tất cả phiếu mượn" />
+                                 <String fx:value="Phiếu mượn đã trả" />
+                                 <String fx:value="Phiếu mượn chưa trả" />
+                             </FXCollections>
+                         </items>
+                         <HBox.margin>
+                             <Insets left="10.0" />
+                         </HBox.margin>
+                     </ComboBox>
+                     <ComboBox fx:id="typeViewComboBox" prefWidth="150.0" value="Tất cả phiếu mượn">
+                         <items>
+                             <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="Tất cả phiếu mượn" />
+                                 <String fx:value="Phiếu mượn sắp đến hạn" />
+                                 <String fx:value="Phiếu mượn quá hạn" />
+                             </FXCollections>
+                         </items>
+                         <HBox.margin>
+                             <Insets left="10.0" />
+                         </HBox.margin>
+                     </ComboBox>
+                     <Button mnemonicParsing="false" onAction="#findRentBookListBtnClick" text="Tìm kiếm">
+                         <HBox.margin>
+                             <Insets left="10.0" />
+                         </HBox.margin></Button>
+                 </children>
+             </HBox>
             <TableView fx:id="rentBookTableView" prefHeight="500.0" prefWidth="200.0">
               <columns>
                   <TableColumn fx:id="IdRentCol" prefWidth="75.0" text="ID" />
-                  <TableColumn fx:id="numberBooksRentCol" prefWidth="75.0" text="Quantity" />
-                  <TableColumn fx:id="listRentCol" prefWidth="75.0" text="List Rent Books" />
-                  <TableColumn fx:id="idReaderCol" prefWidth="75.0" text="ID Reader" />
-                  <TableColumn fx:id="rentDateCol" prefWidth="75.0" text="Rent date" />
-                  <TableColumn fx:id="statusCol" prefWidth="75.0" text="Status" />
+                  <TableColumn fx:id="numberBooksRentCol" prefWidth="75.0" text="Số lượng sách" />
+                  <TableColumn fx:id="listRentCol" prefWidth="75.0" text="Danh sách sách" />
+                  <TableColumn fx:id="idReaderCol" prefWidth="75.0" text="Mã độc giả" />
+                  <TableColumn fx:id="rentDateCol" prefWidth="75.0" text="Ngày mượn" />
+                  <TableColumn fx:id="statusCol" prefWidth="75.0" text="Đã trả" />
               </columns>
                <VBox.margin>
                   <Insets top="10.0" />
@@ -152,7 +183,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
                <children>
-                  <Button onAction="#sendEmailToAllBtnClick" mnemonicParsing="false" text="Gửi mail cho tất cả">
+                  <Button mnemonicParsing="false" onAction="#sendEmailToAllBtnClick" text="GỬI EMAIL CHO TẤT CẢ">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -160,14 +191,14 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#sendEmailBtnClick" text="Gửi mail ">
+                  <Button mnemonicParsing="false" onAction="#sendEmailBtnClick" text="GỬI MAIL">
                      <font>
                         <Font size="16.0" />
                      </font>
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></Button>
-                  <Button mnemonicParsing="false" onAction="#detailRentBookBtnClick" text="Xem chi tiết">
+                  <Button mnemonicParsing="false" onAction="#detailRentBookBtnClick" text="XEM CHI TIẾT &amp; THAY ĐỔI">
                      <font>
                         <Font size="16.0" />
                      </font>
