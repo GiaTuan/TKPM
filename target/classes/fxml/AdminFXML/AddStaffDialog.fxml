@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AdminController.AddStaffDialogController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+      <RowConstraints maxHeight="129.0" minHeight="10.0" prefHeight="99.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="129.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="129.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="291.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="193.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2">
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Thêm thủ thư" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+            <children>
+                <Label text="Tên" />
+                <TextField fx:id="name" />
+            </children>
+        </HBox>
+        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+            <children>
+                <Label text="User name" />
+                <TextField fx:id="username" />
+            </children>
+        </HBox>
+        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="9">
+            <children>
+                <Button mnemonicParsing="false" onAction="#cancleBtnClick" text="Thoát" />
+                <Region prefHeight="200.0" prefWidth="200.0" />
+                <Button mnemonicParsing="false" onAction="#createBtnClick" text="Tạo" />
+            </children></HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+         <children>
+            <Label text="Địa chỉ" />
+            <TextField fx:id="addr" />
+         </children></HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="4">
+         <children>
+            <Label text="Số điện thoại" />
+            <TextField fx:id="phone" />
+         </children></HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="5">
+         <children>
+            <Label text="Email" />
+            <TextField fx:id="email" prefHeight="25.0" prefWidth="219.0" />
+         </children></HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="6">
+         <children>
+            <CheckBox fx:id="isAdminAcount" mnemonicParsing="false" text="Tài khoản admin" />
+         </children></HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="7">
+         <children>
+            <Label text="Xác thực" />
+            <PasswordField fx:id="password" />
+         </children>
+      </HBox>
+      <Text fx:id="nofication" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.rowIndex="8" />
+    </children>
+</GridPane>
