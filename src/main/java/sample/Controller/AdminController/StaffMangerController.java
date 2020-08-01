@@ -1,36 +1,49 @@
 package sample.Controller.AdminController;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import sample.BUS.LibraryBUS;
-import sample.POJO.TypeBook;
+import sample.POJO.Staff;
+import sample.Window.AddStaffDialogWindow;
+import sample.Window.DetailStaffDialogWindow;
+
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
-public class AdminController implements Initializable {
+public class StaffMangerController implements Initializable {
 
     @FXML
-    DatePicker statisticTotalFromDate;
+    private TableView table;
     @FXML
-    DatePicker statisticTotalToDate;
+    TableColumn <Staff, Integer> id;
     @FXML
-    LineChart lineChart;
+    TableColumn <Staff, String> name;
     @FXML
-    BarChart barchartBook;
+    TableColumn <Staff, String> username;
+    @FXML
+    TableColumn <Staff, String> phone;
+    @FXML
+    TableColumn <Staff, String> email;
+    private ObservableList<Staff> dataTable;
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        loadInfo();
+    }
 
     public void backBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -55,11 +68,11 @@ public class AdminController implements Initializable {
 //        stage.setScene(new Scene(root, 1000, 600));
     }
 
-    public void manageLibrarianBtnClick(ActionEvent actionEvent) throws IOException {
-        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/StaffManagerFXML.fxml"));
-        stage.setTitle("Phân hệ quản lý");
-        stage.setScene(new Scene(root, 1000, 600));
+    public void manageLibrarianBtnClick(ActionEvent actionEvent) {
+//        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+//        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ChooseAuthorizationFXML.fxml"));
+//        stage.setTitle("Phân hệ quản lý");
+//        stage.setScene(new Scene(root, 1000, 600));
     }
 
     public void manageReaderBtnClick(ActionEvent actionEvent) throws IOException {
@@ -76,27 +89,37 @@ public class AdminController implements Initializable {
         stage.setScene(new Scene(root, 1000, 600));
     }
 
-    public void watchStatisticTotalClick(ActionEvent actionEvent) {
-
+    private void loadInfo()
+    {
+        dataTable = FXCollections.observableArrayList(LibraryBUS.getStaffList(false));
+        setupTable();
+        table.setItems(dataTable);
     }
 
-    public void statisticBookTabSelected(Event event) {
-        barchartBook.getData().clear();
-
-        List<TypeBook> list = LibraryBUS.getTypeBookList();
-        int numberBooksOfEachType = 0;
-        for(TypeBook typeBook : list)
-        {
-            numberBooksOfEachType = LibraryBUS.getNumberOfBooksByIdTypeBook(typeBook.getIdtypebook());
-            XYChart.Series series = new XYChart.Series();
-            series.setName(typeBook.getNameType());
-            series.getData().add(new XYChart.Data<>(typeBook.getNameType(),numberBooksOfEachType));
-            barchartBook.getData().add(series);
-        }
+    private void setupTable()
+    {
+        id.setCellValueFactory(new PropertyValueFactory<>("idStaff"));
+        name.setCellValueFactory(new PropertyValueFactory<>("nameStaff"));
+        username.setCellValueFactory(new PropertyValueFactory<>("username"));
+        phone.setCellValueFactory(new PropertyValueFactory<>("phoneStaff"));
+        email.setCellValueFactory(new PropertyValueFactory<>("emailStaff"));
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        LibraryBUS.setUpData();
+    @FXML
+    private void createAccoutn() throws IOException
+    {
+        AddStaffDialogWindow.display();
+        dataTable = FXCollections.observableArrayList(LibraryBUS.getStaffList(true));
+        table.setItems(dataTable);
+    }
+
+    @FXML
+    private void viewDetailBtnClick() throws IOException
+    {
+        if(table.getSelectionModel().isEmpty())
+            return;
+
+        StaffDetailDialogController.setStaffSelected((Staff)table.getSelectionModel().getSelectedItem());
+        DetailStaffDialogWindow.display();
     }
 }
