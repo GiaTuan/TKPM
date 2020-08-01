@@ -14,30 +14,40 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import sample.BUS.LibraryBUS;
-import sample.POJO.Regulation;
-import sample.Window.UpdateRuleDialogWindow;
+import sample.POJO.Staff;
+import sample.Window.AddStaffDialogWindow;
+import sample.Window.DetailStaffDialogWindow;
 
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class UpdateRuleController implements Initializable {
+public class StaffMangerController implements Initializable {
+
     @FXML
-    private TableView ruleTable;
+    private TableView table;
     @FXML
-    private TableColumn<Regulation, Integer> idRegulationCol;
+    TableColumn <Staff, Integer> id;
     @FXML
-    private TableColumn<Regulation, String> nameRegualtionCol;
+    TableColumn <Staff, String> name;
     @FXML
-    private TableColumn<Regulation, Integer> detailRegulationCol;
-    private static ObservableList<Regulation> dataTable = FXCollections.observableArrayList();
-    private static ArrayList<Integer> listIdOfChangingRule = new ArrayList<Integer>();
+    TableColumn <Staff, String> username;
+    @FXML
+    TableColumn <Staff, String> phone;
+    @FXML
+    TableColumn <Staff, String> email;
+    private ObservableList<Staff> dataTable;
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        loadInfo();
+    }
 
     public void backBtnClick(ActionEvent actionEvent) throws IOException {
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/UpdateRuleFXML.fxml"));
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/ChooseAuthorizationFXML.fxml"));
         stage.setTitle("Phân hệ quản lý");
         stage.setScene(new Scene(root, 1000, 600));
     }
@@ -71,61 +81,45 @@ public class UpdateRuleController implements Initializable {
         stage.setTitle("Phân hệ quản lý");
         stage.setScene(new Scene(root, 1000, 600));
     }
-    
-    public void manageStatisticBtnClick(ActionEvent actionEvent) throws IOException {
+
+    public void mangeRegulationBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/AdminFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/UpdateRuleFXML.fxml"));
         stage.setTitle("Phân hệ quản lý");
         stage.setScene(new Scene(root, 1000, 600));
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        dataTable = FXCollections.observableArrayList(LibraryBUS.getRegulationList());
+    private void loadInfo()
+    {
+        dataTable = FXCollections.observableArrayList(LibraryBUS.getStaffList(false));
         setupTable();
-        ruleTable.setItems(dataTable);
-
+        table.setItems(dataTable);
     }
 
     private void setupTable()
     {
-        idRegulationCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nameRegualtionCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        detailRegulationCol.setCellValueFactory(new PropertyValueFactory<>("detail"));
-    }
-
-
-    private void storeChange(Regulation changeData)
-    {
-        for(Regulation item : dataTable)
-        {
-            if(item.getId() == changeData.getId())
-            {
-                listIdOfChangingRule.add(item.getId());
-                item.setName(changeData.getName());
-                item.setDetail(changeData.getDetail());
-            }
-        }
-        ruleTable.refresh();
+        id.setCellValueFactory(new PropertyValueFactory<>("idStaff"));
+        name.setCellValueFactory(new PropertyValueFactory<>("nameStaff"));
+        username.setCellValueFactory(new PropertyValueFactory<>("username"));
+        phone.setCellValueFactory(new PropertyValueFactory<>("phoneStaff"));
+        email.setCellValueFactory(new PropertyValueFactory<>("emailStaff"));
     }
 
     @FXML
-    private void updateBtnClick()
+    private void createAccoutn() throws IOException
     {
-        LibraryBUS.updateRegulation(dataTable, listIdOfChangingRule);
+        AddStaffDialogWindow.display();
+        dataTable = FXCollections.observableArrayList(LibraryBUS.getStaffList(true));
+        table.setItems(dataTable);
     }
 
     @FXML
-    private void editBtnClick()throws IOException
+    private void viewDetailBtnClick() throws IOException
     {
-        if(!ruleTable.getSelectionModel().isEmpty())
-        {
-            UpdateRegulationDialogController.setSelectedRegulation((Regulation)ruleTable.getSelectionModel().getSelectedItem());
-            UpdateRuleDialogWindow.display();
+        if(table.getSelectionModel().isEmpty())
+            return;
 
-            if(UpdateRegulationDialogController.getCacheData() != null)
-                storeChange(UpdateRegulationDialogController.getCacheData());
-        }
+        StaffDetailDialogController.setStaffSelected((Staff)table.getSelectionModel().getSelectedItem());
+        DetailStaffDialogWindow.display();
     }
-
 }

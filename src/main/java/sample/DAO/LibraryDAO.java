@@ -5,11 +5,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import sample.POJO.GroupBook;
-import sample.POJO.Reader;
-import sample.POJO.Regulation;
-import sample.POJO.RentBook;
-import sample.POJO.TypeBook;
+import sample.POJO.*;
 import sample.SessionUtil;
 
 import java.util.ArrayList;
@@ -22,12 +18,14 @@ public class LibraryDAO {
     private static List<Reader> readerList;
     private static List<Regulation> regulationList;
     private static List<RentBook> rentBookList;
+    private static List<Staff> staffList = null;
 
     public static void setUpData() {
         setUpTypeBookList();
         setUpReaderList();
         setUpRentBookList();
-	setupRegulationList();
+	    setupRegulationList();
+	    setupStaffList();
     }
 
     private static void setUpRentBookList() {
@@ -121,6 +119,22 @@ public class LibraryDAO {
         }
     }
 
+    private static void setupStaffList() // khong co trong doc4
+    {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.getTransaction();
+        try {
+            String hql = "select t from Staff t";
+            Query query = session.createQuery(hql);
+            staffList = query.getResultList();
+            // transaction.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
     public static List<Regulation> getRegulationList(boolean isRequery) // khong co trong doc4
     {
         if(isRequery)
@@ -129,6 +143,16 @@ public class LibraryDAO {
             return  regulationList;
         }
         else return regulationList;
+    }
+
+    public static List<Staff> getStaffList(boolean isRequery) // khong co trong doc4
+    {
+        if(isRequery)
+        {
+            setupRegulationList();
+            return  staffList;
+        }
+        else return staffList;
     }
 
     public static void updateRegulation(ObservableList<Regulation> newRegulationData, ArrayList<Integer> listIdOfChangingRule)
@@ -153,6 +177,52 @@ public class LibraryDAO {
                     }
                 }
             }
+        }
+    }
+
+    public static boolean isEmailDuplicate(String emailChecked)
+    {
+        for(Staff item : staffList)
+            if(item.getEmailStaff().compareTo(emailChecked) == 0)
+                return true;
+
+            return false;
+    }
+    public static boolean isUsernameDuplicate(String usernameChecked)
+    {
+        for(Staff item : staffList)
+            if(item.getUsername().compareTo(usernameChecked) == 0)
+                return true;
+
+        return false;
+    }
+
+    public static boolean isPhoneDuplicate(String phoneCheck)
+    {
+        for(Staff item : staffList)
+            if(item.getPhoneStaff().compareTo(phoneCheck) == 0)
+                return true;
+
+        return false;
+    }
+
+    public static boolean checkVerifyPassword(String password, int currentAcountId)
+    {
+        return true;
+    }
+
+    public static void addStaff(Staff newStaff)
+    {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            session.save(newStaff);
+            transaction.commit();
+            setupStaffList();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 }
