@@ -136,4 +136,11 @@ public class GroupBook {
     public void setIsAvailable(Integer isAvailable) {
         this.isAvailable = isAvailable;
     }
+    public int getIdPublisher() {
+        return idPublisher;
+    }
+
+    public void setIdPublisher(int idPublisher) {
+        this.idPublisher = idPublisher;
+    }
 }

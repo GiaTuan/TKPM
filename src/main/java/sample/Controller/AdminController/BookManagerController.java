@@ -2,17 +2,25 @@ package sample.Controller.AdminController;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import sample.BUS.LibraryBUS;
 import sample.POJO.Books;
 import sample.POJO.GroupBook;
 import sample.POJO.Publisher;
 import sample.POJO.TypeBook;
+import sample.Window.AddGroupBookDialogWindow;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -42,8 +50,54 @@ public class BookManagerController implements Initializable {
 
     private ObservableList<GroupBook> originalData = null;
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources)
+    {
+        originalData = FXCollections.observableArrayList();
         loadInfo();
+    }
+
+    public void backBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/ChooseAuthorizationFXML.fxml"));
+        stage.setTitle("Phân hệ quản lý");
+        stage.setScene(new Scene(root, 1000, 600));
+    }
+
+    //tạo file fxml rồi nhét cái tên file vào thôi
+
+    public void manageRentBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/RentBooksFXML.fxml"));
+        stage.setTitle("Phân hệ quản lý");
+        stage.setScene(new Scene(root, 1000, 600));
+    }
+
+    public void manageBookBtnClick(ActionEvent actionEvent) {
+//        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+//        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ChooseAuthorizationFXML.fxml"));
+//        stage.setTitle("Phân hệ quản lý");
+//        stage.setScene(new Scene(root, 1000, 600));
+    }
+
+    public void manageLibrarianBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/StaffManagerFXML.fxml"));
+        stage.setTitle("Phân hệ quản lý");
+        stage.setScene(new Scene(root, 1000, 600));
+    }
+
+    public void mangeRegulationBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/UpdateRuleFXML.fxml"));
+        stage.setTitle("Phân hệ quản lý");
+        stage.setScene(new Scene(root, 1000, 600));
+    }
+
+    public void manageStatisticBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/AdminFXML.fxml"));
+        stage.setTitle("Phân hệ quản lý");
+        stage.setScene(new Scene(root, 1000, 600));
     }
 
     private void loadInfo()
@@ -72,14 +126,6 @@ public class BookManagerController implements Initializable {
 
         author.setCellValueFactory(new PropertyValueFactory<>("author"));
         publisher.setCellValueFactory(new PropertyValueFactory<>("publisher"));
-        publisher.setCellFactory(col -> new TableCell<GroupBook, Publisher>(){
-            @Override
-            protected  void updateItem(Publisher item, boolean empty)
-            {
-                super.updateItem(item, empty);
-                setText(empty ? null : item.getName());
-            }
-        });
         status.setCellValueFactory(new PropertyValueFactory<>("isAvailable"));
         status.setCellFactory(col -> new TableCell<GroupBook, Integer>(){
             @Override
@@ -90,4 +136,11 @@ public class BookManagerController implements Initializable {
             }
         });
     }
+
+    @FXML
+    private void addBook() throws IOException
+    {
+        AddGroupBookDialogWindow.display();
+    }
 }
+

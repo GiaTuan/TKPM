@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="400.0" prefWidth="750.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AdminController.ReaderController">
+<GridPane prefHeight="400.0" prefWidth="750.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AdminController.BookManagerController">
     <columnConstraints>
         <ColumnConstraints minWidth="10.0" prefWidth="150.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -90,7 +90,7 @@
         </Label>
         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="1" GridPane.rowSpan="7">
             <children>
-                <Label text="DANH SÁCH ĐỘC GIẢ">
+                <Label text="Danh sách sách">
                     <font>
                         <Font name="System Italic" size="16.0" />
                     </font>
@@ -104,7 +104,7 @@
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin></Label>
-                        <TextField fx:id="infoReader" prefHeight="25.0" prefWidth="434.0" promptText="Điền thông tin độc giả">
+                        <TextField fx:id="filterText" prefHeight="25.0" prefWidth="434.0" promptText="Điền thông tin độc giả">
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
@@ -124,7 +124,7 @@
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </Label>
-                        <ComboBox fx:id="typeDisplayComboBox" prefWidth="150.0" value="Tất cả sách">
+                        <ComboBox fx:id="displayMode" prefWidth="150.0" value="Tất cả sách">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
                                     <String fx:value="Tất cả sách" />
@@ -141,15 +141,15 @@
                         <Insets top="10.0" />
                     </VBox.margin>
                 </HBox>
-                <TableView fx:id="readerTableView" prefHeight="500.0" prefWidth="200.0">
+                <TableView fx:id="table" prefHeight="500.0" prefWidth="200.0">
                     <columns>
-                        <TableColumn fx:id="idReaderCol" prefWidth="38.0" text="ID" />
-                        <TableColumn fx:id="nameReaderCol" prefWidth="166.0" text="Tên" />
-                        <TableColumn fx:id="emailReaderCol" prefWidth="73.0" text="Thể loại" />
-                        <TableColumn fx:id="phoneReaderCol" prefWidth="65.0" text="Số lượng" />
-                        <TableColumn fx:id="pointReaderCol" prefWidth="68.0" text="Tác giả" />
-                        <TableColumn fx:id="statusReaderCol" prefWidth="105.0" text="Nhà xuất bản" />
-                  <TableColumn prefWidth="84.0" text="Tình trạng" />
+                        <TableColumn fx:id="id" prefWidth="38.0" text="ID" />
+                        <TableColumn fx:id="name" prefWidth="166.0" text="Tên" />
+                        <TableColumn fx:id="type" prefWidth="73.0" text="Thể loại" />
+                        <TableColumn fx:id="amount" prefWidth="65.0" text="Số lượng" />
+                        <TableColumn fx:id="author" prefWidth="68.0" text="Tác giả" />
+                        <TableColumn fx:id="publisher" prefWidth="105.0" text="Nhà xuất bản" />
+                        <TableColumn prefWidth="84.0" text="Tình trạng" fx:id="status" />
                     </columns>
                     <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
@@ -157,8 +157,8 @@
                 </TableView>
                 <HBox prefHeight="32.0" prefWidth="200.0" spacing="20.0">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#exportReaderFromBtnClick" prefHeight="29.0" prefWidth="102.0" text="Xuất biểu mẫu" />
-                        <Button mnemonicParsing="false" onAction="#detailReaderBtnClick" prefHeight="25.0" prefWidth="104.0" text="Sửa thông tin">
+                        <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="102.0" text="Xuất biểu mẫu" />
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Sửa thông tin">
                             <HBox.margin>
                                 <Insets />
                             </HBox.margin>
@@ -169,6 +169,7 @@
                   <Button mnemonicParsing="false" text="Xóa" />
                   <Button mnemonicParsing="false" text="Xem người mượn" />
                   <Button mnemonicParsing="false" text="Xem chi tiết" />
+                  <Button mnemonicParsing="false" onAction="#addBook" text="Thêm" />
                     </children>
                     <padding>
                         <Insets left="10.0" />

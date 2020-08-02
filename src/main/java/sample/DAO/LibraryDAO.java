@@ -5,6 +5,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import sample.BUS.LibraryBUS;
 import sample.POJO.*;
 import sample.SessionUtil;
 
@@ -20,6 +21,7 @@ public class LibraryDAO {
     private static List<Regulation> regulationList;
     private static List<RentBook> rentBookList;
     private static List<Staff> staffList = null;
+    private static List<Publisher> publisherList = null;
 
     public static void setUpData() {
         setUpTypeBookList();
@@ -27,6 +29,8 @@ public class LibraryDAO {
         setUpRentBookList();
 	    setupRegulationList();
 	    setupStaffList();
+	    setupPublisherList();
+	    setupGroupBookList();
     }
 
     private static void setUpRentBookList() {
@@ -315,5 +319,56 @@ public class LibraryDAO {
             setupStaffList();
 
         return groupBookList;
+    }
+
+    private static void setupPublisherList()
+    {
+        Session session = SessionUtil.getSession();
+        try {
+            String hql = "select t from Publisher t";
+            Query query = session.createQuery(hql);
+            publisherList = query.getResultList();
+
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+
+    public static List<Publisher> getPublisherList(boolean isReQuery)
+    {
+        if(isReQuery)
+            setupPublisherList();
+
+        return publisherList;
+    }
+
+    public static void addGroupBook(GroupBook newGroupBook)
+    {
+
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            int amount = newGroupBook.getQuantity();
+            int idGroupBook = (int)session.save(newGroupBook);
+            for(int i = 0; i < amount; i++)
+            {
+                Books book = new Books();
+                book.setIdGroupBook(idGroupBook);
+                book.setIdBook(LibraryBUS.buildIdBook(idGroupBook, i + 1));
+                book.setState(newGroupBook.getIsAvailable() == 0 ? "Chưa nhập" : "Sẵn sàng");
+                session.save(book);
+            }
+
+            transaction.commit();
+            setupStaffList();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+
     }
 }

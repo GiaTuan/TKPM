@@ -42,4 +42,11 @@ public class TypeBook {
     public List<GroupBook> getGroupBookList() {
         return groupBookList;
     }
+
+    @Override
+    public String toString()
+    {
+        return this.getNameType();
+    }
+
 }

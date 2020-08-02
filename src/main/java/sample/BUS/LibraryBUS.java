@@ -333,4 +333,30 @@ public class LibraryBUS {
     {
         return LibraryDAO.getGroupBookList(isReQuery);
     }
+
+    public static List<Publisher> getPublisherList()
+    {
+        return LibraryDAO.getPublisherList(false);
+    }
+
+    public static boolean isNumber(String checkString)
+    {
+
+        for(int i = 0; i < checkString.length(); i++)
+            if(checkString.charAt(i) < '0' || checkString.charAt(i) > '9')
+                return false;
+
+        return true;
+    }
+
+    public static String buildIdBook(int idGroupBook, int index)
+    {
+        return Integer.toString(idGroupBook) + "_" + Integer.toString(index);
+    }
+
+
+    public static void addGroupBook(GroupBook newGroupBook)
+    {
+        LibraryDAO.addGroupBook(newGroupBook);
+    }
 }
