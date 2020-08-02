@@ -17,7 +17,7 @@ public class DetailRentBookWindow {
         Parent root = fxmlLoader.load();
         primaryStage.setResizable(false);
         primaryStage.initModality(Modality.APPLICATION_MODAL);
-        primaryStage.setTitle("Chi tiết độc giả");
+        primaryStage.setTitle("Chi tiết mượn sách");
         DetailRentBookController detailRentBookController = fxmlLoader.getController();
         detailRentBookController.setRentBook(rentBook);
         primaryStage.setScene(new Scene(root, 400, 500));

@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.controlsfx.control.textfield.TextFields;
@@ -38,9 +39,28 @@ public class ReaderController implements Initializable {
     }
 
     Reader reader;
-    public void findReaderBtnClick(ActionEvent actionEvent) {
-        String readerPhone = textFieldInfoBtn.getText().split("- ")[1];
-        reader = LibraryBUS.getReaderFromPhone(readerPhone);
-        System.out.println(readerPhone);
+    public void findReaderBtnClick(ActionEvent actionEvent) throws IOException {
+        String infoReader = textFieldInfoBtn.getText();
+        if(!infoReader.equals(""))
+        {
+            String readerPhone = null;
+            if(infoReader.contains(" - "))
+            {
+                readerPhone = textFieldInfoBtn.getText().split("- ")[1];
+            }
+            reader = LibraryBUS.getReaderFromPhone(readerPhone);
+            if(reader != null) {
+                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/FindReaderFXML.fxml"));
+                Parent root = fxmlLoader.load();
+                stage.setTitle("Thủ thư");
+                stage.setScene(new Scene(root, 1000, 600));
+            }
+            else{
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("Thông tin độc giả không có trong hệ thống");
+                alert.showAndWait();
+            }
+        }
     }
 }
