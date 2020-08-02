@@ -72,9 +72,9 @@ public class LibraryBUS {
             table.getRow(0).getCell(0).setText("Họ tên: " + selectedReader.getNameReader());
             table.getRow(0).getCell(1).setText("Loại độc giả: " + selectedReader.getTypeReader());
             table.getRow(0).getCell(2).setText("Email: " + selectedReader.getEmailReader());
-            table.getRow(0).getCell(3).setText("Ngày lập thẻ: " );
+            table.getRow(0).getCell(3).setText("Ngày lập thẻ: " + selectedReader.getDateMember().toString() );
             table.getRow(1).getCell(0).setText("Địa chỉ: " + selectedReader.getAddressReader());
-            table.getRow(1).getCell(1).setText("Ngày sinh: " );
+            table.getRow(1).getCell(1).setText("Ngày sinh: " + selectedReader.getDateOfBirth().toString() );
             table.getRow(1).getCell(2).setText("Số điện thoại: " + selectedReader.getPhoneReader());
             table.getRow(1).getCell(3).setText("Điểm tích được: " + selectedReader.getPoint());
 
