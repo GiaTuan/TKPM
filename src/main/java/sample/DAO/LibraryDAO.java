@@ -294,4 +294,38 @@ public class LibraryDAO {
             session.close();
         }
     }
+
+    public static int getNumberOfBooksRemainByIdGroupBook(int idGroupBook) {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        int result = 0;
+        try {
+            String hql = "select count(b) from Books b where b.idGroupBook = :id and b.state = 0";
+            Query query = session.createQuery(hql);
+            query.setParameter("id",idGroupBook);
+            result = Integer.valueOf(query.getResultList().get(0).toString());
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+            return result;
+        }
+    }
+
+    public static Reader getReaderFromPhone(String readerPhone) {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        Reader result = null;
+        try {
+            String hql = "select r from Reader r where r.phoneReader = :phone";
+            Query query = session.createQuery(hql);
+            query.setParameter("phone",readerPhone);
+            result = (Reader) query.getResultList().get(0);
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+            return result;
+        }
+    }
 }

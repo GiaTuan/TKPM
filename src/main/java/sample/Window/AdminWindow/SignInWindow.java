@@ -1,10 +1,14 @@
-package sample.Window;
+package sample.Window.AdminWindow;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sample.BUS.LibraryBUS;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class SignInWindow extends Application {
 
@@ -18,6 +22,7 @@ public class SignInWindow extends Application {
 
 
     public static void main(String[] args) {
+        LibraryBUS.setUpData();
         launch(args);
     }
 }

@@ -22,7 +22,7 @@
         </property>
 
         <property name = "hibernate.connection.password">
-            1234567muoibonhet
+            Adgt123456
         </property>
 
         <mapping class="sample.POJO.GroupBook"></mapping>

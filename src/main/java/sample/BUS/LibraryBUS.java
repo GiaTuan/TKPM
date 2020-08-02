@@ -12,6 +12,7 @@ import sample.DAO.LibraryDAO;
 import sample.POJO.*;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.math.BigInteger;
 import javafx.collections.ObservableList;
 
@@ -327,5 +328,28 @@ public class LibraryBUS {
     {
         List<Staff> result = LibraryDAO.getStaffList(isReQuery);
         return result;
+    }
+
+    public static List<Integer> getBooksRemainForEachType(List<TypeBook> list) {
+        List<Integer> result = new ArrayList<>();
+        int numberOfBooksRemain = 0;
+        for(TypeBook typeBook : list)
+        {
+            List<GroupBook> listGroupBook = typeBook.getGroupBookList();
+            for(GroupBook groupBook : listGroupBook)
+            {
+                numberOfBooksRemain += LibraryDAO.getNumberOfBooksRemainByIdGroupBook(groupBook.getIdGroupBook());
+            }
+            result.add(numberOfBooksRemain);
+            numberOfBooksRemain = 0;
+        }
+
+        return result;
+    }
+
+    public static Reader getReaderFromPhone(String readerPhone) {
+        Reader reader;
+        reader = LibraryDAO.getReaderFromPhone(readerPhone);
+        return reader;
     }
 }

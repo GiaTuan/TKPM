@@ -1,11 +1,10 @@
-package sample.Window;
+package sample.Window.AdminWindow;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import sample.Controller.AdminController.DetailReaderController;
 import sample.Controller.AdminController.DetailRentBookController;
 import sample.POJO.RentBook;
 

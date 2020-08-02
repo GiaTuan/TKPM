@@ -6,6 +6,10 @@
     -fx-background-color: #93D468
 }
 
+.green-background{
+    -fx-background-color: #93D468
+}
+
 .green-btn-background:hover{
      -fx-background-color: #e5e5e5
  }
@@ -26,3 +30,30 @@
     -fx-background-radius: 50px;
 }
 
+.librarian-green-reader-btn{
+    -fx-background-color: #009900;
+    -fx-background-radius: 50px;
+}
+
+.librarian-blue-book-btn{
+    -fx-background-color: #16A9FC;
+    -fx-background-radius: 50px;
+}
+
+.librarian-blue-book-btn:hover{
+       -fx-background-color: #e5e5e5;
+   }
+.librarian-green-reader-btn:hover{
+     -fx-background-color: #e5e5e5;
+ }
+.white-btn-background{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 50px;
+}
+.menu-reader-background{
+-fx-background-color: #fafafa;
+}
+
+.info-reader-background{
+-fx-background-color: #eeeeee;
+}

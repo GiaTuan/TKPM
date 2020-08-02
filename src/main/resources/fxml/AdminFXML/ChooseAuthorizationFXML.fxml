@@ -29,7 +29,7 @@
                </image></ImageView>
          </graphic>
       </ToggleButton>
-      <Button mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" styleClass="green-btn-background" text="THỦ THƯ" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+      <Button onAction="#librarianBtnClick" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" styleClass="green-btn-background" text="THỦ THƯ" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <font>
             <Font name="System Bold" size="32.0" />
          </font>

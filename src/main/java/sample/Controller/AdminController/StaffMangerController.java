@@ -15,8 +15,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import sample.BUS.LibraryBUS;
 import sample.POJO.Staff;
-import sample.Window.AddStaffDialogWindow;
-import sample.Window.DetailStaffDialogWindow;
+import sample.Window.AdminWindow.AddStaffDialogWindow;
+import sample.Window.AdminWindow.DetailStaffDialogWindow;
 
 
 import java.io.IOException;

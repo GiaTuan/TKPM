@@ -146,4 +146,9 @@ public class Reader {
     public List<RentBook> getRentBookList() {
         return rentBookList;
     }
+
+    public String toString()
+    {
+        return this.getNameReader() + " - " + this.getPhoneReader();
+    }
 }

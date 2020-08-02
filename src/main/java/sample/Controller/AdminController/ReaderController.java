@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import sample.BUS.LibraryBUS;
 import sample.POJO.Reader;
-import sample.Window.DetailReaderWindow;
+import sample.Window.AdminWindow.DetailReaderWindow;
 
 import java.io.IOException;
 import java.net.URL;
