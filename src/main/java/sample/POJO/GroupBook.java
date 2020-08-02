@@ -2,6 +2,7 @@ package sample.POJO;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "groupbook")
@@ -42,6 +43,15 @@ public class GroupBook {
     @ManyToOne
     @JoinColumn(name = "publisher", insertable = false , updatable = false)
     Publisher publisher;
+
+    @OneToMany(mappedBy = "groupBook", fetch = FetchType.EAGER)
+    List<Books> booksList;
+
+    public void addBookList(Books book)
+    {
+        booksList.add(book);
+        book.setGroupBook(this);
+    }
 
     public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
