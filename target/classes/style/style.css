@@ -57,3 +57,9 @@
 .info-reader-background{
 -fx-background-color: #eeeeee;
 }
+
+.info-background{
+    -fx-background-color: #ffffff;
+    -fx-border-color: black;
+    -fx-border-width: 1 1 1 1;
+}

@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.BUS.LibraryBUS;
 import sample.POJO.Reader;
@@ -20,7 +21,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class FindReaderController implements Initializable {
+public class ChangeInfoReaderController implements Initializable {
     @FXML
     Label nameLabel;
     @FXML
@@ -33,6 +34,20 @@ public class FindReaderController implements Initializable {
     Label typeLabel;
     @FXML
     Label pointLabel;
+    @FXML
+    Label idReaderLabel;
+    @FXML
+    TextField nameReaderTextField;
+    @FXML
+    TextField phoneReaderTextField;
+    @FXML
+    TextField mailReaderTextField;
+    @FXML
+    TextField addrReaderTextField;
+    @FXML
+    Label pointReaderLabel;
+    @FXML
+    Label typeReaderLabel;
 
     Reader reader;
 
@@ -45,6 +60,14 @@ public class FindReaderController implements Initializable {
             addressLabel.setText("Địa chỉ: "+reader.getAddressReader());
             typeLabel.setText("Hạng độc giả: "+reader.getTypeReader());
             pointLabel.setText("Điểm độc giả: "+String.valueOf(reader.getPoint()));
+
+            idReaderLabel.setText(String.valueOf(reader.getIdReader()));
+            nameReaderTextField.setText(reader.getNameReader());
+            phoneReaderTextField.setText(reader.getPhoneReader());
+            mailReaderTextField.setText(reader.getEmailReader());
+            addrReaderTextField.setText(reader.getAddressReader());
+            pointReaderLabel.setText(String.valueOf(reader.getPoint()));
+            typeReaderLabel.setText(reader.getTypeReader());
         });
 
     }
@@ -108,16 +131,6 @@ public class FindReaderController implements Initializable {
         }
     }
 
-    public void changeInfoReaderBtnClick(ActionEvent actionEvent) throws IOException {
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/ChangeInfoReaderFXML.fxml"));
-        Parent root = fxmlLoader.load();
-        ChangeInfoReaderController changeInfoReaderController = fxmlLoader.getController();
-        changeInfoReaderController.setReader(reader);
-        stage.setTitle("Thủ thư");
-        stage.setScene(new Scene(root, 1000, 600));
-    }
-
     public void rentBookBtnClick(ActionEvent actionEvent) throws IOException {
 //        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 //        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/FindReaderFXML.fxml"));
@@ -136,5 +149,30 @@ public class FindReaderController implements Initializable {
 //        findReaderController.setReader(reader);
 //        stage.setTitle("Thủ thư");
 //        stage.setScene(new Scene(root, 1000, 600));
+    }
+
+    public void changeInfoBtnClick(ActionEvent actionEvent) {
+        String name = nameReaderTextField.getText();
+        String phone = phoneReaderTextField.getText();
+        String mail = mailReaderTextField.getText();
+        String addr= addrReaderTextField.getText();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        if(!name.equals("") && !phone.equals("") && !mail.equals("") && !addr.equals(""))
+        {
+            boolean isUpdated = LibraryBUS.updateInfoReader(reader.getIdReader(),name,phone,mail,addr);
+            if(isUpdated){
+                nameLabel.setText("Họ tên: "+ name);
+                phoneLabel.setText("Số điện thoại: "+ phone);
+                emailLabel.setText("Email: "+ mail);
+                addressLabel.setText("Địa chỉ: "+ addr);
+                alert.setContentText("Thay đổi thông tin thành công");
+                alert.showAndWait();
+            }
+        }
+        else
+        {
+            alert.setContentText("Thông tin điền vào không hợp lệ");
+            alert.showAndWait();
+        }
     }
 }

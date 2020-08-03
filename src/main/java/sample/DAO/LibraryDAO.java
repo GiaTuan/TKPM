@@ -232,9 +232,17 @@ public class LibraryDAO {
             {
                 reader.setIsMarked(1);
             }
+            else
+            {
+                reader.setIsMarked(0);
+            }
             if(isDeleted)
             {
                 reader.setIsDeleted(1);
+            }
+            else
+            {
+                reader.setIsDeleted(0);
             }
             session.update(reader);
             transaction.commit();
@@ -326,6 +334,69 @@ public class LibraryDAO {
         } finally {
             session.close();
             return result;
+        }
+    }
+
+    public static boolean markReader(int idReader) {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        boolean res = true;
+        try {
+            Reader reader = session.get(Reader.class,idReader);
+            reader.setIsMarked(1);
+            session.update(reader);
+            transaction.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            res = false;
+        } finally {
+            session.close();
+            return res;
+        }
+    }
+
+    public static void updateMarkedReaderList(int idReader) {
+        for(Reader reader : readerList)
+        {
+            if(reader.getIdReader() == idReader) {
+                reader.setIsMarked(1);
+                break;
+            }
+        }
+    }
+
+    public static boolean updateInfoReader(int idReader, String name, String phone, String mail, String addr) {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        boolean res = true;
+        try {
+            Reader reader = session.get(Reader.class,idReader);
+
+            reader.setNameReader(name);
+            reader.setAddressReader(addr);
+            reader.setPhoneReader(phone);
+            reader.setEmailReader(mail);
+            session.update(reader);
+            transaction.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            res = false;
+        } finally {
+            session.close();
+            return res;
+        }
+    }
+
+    public static void updateInfoReaderInReaderList(int idReader, String name, String phone, String mail, String addr) {
+        for(Reader reader : readerList)
+        {
+            if(reader.getIdReader() == idReader){
+                reader.setNameReader(name);
+                reader.setPhoneReader(phone);
+                reader.setEmailReader(mail);
+                reader.setAddressReader(addr);
+                break;
+            }
         }
     }
 }

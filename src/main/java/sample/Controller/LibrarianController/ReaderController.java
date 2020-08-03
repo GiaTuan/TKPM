@@ -46,13 +46,19 @@ public class ReaderController implements Initializable {
             String readerPhone = null;
             if(infoReader.contains(" - "))
             {
-                readerPhone = textFieldInfoBtn.getText().split("- ")[1];
+                readerPhone = infoReader.split("- ")[1];
+            }
+            else
+            {
+                readerPhone = infoReader;
             }
             reader = LibraryBUS.getReaderFromPhone(readerPhone);
             if(reader != null) {
                 Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/FindReaderFXML.fxml"));
                 Parent root = fxmlLoader.load();
+                FindReaderController findReaderController = fxmlLoader.getController();
+                findReaderController.setReader(reader);
                 stage.setTitle("Thủ thư");
                 stage.setScene(new Scene(root, 1000, 600));
             }

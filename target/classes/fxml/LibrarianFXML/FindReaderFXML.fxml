@@ -21,7 +21,7 @@
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="205.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="15"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="15" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     </columnConstraints>
     <children>
@@ -90,19 +90,64 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="info-background">
                <VBox.margin>
                   <Insets left="20.0" right="20.0" top="10.0" />
                </VBox.margin>
+               <children>
+                  <Label fx:id="nameLabel" text="Label">
+                     <font>
+                        <Font size="13.0" />
+                     </font></Label>
+                  <Label fx:id="phoneLabel" text="Label">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin></Label>
+                  <Label fx:id="emailLabel" text="Label">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin></Label>
+                  <Label fx:id="addressLabel" text="Label">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin></Label>
+                  <Label fx:id="typeLabel" text="Label">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin></Label>
+                  <Label fx:id="pointLabel" text="Label">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
             </VBox>
             <AnchorPane prefHeight="30.0" prefWidth="200.0">
                <children>
-                  <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" text="THAY ĐỔI THÔNG TIN ĐỘC GIẢ" AnchorPane.leftAnchor="10.0">
+                  <Button onAction="#changeInfoReaderBtnClick" layoutX="14.0" layoutY="2.0" mnemonicParsing="false" text="THAY ĐỔI THÔNG TIN ĐỘC GIẢ" AnchorPane.leftAnchor="10.0">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Button>
-                  <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" text="MƯỢN SÁCH" AnchorPane.rightAnchor="10.0">
+                  <Button onAction="#rentBookBtnClick" layoutX="110.0" layoutY="2.0" mnemonicParsing="false" text="MƯỢN SÁCH" AnchorPane.rightAnchor="10.0">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -122,7 +167,7 @@
                              <Font size="13.0" />
                          </font>
                      </Button>
-                     <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" text="TRẢ SÁCH" AnchorPane.rightAnchor="10.0">
+                     <Button onAction="#returnBookBtnClick" layoutX="110.0" layoutY="2.0" mnemonicParsing="false" text="TRẢ SÁCH" AnchorPane.rightAnchor="10.0">
                          <font>
                              <Font size="13.0" />
                          </font>
@@ -134,7 +179,7 @@
              </AnchorPane>
              <AnchorPane prefHeight="30.0" prefWidth="200.0">
                  <children>
-                     <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" text="ĐÁNH DẤU ĐỘC GIẢ" AnchorPane.leftAnchor="10.0">
+                     <Button onAction="#markReaderBtnClick" layoutX="14.0" layoutY="2.0" mnemonicParsing="false" text="ĐÁNH DẤU ĐỘC GIẢ" AnchorPane.leftAnchor="10.0">
                          <font>
                              <Font size="13.0" />
                          </font>
@@ -151,7 +196,7 @@
              </AnchorPane>
              <AnchorPane prefHeight="30.0" prefWidth="200.0">
                  <children>
-                     <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" text="XUẤT THẺ ĐỘC GIẢ" AnchorPane.leftAnchor="10.0">
+                     <Button onAction="#printReaderBtnClick" layoutX="14.0" layoutY="2.0" mnemonicParsing="false" text="XUẤT THẺ ĐỘC GIẢ" AnchorPane.leftAnchor="10.0">
                          <font>
                              <Font size="13.0" />
                          </font>

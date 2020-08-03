@@ -352,4 +352,21 @@ public class LibraryBUS {
         reader = LibraryDAO.getReaderFromPhone(readerPhone);
         return reader;
     }
+
+    public static boolean markReader(int idReader) {
+        boolean res = LibraryDAO.markReader(idReader);
+        if(res) //cập nhật lại trạng thái đánh dấu trong danh sách độc giả
+        {
+            LibraryDAO.updateMarkedReaderList(idReader);
+        }
+        return res;
+    }
+
+    public static boolean updateInfoReader(int idReader, String name, String phone, String mail, String addr) {
+        boolean res = LibraryDAO.updateInfoReader(idReader,name,phone,mail,addr);
+        if(res){// cập nhật lại thông tin độc giả trong danh sách độc giả
+            LibraryDAO.updateInfoReaderInReaderList(idReader,name,phone,mail,addr);
+        }
+        return  res;
+    }
 }
