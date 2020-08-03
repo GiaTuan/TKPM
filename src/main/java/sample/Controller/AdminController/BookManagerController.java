@@ -19,6 +19,8 @@ import sample.POJO.GroupBook;
 import sample.POJO.Publisher;
 import sample.POJO.TypeBook;
 import sample.Window.AddGroupBookDialogWindow;
+import sample.Window.GroupBookDetailDialogWindow;
+import sample.Window.UpdateGroupBookDialogWindow;
 
 import java.io.IOException;
 import java.net.URL;
@@ -49,10 +51,14 @@ public class BookManagerController implements Initializable {
     TableColumn<GroupBook, Integer> status;
 
     private ObservableList<GroupBook> originalData = null;
+    private ObservableList<GroupBook> filterList = null;
+    private ObservableList<GroupBook> bindingList = null;
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         originalData = FXCollections.observableArrayList();
+        filterList = FXCollections.observableArrayList();
+        bindingList = FXCollections.observableArrayList();
         loadInfo();
     }
 
@@ -103,8 +109,10 @@ public class BookManagerController implements Initializable {
     private void loadInfo()
     {
         originalData = FXCollections.observableArrayList(LibraryBUS.getGroupBookList(false));
+        bindingList.addAll(originalData);
         setupTable();
-        table.setItems(originalData);
+        setupTextFilter();
+        table.setItems(bindingList);
     }
 
     private void setupTable()
@@ -123,24 +131,132 @@ public class BookManagerController implements Initializable {
                 setText(empty ? null : item.getNameType());
             }
         });
-
-        author.setCellValueFactory(new PropertyValueFactory<>("author"));
-        publisher.setCellValueFactory(new PropertyValueFactory<>("publisher"));
-        status.setCellValueFactory(new PropertyValueFactory<>("isAvailable"));
         status.setCellFactory(col -> new TableCell<GroupBook, Integer>(){
             @Override
             protected  void updateItem(Integer item, boolean empty)
             {
                 super.updateItem(item, empty);
-                setText(empty ? null : item == 0 ? "Chưa nhập" : "Sẵn sàng");
+                setText(empty ? null : LibraryBUS.getGroupBookStateName(item));
             }
         });
+        author.setCellValueFactory(new PropertyValueFactory<>("author"));
+
+        publisher.setCellValueFactory(new PropertyValueFactory<>("publisher"));
+        status.setCellValueFactory(new PropertyValueFactory<>("isAvailable"));
+
     }
 
     @FXML
     private void addBook() throws IOException
     {
         AddGroupBookDialogWindow.display();
+        originalData = FXCollections.observableArrayList(LibraryBUS.getGroupBookList(true));
+        bindingList.addAll(originalData);
+        table.setItems(bindingList);
+        table.refresh();
     }
+
+    @FXML
+    private void viewDetailGroupBook() throws IOException
+    {
+        if(table.getSelectionModel().isEmpty())
+            return;
+
+        GroupBookDetailDialogController.setGroupBookSelected((GroupBook)table.getSelectionModel().getSelectedItem());
+        GroupBookDetailDialogWindow.display();
+    }
+
+    @FXML
+    private void updateDetailGroupBook() throws IOException
+    {
+        if(table.getSelectionModel().isEmpty())
+            return;
+
+        UpdateGroupBookDialogController.setGroupBookSelected((GroupBook)table.getSelectionModel().getSelectedItem());
+        UpdateGroupBookDialogWindow.display();
+
+        bindingList.addAll(originalData);
+        table.setItems(bindingList);
+    }
+
+    @FXML
+    private void deleteGroupBook(ActionEvent e) throws IOException
+    {
+        if(table.getSelectionModel().isEmpty())
+            return;
+        GroupBook itemSelected = (GroupBook)(table.getSelectionModel().getSelectedItem());
+        BooksController.setGroupBookId(itemSelected.getIdGroupBook());
+        Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/BooksFXML.fxml"));
+        stage.setTitle("Phân hệ quản lý");
+        stage.setScene(new Scene(root, 1000, 600));
+    }
+
+    @FXML
+    private void comboBoxSlected()
+    {
+        filterText.setText("");
+        if(displayMode.getSelectionModel().isEmpty())
+            return;
+
+        if(displayMode.getSelectionModel().getSelectedIndex() == 0)
+        {
+            filterList.clear();
+            filterList.addAll(originalData);
+        }
+        else if(displayMode.getSelectionModel().getSelectedIndex() == 1)
+        {
+            filterList.clear();
+            for(GroupBook item : originalData)
+                if(item.getIsAvailable() == 1 || item.getIsAvailable() == 3)
+                    filterList.add(item);
+        }
+        else if(displayMode.getSelectionModel().getSelectedIndex() == 2)
+        {
+            filterList.clear();
+            for(GroupBook item : originalData)
+                if(item.getIsAvailable() == 4)
+                    filterList.add(item);
+        }
+
+        bindingList.clear();
+        bindingList.addAll(filterList);
+        table.refresh();
+    }
+
+    void setupTextFilter()
+    {
+        filterText.textProperty().addListener((v, oldValue, newValue) -> {
+
+            if(newValue.isEmpty() || newValue.compareTo("") == 0)
+            {
+                bindingList.clear();
+                bindingList.addAll(filterList);
+                table.refresh();
+                return;
+            }
+
+            ObservableList<GroupBook> cache = FXCollections.observableArrayList();
+            String filterContent = newValue.toLowerCase();
+
+            for(GroupBook item : filterList)
+            {
+                String id = Integer.toString(item.getIdGroupBook());
+                String amount = Integer.toString(item.getQuantity());
+                String status = LibraryBUS.getGroupBookStateName(item.getIsAvailable());
+
+                if(id.indexOf(filterContent)!= -1 || item.getNameBook().toLowerCase().indexOf(filterContent) != -1
+                || item.getTypeBook().getNameType().toLowerCase().indexOf(filterContent) != -1
+                || amount.indexOf(filterContent) != -1 || item.getAuthor().toLowerCase().indexOf(filterContent) != -1
+                || item.getPublisher().toLowerCase().indexOf(filterContent) != -1
+                || status.toLowerCase().indexOf(filterContent) != -1)
+                    cache.add(item);
+            }
+            bindingList.clear();
+            bindingList.addAll(cache);
+            table.refresh();
+        });
+    }
+
 }
 

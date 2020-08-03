@@ -359,4 +359,40 @@ public class LibraryBUS {
     {
         LibraryDAO.addGroupBook(newGroupBook);
     }
+
+    public static void updateGroupBookDetail(GroupBook tempObject)
+    {
+        LibraryDAO.updateGroupBookDetail(tempObject);
+    }
+
+    public static List<Books> getBookList(int groupBookId)
+    {
+        return LibraryDAO.getBookList(groupBookId);
+    }
+
+    public static void deleteBook(int id, int numberOfAvailabe)
+    {
+        LibraryDAO.deleteBook(id, numberOfAvailabe);
+    }
+
+    public static void deleteALLBookInGroup(List<Books> listBooksDelete, int numberOfAvailabe)
+    {
+        LibraryDAO.deleteALLBookInGroup(listBooksDelete, numberOfAvailabe);
+    }
+
+    public static String getGroupBookStateName(int code)
+    {
+        if(code == 0)
+            return "Chưa nhập";
+        else if(code == 1)
+            return "Sẵn sàng";
+        else if(code == 2)
+            return "Xóa";
+        else if(code == 3)
+            return "Hết sách";
+        else if(code == 4)
+            return "Quá hạn";
+        else
+            return "Không xác định";
+    }
 }

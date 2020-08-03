@@ -104,6 +104,7 @@ public class AddGroupBookDialogController implements Initializable {
         newGroupBook.setQuantity(Integer.parseInt(amount.getText()));
 
         LibraryBUS.addGroupBook(newGroupBook);
+
         Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         stage.close();
     }
