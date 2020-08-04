@@ -113,12 +113,8 @@ public class GroupBook {
         this.importDate = importDate;
     }
 
-    public int getPublisher() {
-        return idPublisher;
-    }
-
-    public void setPublisher(int idPublisher) {
-        this.idPublisher = idPublisher;
+    public String getPublisher() {
+        return publisher.getName();
     }
 
     public int getQuantity() {
@@ -136,4 +132,13 @@ public class GroupBook {
     public void setIsAvailable(Integer isAvailable) {
         this.isAvailable = isAvailable;
     }
+    public int getIdPublisher() {
+        return idPublisher;
+    }
+
+    public void setIdPublisher(int idPublisher) {
+        this.idPublisher = idPublisher;
+    }
+
+
 }
