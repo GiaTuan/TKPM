@@ -73,7 +73,7 @@
                     <font>
                         <Font size="14.0" />
                     </font></Button>
-                <Button mnemonicParsing="false" styleClass="round-btn" text="Quản lý độc giả">
+                <Button mnemonicParsing="false" onAction="#manageReaderBtnClick" styleClass="round-btn" text="Quản lý độc giả">
                     <font>
                         <Font size="14.0" />
                     </font></Button>
@@ -149,7 +149,7 @@
                         <TableColumn fx:id="amount" prefWidth="65.0" text="Số lượng" />
                         <TableColumn fx:id="author" prefWidth="68.0" text="Tác giả" />
                         <TableColumn fx:id="publisher" prefWidth="105.0" text="Nhà xuất bản" />
-                        <TableColumn prefWidth="84.0" text="Tình trạng" fx:id="status" />
+                        <TableColumn fx:id="status" prefWidth="84.0" text="Tình trạng" />
                     </columns>
                     <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
@@ -157,8 +157,8 @@
                 </TableView>
                 <HBox prefHeight="32.0" prefWidth="200.0" spacing="20.0">
                     <children>
-                        <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="102.0" text="Xuất biểu mẫu" />
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" onAction="#updateDetailGroupBook" text="Sửa thông tin">
+                        <Button mnemonicParsing="false" onAction="#printBtnClick" prefHeight="29.0" prefWidth="102.0" text="Xuất biểu mẫu" />
+                        <Button mnemonicParsing="false" onAction="#updateDetailGroupBook" prefHeight="25.0" prefWidth="104.0" text="Sửa thông tin">
                             <HBox.margin>
                                 <Insets />
                             </HBox.margin>
@@ -166,9 +166,8 @@
                                 <Font size="14.0" />
                             </font>
                         </Button>
-                  <Button mnemonicParsing="false" text="Xóa" onAction="#deleteGroupBook"/>
-                  <Button mnemonicParsing="false" text="Xem người mượn" />
-                  <Button mnemonicParsing="false" text="Xem chi tiết" onAction="#viewDetailGroupBook"/>
+                  <Button mnemonicParsing="false" onAction="#deleteGroupBook" text="Xóa" />
+                  <Button mnemonicParsing="false" onAction="#viewDetailGroupBook" text="Xem chi tiết" />
                   <Button mnemonicParsing="false" onAction="#addBook" text="Thêm" />
                     </children>
                     <padding>

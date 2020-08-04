@@ -117,10 +117,6 @@ public class GroupBook {
         return publisher.getName();
     }
 
-    /*public void setPublisher(Publisher idPublisher) {
-        this.publisher = idPublisher;
-    }*/
-
     public int getQuantity() {
         return quantity;
     }

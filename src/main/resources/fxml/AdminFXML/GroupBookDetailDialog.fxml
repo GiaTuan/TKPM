@@ -35,13 +35,13 @@
         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
             <children>
                 <Label text="Tên" />
-                <TextField fx:id="name" />
+                <TextField fx:id="name" editable="false" />
             </children>
         </HBox>
         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
             <children>
                 <Label text="Thể loại" />
-            <TextField fx:id="typeBook"/>
+            <TextField fx:id="typeBook" editable="false" />
             </children>
         </HBox>
         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="9">
@@ -51,33 +51,33 @@
         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
             <children>
                 <Label text="Tác giả" />
-                <TextField fx:id="author" />
+                <TextField fx:id="author" editable="false" />
             </children></HBox>
         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="4">
             <children>
                 <Label text="Nhà xuất bản" />
-            <TextField fx:id="publisher"/>
+            <TextField fx:id="publisher" editable="false" />
             </children></HBox>
         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="5">
             <children>
                 <Label text="Ngày xuất bản" />
-            <TextField fx:id="publishDate"/>
+            <TextField fx:id="publishDate" editable="false" />
             </children></HBox>
         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="6">
             <children>
                 <Label text="Ngày nhập" />
-                <TextField fx:id="importDate" />
+                <TextField fx:id="importDate" editable="false" />
             </children></HBox>
         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="7">
             <children>
                 <Label text="Số lượng" />
-            <TextField fx:id="amount"/>
+            <TextField fx:id="amount" editable="false" />
             </children>
         </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="8">
          <children>
             <Label text="Tình trạng" />
-            <TextField  fx:id="status"/>
+            <TextField fx:id="status" editable="false" />
          </children>
       </HBox>
     </children>

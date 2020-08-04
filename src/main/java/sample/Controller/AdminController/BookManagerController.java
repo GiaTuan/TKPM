@@ -106,6 +106,13 @@ public class BookManagerController implements Initializable {
         stage.setScene(new Scene(root, 1000, 600));
     }
 
+    public void manageReaderBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/ReaderFXML.fxml"));
+        stage.setTitle("Phân hệ quản lý");
+        stage.setScene(new Scene(root, 1000, 600));
+    }
+
     private void loadInfo()
     {
         originalData = FXCollections.observableArrayList(LibraryBUS.getGroupBookList(false));
@@ -256,6 +263,12 @@ public class BookManagerController implements Initializable {
             bindingList.addAll(cache);
             table.refresh();
         });
+    }
+
+    @FXML
+    private void printBtnClick()
+    {
+        LibraryBUS.printGroupBook(bindingList);
     }
 
 }

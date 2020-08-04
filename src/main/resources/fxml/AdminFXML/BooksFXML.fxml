@@ -124,7 +124,7 @@
                 </TableView>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Text fx:id="nofication" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text fx:id="nofication" strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
             </HBox>
                 <HBox prefHeight="32.0" prefWidth="200.0" spacing="20.0">

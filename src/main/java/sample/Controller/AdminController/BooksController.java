@@ -49,6 +49,7 @@ public class BooksController implements Initializable {
         loadInfo();
         setupTable();
         table.setItems(tableData);
+        groupBookName.setText(tableData.get(0).getGroupBook().getNameBook());
     }
 
     public void backBtnClick(ActionEvent actionEvent) throws IOException {
@@ -150,7 +151,7 @@ public class BooksController implements Initializable {
     @FXML
     private void deletedAllBtnClick()
     {
-        boolean isDeletedAll = false;
+
         for(Books item : tableData)
         {
             if(item.getState().compareTo("Sẵn sàng") == 0)

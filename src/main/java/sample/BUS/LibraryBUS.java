@@ -27,6 +27,7 @@ import java.security.NoSuchAlgorithmException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class LibraryBUS {
 
@@ -83,7 +84,7 @@ public class LibraryBUS {
         }
         catch (Exception ex)
         {
-            ex.printStackTrace();;
+            ex.printStackTrace();
             isExported = false;
         }
         finally {
@@ -394,5 +395,55 @@ public class LibraryBUS {
             return "Quá hạn";
         else
             return "Không xác định";
+    }
+
+    public static void printGroupBook(List<GroupBook> printList)
+    {
+        String uniqueID = UUID.randomUUID().toString();
+        String fileOut =  LocalDate.now().toString() + uniqueID + ".docx";
+
+        XWPFDocument document= new XWPFDocument();
+        FileOutputStream fileOutputStream;
+        try {
+            fileOutputStream = new FileOutputStream(new File("ReaderFiles/" + fileOut));
+            XWPFParagraph tmpParagraph = document.createParagraph();
+            tmpParagraph.setAlignment(ParagraphAlignment.CENTER);
+            XWPFRun tmpRun = tmpParagraph.createRun();
+            tmpRun.setText("DANH SÁCH SÁCH");
+            tmpRun.setFontSize(18);
+            tmpRun.setBold(true);
+
+            XWPFTable table = document.createTable(printList.size() + 1,7);
+            CTTblWidth width = table.getCTTbl().addNewTblPr().addNewTblW();
+            width.setType(STTblWidth.DXA);
+            width.setW(BigInteger.valueOf(9072));
+            table.getRow(0).getCell(0).setText("ID");
+            table.getRow(0).getCell(1).setText("Tên");
+            table.getRow(0).getCell(2).setText("Thể loại");
+            table.getRow(0).getCell(3).setText("Số lượng" );
+            table.getRow(0).getCell(4).setText("Tác giả");
+            table.getRow(0).getCell(5).setText("Nhà xuất bản" );
+            table.getRow(0).getCell(6).setText("Tình trạng");
+
+            for(int i = 0; i < printList.size(); i++)
+            {
+                table.getRow(i + 1).getCell(0).setText(Integer.toString(printList.get(i).getIdGroupBook()));
+                table.getRow(i + 1).getCell(1).setText(printList.get(i).getNameBook());
+                table.getRow(i + 1).getCell(2).setText(printList.get(i).getTypeBook().toString());
+                table.getRow(i + 1).getCell(3).setText(Integer.toString(printList.get(i).getQuantity()));
+                table.getRow(i + 1).getCell(4).setText(printList.get(i).getAuthor());
+                table.getRow(i + 1).getCell(5).setText(printList.get(i).getPublisher());
+                table.getRow(i + 1).getCell(6).setText(LibraryBUS.getGroupBookStateName(printList.get(i).getIsAvailable()));
+
+            }
+
+            document.write(fileOutputStream);
+            fileOutputStream.close();
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+
     }
 }
