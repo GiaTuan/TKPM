@@ -32,7 +32,7 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
-                <Button layoutX="384.0" layoutY="10.0" mnemonicParsing="false" prefWidth="150.0" styleClass="white-btn-background" text="SÁCH">
+                <Button layoutX="384.0" layoutY="10.0" mnemonicParsing="false" onAction="#changeToBookFXMLBtnClick" prefWidth="150.0" styleClass="white-btn-background" text="SÁCH">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
@@ -53,33 +53,18 @@
                 </ToggleButton>
             </children>
         </AnchorPane>
-        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="1">
-            <children>
-                <Label text="Tìm kiếm độc giả: ">
-                    <HBox.margin>
-                        <Insets left="10.0" />
-                    </HBox.margin>
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Label>
-                <TextField fx:id="textFieldInfoBtn" promptText="Nhập SĐT hoặc Tên">
-                    <HBox.margin>
-                        <Insets left="10.0" />
-                    </HBox.margin>
-                </TextField>
-                <Button mnemonicParsing="false" onAction="#findReaderBtnClick" text="Tìm kiếm">
-                    <HBox.margin>
-                        <Insets left="10.0" />
-                    </HBox.margin>
-                </Button>
-                <ToggleButton mnemonicParsing="false" onAction="#refreshBtnClick">
-                    <HBox.margin>
-                        <Insets left="10.0" />
-                    </HBox.margin>
-                </ToggleButton>
-            </children>
-        </HBox>
+        <ToggleButton mnemonicParsing="false" onAction="#refreshBtnClick" text="Làm mới" GridPane.columnSpan="3" GridPane.rowIndex="1">
+            <graphic>
+                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@/images/refresh.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+            <GridPane.margin>
+                <Insets left="10.0" />
+            </GridPane.margin>
+        </ToggleButton>
         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="menu-reader-background" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="7">
          <children>
             <Label text="THÔNG TIN ĐỘC GIẢ">
@@ -99,6 +84,10 @@
                      <font>
                         <Font size="13.0" />
                      </font></Label>
+                   <Label fx:id="dobLabel" text="Label">
+                       <font>
+                           <Font size="13.0" />
+                       </font></Label>
                   <Label fx:id="phoneLabel" text="Label">
                      <font>
                         <Font size="13.0" />
@@ -142,14 +131,14 @@
             </VBox>
             <AnchorPane prefHeight="30.0" prefWidth="200.0">
                <children>
-                  <Button onAction="#changeInfoReaderBtnClick" layoutX="14.0" layoutY="2.0" mnemonicParsing="false" text="THAY ĐỔI THÔNG TIN ĐỘC GIẢ" AnchorPane.leftAnchor="10.0">
+                  <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" onAction="#changeInfoReaderBtnClick" styleClass="round-btn, change-info-color" text="THAY ĐỔI THÔNG TIN ĐỘC GIẢ" textFill="WHITE" AnchorPane.leftAnchor="10.0">
                      <font>
-                        <Font size="13.0" />
+                        <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button onAction="#rentBookBtnClick" layoutX="110.0" layoutY="2.0" mnemonicParsing="false" text="MƯỢN SÁCH" AnchorPane.rightAnchor="10.0">
+                  <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" onAction="#rentBookBtnClick" styleClass="round-btn, rent-book-color" text="MƯỢN SÁCH" textFill="WHITE" AnchorPane.rightAnchor="10.0">
                      <font>
-                        <Font size="13.0" />
+                        <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
                </children>
@@ -162,31 +151,14 @@
             </AnchorPane>
              <AnchorPane prefHeight="30.0" prefWidth="200.0">
                  <children>
-                     <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" text="GIA HẠN THẺ" AnchorPane.leftAnchor="10.0">
+                     <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" styleClass="round-btn, extend-color" text="GIA HẠN THẺ" textFill="WHITE" AnchorPane.leftAnchor="10.0">
                          <font>
-                             <Font size="13.0" />
+                             <Font name="System Bold" size="13.0" />
                          </font>
                      </Button>
-                     <Button onAction="#returnBookBtnClick" layoutX="110.0" layoutY="2.0" mnemonicParsing="false" text="TRẢ SÁCH" AnchorPane.rightAnchor="10.0">
+                     <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" onAction="#returnBookBtnClick" styleClass="round-btn, return-color" text="TRẢ SÁCH" textFill="WHITE" AnchorPane.rightAnchor="10.0">
                          <font>
-                             <Font size="13.0" />
-                         </font>
-                     </Button>
-                 </children>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-             </AnchorPane>
-             <AnchorPane prefHeight="30.0" prefWidth="200.0">
-                 <children>
-                     <Button onAction="#markReaderBtnClick" layoutX="14.0" layoutY="2.0" mnemonicParsing="false" text="ĐÁNH DẤU ĐỘC GIẢ" AnchorPane.leftAnchor="10.0">
-                         <font>
-                             <Font size="13.0" />
-                         </font>
-                     </Button>
-                     <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" text="ĐỀN BÙ" AnchorPane.rightAnchor="10.0">
-                         <font>
-                             <Font size="13.0" />
+                             <Font name="System Bold" size="13.0" />
                          </font>
                      </Button>
                  </children>
@@ -196,14 +168,31 @@
              </AnchorPane>
              <AnchorPane prefHeight="30.0" prefWidth="200.0">
                  <children>
-                     <Button onAction="#printReaderBtnClick" layoutX="14.0" layoutY="2.0" mnemonicParsing="false" text="XUẤT THẺ ĐỘC GIẢ" AnchorPane.leftAnchor="10.0">
+                     <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" onAction="#markReaderBtnClick" styleClass="round-btn, mark-color" text="ĐÁNH DẤU ĐỘC GIẢ" textFill="WHITE" AnchorPane.leftAnchor="10.0">
                          <font>
-                             <Font size="13.0" />
+                             <Font name="System Bold" size="13.0" />
                          </font>
                      </Button>
-                     <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" text="ĐĂNG KÝ NHẬN THÔNG BÁO" AnchorPane.rightAnchor="10.0">
+                     <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" styleClass="round-btn, compensate-color" text="ĐỀN BÙ" textFill="WHITE" AnchorPane.rightAnchor="10.0">
+                         <font>
+                             <Font name="System Bold" size="13.0" />
+                         </font>
+                     </Button>
+                 </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+             </AnchorPane>
+             <AnchorPane prefHeight="30.0" prefWidth="200.0">
+                 <children>
+                     <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" onAction="#printReaderBtnClick" styleClass="round-btn, print-reader-color" text="XUẤT THẺ ĐỘC GIẢ" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                         <font>
+                             <Font name="System Bold" size="13.0" />
+                         </font>
+                     </Button>
+                     <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" styleClass="round-btn, get-notify-color" text="ĐĂNG KÝ NHẬN THÔNG BÁO" textFill="WHITE" AnchorPane.rightAnchor="10.0">
                      <font>
-                        <Font size="13.0" />
+                        <Font name="System Bold" size="13.0" />
                      </font>
                      </Button>
                  </children>

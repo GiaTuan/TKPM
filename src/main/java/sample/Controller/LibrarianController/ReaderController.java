@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import org.controlsfx.control.textfield.TextFields;
 import sample.BUS.LibraryBUS;
 import sample.POJO.Reader;
+import sample.Window.LibrarianWindow.SignUpReaderWindow;
 
 
 import java.io.IOException;
@@ -28,7 +29,7 @@ public class ReaderController implements Initializable {
     public void backBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/LibrarianFXML/LibrarianFXML.fxml"));
-        stage.setTitle("Phân hệ quản lý");
+        stage.setTitle("Phân hệ thủ thư");
         stage.setScene(new Scene(root, 1000, 600));
     }
 
@@ -43,15 +44,7 @@ public class ReaderController implements Initializable {
         String infoReader = textFieldInfoBtn.getText();
         if(!infoReader.equals(""))
         {
-            String readerPhone = null;
-            if(infoReader.contains(" - "))
-            {
-                readerPhone = infoReader.split("- ")[1];
-            }
-            else
-            {
-                readerPhone = infoReader;
-            }
+            String readerPhone = LibraryBUS.getReaderPhoneFromInputTextField(infoReader);
             reader = LibraryBUS.getReaderFromPhone(readerPhone);
             if(reader != null) {
                 Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -68,5 +61,16 @@ public class ReaderController implements Initializable {
                 alert.showAndWait();
             }
         }
+    }
+
+    public void signUpBtnClick(ActionEvent actionEvent) throws IOException {
+        SignUpReaderWindow.display();
+    }
+
+    public void changeToBookFXMLBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/LibrarianFXML/BookFXML.fxml"));
+        stage.setTitle("Phân hệ thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
     }
 }

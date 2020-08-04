@@ -63,3 +63,42 @@
     -fx-border-color: black;
     -fx-border-width: 1 1 1 1;
 }
+.sign-up-reader-btn{
+    -fx-background-color: #717FFF;
+    -fx-background-radius: 50px;
+}
+
+.round-btn{
+    -fx-background-radius: 50px;
+}
+
+.change-info-color{
+    -fx-background-color: #06C106;
+}
+
+.rent-book-color{
+    -fx-background-color: #717FFF;
+}
+.extend-color{
+    -fx-background-color: #4D3BB9;
+}
+
+.return-color{
+-fx-background-color: #FFB547;
+}
+
+.mark-color{
+-fx-background-color: #FF3333;
+}
+
+.compensate-color{
+-fx-background-color: #E8D637;
+}
+.print-reader-color{
+-fx-background-color: #007F9F;
+}
+
+.get-notify-color{
+-fx-background-color: black;
+}
+

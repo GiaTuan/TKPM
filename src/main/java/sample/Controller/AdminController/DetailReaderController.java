@@ -50,8 +50,6 @@ public class DetailReaderController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println(isChanged);
-
         Platform.runLater(()->{
             name.setText(reader.getNameReader());
             addr.setText(reader.getAddressReader());

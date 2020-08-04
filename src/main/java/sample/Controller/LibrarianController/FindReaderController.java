@@ -11,12 +11,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.controlsfx.control.textfield.TextFields;
 import sample.BUS.LibraryBUS;
 import sample.POJO.Reader;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -33,6 +36,9 @@ public class FindReaderController implements Initializable {
     Label typeLabel;
     @FXML
     Label pointLabel;
+    @FXML
+    Label dobLabel;
+
 
     Reader reader;
 
@@ -40,6 +46,7 @@ public class FindReaderController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(()->{
             nameLabel.setText("Họ tên: "+reader.getNameReader());
+            dobLabel.setText("Ngày sinh: "+reader.getDateOfBirth().toString());
             phoneLabel.setText("Số điện thoại: "+reader.getPhoneReader());
             emailLabel.setText("Email: "+reader.getEmailReader());
             addressLabel.setText("Địa chỉ: "+reader.getAddressReader());
@@ -52,7 +59,7 @@ public class FindReaderController implements Initializable {
     public void backBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/LibrarianFXML/LibrarianFXML.fxml"));
-        stage.setTitle("Phân hệ quản lý");
+        stage.setTitle("Phân hệ thủ thư");
         stage.setScene(new Scene(root, 1000, 600));
     }
 
@@ -63,7 +70,7 @@ public class FindReaderController implements Initializable {
     public void refreshBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/LibrarianFXML/ReaderFXML.fxml"));
-        stage.setTitle("Thủ thư");
+        stage.setTitle("Phân hệ thủ thư");
         stage.setScene(new Scene(root, 1000, 600));
     }
 
@@ -114,7 +121,7 @@ public class FindReaderController implements Initializable {
         Parent root = fxmlLoader.load();
         ChangeInfoReaderController changeInfoReaderController = fxmlLoader.getController();
         changeInfoReaderController.setReader(reader);
-        stage.setTitle("Thủ thư");
+        stage.setTitle("Phân hệ thủ thư");
         stage.setScene(new Scene(root, 1000, 600));
     }
 
@@ -136,5 +143,12 @@ public class FindReaderController implements Initializable {
 //        findReaderController.setReader(reader);
 //        stage.setTitle("Thủ thư");
 //        stage.setScene(new Scene(root, 1000, 600));
+    }
+
+    public void changeToBookFXMLBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/LibrarianFXML/BookFXML.fxml"));
+        stage.setTitle("Phân hệ thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
     }
 }

@@ -9,25 +9,24 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class LibrarianController {
+public class BookController {
     public void backBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/ChooseAuthorizationFXML.fxml"));
-        stage.setTitle("Phân hệ quản lý");
-        stage.setScene(new Scene(root, 1000, 600));
-    }
-
-    public void readerBtnClick(ActionEvent actionEvent) throws IOException {
-        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/LibrarianFXML/ReaderFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/LibrarianFXML/LibrarianFXML.fxml"));
         stage.setTitle("Phân hệ thủ thư");
         stage.setScene(new Scene(root, 1000, 600));
     }
 
-
-    public void bookBtnClick(ActionEvent actionEvent) throws IOException {
+    public void findBookBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/LibrarianFXML/BookFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/LibrarianFXML/FindBookFXML.fxml"));
+        stage.setTitle("Phân hệ thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
+    }
+
+    public void changeReaderFXMLBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/LibrarianFXML/ReaderFXML.fxml"));
         stage.setTitle("Phân hệ thủ thư");
         stage.setScene(new Scene(root, 1000, 600));
     }
