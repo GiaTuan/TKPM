@@ -28,10 +28,10 @@ public class LibraryDAO {
         setUpTypeBookList();
         setUpReaderList();
         setUpRentBookList();
-	    setupRegulationList();
-	    setupStaffList();
-	    setupPublisherList();
-	    setupGroupBookList();
+        setupRegulationList();
+        setupStaffList();
+        setupPublisherList();
+        setupGroupBookList();
     }
 
     private static void setUpRentBookList() {
@@ -137,11 +137,12 @@ public class LibraryDAO {
     private static void setupStaffList() // khong co trong doc4
     {
         Session session = SessionUtil.getSession();
+        Transaction transaction = session.getTransaction();
         try {
             String hql = "select t from Staff t";
             Query query = session.createQuery(hql);
             staffList = query.getResultList();
-
+            // transaction.commit();
         } catch (HibernateException ex) {
             ex.printStackTrace();
         } finally {
@@ -267,7 +268,7 @@ public class LibraryDAO {
             if(item.getEmailStaff().compareTo(emailChecked) == 0)
                 return true;
 
-            return false;
+        return false;
     }
     public static boolean isUsernameDuplicate(String usernameChecked)
     {
@@ -307,7 +308,6 @@ public class LibraryDAO {
         }
     }
 
-
     public static int getNumberOfBooksRemainByIdGroupBook(int idGroupBook) {
         Session session = SessionUtil.getSession();
         Transaction transaction = session.beginTransaction();
@@ -317,21 +317,10 @@ public class LibraryDAO {
             Query query = session.createQuery(hql);
             query.setParameter("id",idGroupBook);
             result = Integer.valueOf(query.getResultList().get(0).toString());
-
-    private static void setupGroupBookList()
-    {
-        Session session = SessionUtil.getSession();
-        try {
-            String hql = "select t from GroupBook t";
-            Query query = session.createQuery(hql);
-            groupBookList = query.getResultList();
-
-
         } catch (HibernateException ex) {
             ex.printStackTrace();
         } finally {
             session.close();
-
             return result;
         }
     }
@@ -345,32 +334,10 @@ public class LibraryDAO {
             Query query = session.createQuery(hql);
             query.setParameter("phone",readerPhone);
             result = (Reader) query.getResultList().get(0);
-
-        }
-    }
-
-    public static List<GroupBook> getGroupBookList(boolean isReQuery)
-    {
-        if(isReQuery)
-            setupStaffList();
-
-        return groupBookList;
-    }
-
-    private static void setupPublisherList()
-    {
-        Session session = SessionUtil.getSession();
-        try {
-            String hql = "select t from Publisher t";
-            Query query = session.createQuery(hql);
-            publisherList = query.getResultList();
-
-
         } catch (HibernateException ex) {
             ex.printStackTrace();
         } finally {
             session.close();
-
             return result;
         }
     }
@@ -505,6 +472,42 @@ public class LibraryDAO {
         }
     }
 
+
+    private static void setupGroupBookList()
+    {
+        Session session = SessionUtil.getSession();
+        try {
+            String hql = "select t from GroupBook t";
+            Query query = session.createQuery(hql);
+            groupBookList = query.getResultList();
+
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public static List<GroupBook> getGroupBookList(boolean isReQuery)
+    {
+        if(isReQuery)
+            setupGroupBookList();
+
+        return groupBookList;
+    }
+
+    private static void setupPublisherList()
+    {
+        Session session = SessionUtil.getSession();
+        try {
+            String hql = "select t from Publisher t";
+            Query query = session.createQuery(hql);
+            publisherList = query.getResultList();
+
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 
@@ -639,6 +642,4 @@ public class LibraryDAO {
             session.close();
         }
     }
-
-
 }

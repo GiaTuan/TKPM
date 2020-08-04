@@ -54,6 +54,8 @@ public class BookManagerController implements Initializable {
     private ObservableList<GroupBook> filterList = null;
     private ObservableList<GroupBook> bindingList = null;
     @Override
+
+
     public void initialize(URL location, ResourceBundle resources)
     {
         originalData = FXCollections.observableArrayList();

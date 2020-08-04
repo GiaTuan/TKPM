@@ -427,15 +427,13 @@ public class LibraryBUS {
 
     public static String getReaderPhoneFromInputTextField(String infoReader) {
         String readerPhone = null;
-        if(infoReader.contains(" - "))
-        {
+        if (infoReader.contains(" - ")) {
             readerPhone = infoReader.split("- ")[1];
-        }
-        else
-        {
+        } else {
             readerPhone = infoReader;
         }
         return readerPhone;
+    }
 
     public static List<GroupBook> getGroupBookList(boolean isReQuery)
     {
