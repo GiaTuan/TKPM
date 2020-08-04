@@ -118,6 +118,7 @@ public class BookManagerController implements Initializable {
     private void loadInfo()
     {
         originalData = FXCollections.observableArrayList(LibraryBUS.getGroupBookList(false));
+        filterList.addAll(originalData);
         bindingList.addAll(originalData);
         setupTable();
         setupTextFilter();
@@ -160,8 +161,8 @@ public class BookManagerController implements Initializable {
     {
         AddGroupBookDialogWindow.display();
         originalData = FXCollections.observableArrayList(LibraryBUS.getGroupBookList(true));
-        bindingList.addAll(originalData);
-        table.setItems(bindingList);
+
+        reset();
         table.refresh();
     }
 
@@ -183,9 +184,10 @@ public class BookManagerController implements Initializable {
 
         UpdateGroupBookDialogController.setGroupBookSelected((GroupBook)table.getSelectionModel().getSelectedItem());
         UpdateGroupBookDialogWindow.display();
+        originalData = FXCollections.observableArrayList(LibraryBUS.getGroupBookList(true)); //edit
 
-        bindingList.addAll(originalData);
-        table.setItems(bindingList);
+        reset();
+        table.refresh();
     }
 
     @FXML
@@ -271,6 +273,25 @@ public class BookManagerController implements Initializable {
     private void printBtnClick()
     {
         LibraryBUS.printGroupBook(bindingList);
+    }
+
+    private void reset()
+    {
+
+        bindingList.clear();
+        filterList.clear();
+        filterText.setText("");
+
+        if(displayMode.getSelectionModel().getSelectedIndex() == 0)
+        {
+            filterList.addAll(originalData);
+            bindingList.addAll(originalData);
+            table.setItems(bindingList);
+            table.refresh();
+        }
+        else
+            displayMode.getSelectionModel().select(0);
+
     }
 
 }
