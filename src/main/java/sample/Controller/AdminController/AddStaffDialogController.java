@@ -34,16 +34,11 @@ public class AddStaffDialogController implements Initializable {
     CheckBox isAdminAcount;
     @FXML
     Text nofication;
-    private static Staff userSeleted = null;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
 
-    public static void setUserSeleted(Staff seletedItem)
-    {
-        userSeleted = seletedItem;
-    }
 
     @FXML
     private void cancleBtnClick(ActionEvent e)
@@ -62,17 +57,6 @@ public class AddStaffDialogController implements Initializable {
             return true;
 
         return false;
-    }
-
-    private boolean isNumber()
-    {
-        String phoneNumber = phone.getText();
-
-        for(int i = 0; i < phoneNumber.length(); i++)
-            if(phoneNumber.charAt(i) < '0' || phoneNumber.charAt(i) > '9')
-                return false;
-
-            return true;
     }
 
     private Staff buildInfo()
@@ -116,7 +100,7 @@ public class AddStaffDialogController implements Initializable {
             return;
         }
 
-        if(!isNumber())
+        if(!LibraryBUS.isNumber(phone.getText()))
         {
             nofication.setText("Số điện thoại không hợp lệ");
             return;

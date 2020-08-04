@@ -5,6 +5,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.hibernate.query.criteria.internal.expression.function.AggregationFunction;
+import sample.BUS.LibraryBUS;
 import sample.POJO.*;
 import sample.SessionUtil;
 
@@ -20,6 +22,7 @@ public class LibraryDAO {
     private static List<Regulation> regulationList;
     private static List<RentBook> rentBookList;
     private static List<Staff> staffList = null;
+    private static List<Publisher> publisherList = null;
 
     public static void setUpData() {
         setUpTypeBookList();
@@ -27,6 +30,8 @@ public class LibraryDAO {
         setUpRentBookList();
 	    setupRegulationList();
 	    setupStaffList();
+	    setupPublisherList();
+	    setupGroupBookList();
     }
 
     private static void setUpRentBookList() {
@@ -132,12 +137,11 @@ public class LibraryDAO {
     private static void setupStaffList() // khong co trong doc4
     {
         Session session = SessionUtil.getSession();
-        Transaction transaction = session.getTransaction();
         try {
             String hql = "select t from Staff t";
             Query query = session.createQuery(hql);
             staffList = query.getResultList();
-            // transaction.commit();
+
         } catch (HibernateException ex) {
             ex.printStackTrace();
         } finally {
@@ -303,6 +307,7 @@ public class LibraryDAO {
         }
     }
 
+
     public static int getNumberOfBooksRemainByIdGroupBook(int idGroupBook) {
         Session session = SessionUtil.getSession();
         Transaction transaction = session.beginTransaction();
@@ -312,10 +317,21 @@ public class LibraryDAO {
             Query query = session.createQuery(hql);
             query.setParameter("id",idGroupBook);
             result = Integer.valueOf(query.getResultList().get(0).toString());
+
+    private static void setupGroupBookList()
+    {
+        Session session = SessionUtil.getSession();
+        try {
+            String hql = "select t from GroupBook t";
+            Query query = session.createQuery(hql);
+            groupBookList = query.getResultList();
+
+
         } catch (HibernateException ex) {
             ex.printStackTrace();
         } finally {
             session.close();
+
             return result;
         }
     }
@@ -329,10 +345,32 @@ public class LibraryDAO {
             Query query = session.createQuery(hql);
             query.setParameter("phone",readerPhone);
             result = (Reader) query.getResultList().get(0);
+
+        }
+    }
+
+    public static List<GroupBook> getGroupBookList(boolean isReQuery)
+    {
+        if(isReQuery)
+            setupStaffList();
+
+        return groupBookList;
+    }
+
+    private static void setupPublisherList()
+    {
+        Session session = SessionUtil.getSession();
+        try {
+            String hql = "select t from Publisher t";
+            Query query = session.createQuery(hql);
+            publisherList = query.getResultList();
+
+
         } catch (HibernateException ex) {
             ex.printStackTrace();
         } finally {
             session.close();
+
             return result;
         }
     }
@@ -466,4 +504,141 @@ public class LibraryDAO {
             return res;
         }
     }
+
+        }
+    }
+
+
+    public static List<Publisher> getPublisherList(boolean isReQuery)
+    {
+        if(isReQuery)
+            setupPublisherList();
+
+        return publisherList;
+    }
+
+    public static void addGroupBook(GroupBook newGroupBook)
+    {
+
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            int amount = newGroupBook.getQuantity();
+            int idGroupBook = (int)session.save(newGroupBook);
+            for(int i = 0; i < amount; i++)
+            {
+                Books book = new Books();
+                book.setIdGroupBook(idGroupBook);
+                book.setIdBook(LibraryBUS.buildIdBook(idGroupBook, i + 1));
+                book.setState(newGroupBook.getIsAvailable() == 0 ? "Chưa nhập" : "Sẵn sàng");
+                session.save(book);
+            }
+
+            transaction.commit();
+            setupGroupBookList();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+    }
+
+    public static void updateGroupBookDetail(GroupBook tempObject)
+    {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            GroupBook updateGroupBook = session.get(GroupBook.class, tempObject.getIdGroupBook());
+            updateGroupBook.setNameBook(tempObject.getNameBook());
+
+            if(tempObject.getIdTypeBook() != 0)
+                updateGroupBook.setIdTypeBook(tempObject.getIdTypeBook());
+
+            updateGroupBook.setAuthor(tempObject.getAuthor());
+
+            if(tempObject.getIdPublisher() != 0)
+                updateGroupBook.setIdPublisher(tempObject.getIdPublisher());
+
+            if(tempObject.getIsAvailable() != -1)
+                updateGroupBook.setIsAvailable(tempObject.getIsAvailable());
+
+            transaction.commit();
+            setupGroupBookList();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public static List<Books> getBookList(int groupBookId)
+    {
+        Session session = SessionUtil.getSession();
+        try {
+            String hql = "select t from Books t where t.idGroupBook = :idGroup";
+            Query query = session.createQuery(hql);
+            query.setParameter("idGroup", groupBookId);
+
+            List<Books> resultList = query.getResultList();
+            return resultList;
+
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    public static void deleteBook(int id, int numberOfAvailabe)
+    {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            Books updateBook = session.get(Books.class, id);
+            updateBook.setState("Xóa");
+
+            if(numberOfAvailabe < 1)
+            {
+                GroupBook updateGroup = session.get(GroupBook.class, updateBook.getIdGroupBook());
+                updateGroup.setIsAvailable(2);
+            }
+            transaction.commit();
+            setupGroupBookList();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public static void deleteALLBookInGroup(List<Books> listBooksDelete, int numberOfAvailabe)
+    {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+
+            for(Books item : listBooksDelete)
+            {
+                Books updateBook = session.get(Books.class, item.getId());
+                updateBook.setState("Xóa");
+
+            }
+            if(numberOfAvailabe < 1)
+            {
+                GroupBook updateGroup = session.get(GroupBook.class, listBooksDelete.get(0).getIdGroupBook());
+                updateGroup.setIsAvailable(2);
+
+            }
+            transaction.commit();
+            setupGroupBookList();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+
 }
