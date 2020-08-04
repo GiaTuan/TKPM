@@ -1,5 +1,11 @@
 package sample.BUS;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.EmailException;
@@ -8,10 +14,12 @@ import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTblWidth;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.STTblWidth;
 
+import sample.Controller.LibrarianController.FindReaderController;
 import sample.DAO.LibraryDAO;
 import sample.POJO.*;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.math.BigInteger;
 import javafx.collections.ObservableList;
 
@@ -327,5 +335,104 @@ public class LibraryBUS {
     {
         List<Staff> result = LibraryDAO.getStaffList(isReQuery);
         return result;
+    }
+
+    public static List<Integer> getBooksRemainForEachType(List<TypeBook> list) {
+        List<Integer> result = new ArrayList<>();
+        int numberOfBooksRemain = 0;
+        for(TypeBook typeBook : list)
+        {
+            List<GroupBook> listGroupBook = typeBook.getGroupBookList();
+            for(GroupBook groupBook : listGroupBook)
+            {
+                numberOfBooksRemain += LibraryDAO.getNumberOfBooksRemainByIdGroupBook(groupBook.getIdGroupBook());
+            }
+            result.add(numberOfBooksRemain);
+            numberOfBooksRemain = 0;
+        }
+
+        return result;
+    }
+
+    public static Reader getReaderFromPhone(String readerPhone) {
+        Reader reader;
+        reader = LibraryDAO.getReaderFromPhone(readerPhone);
+        return reader;
+    }
+
+    public static boolean markReader(int idReader) {
+        boolean res = LibraryDAO.markReader(idReader);
+        if(res) //cập nhật lại trạng thái đánh dấu trong danh sách độc giả
+        {
+            LibraryDAO.updateMarkedReaderList(idReader);
+        }
+        return res;
+    }
+
+    public static boolean updateInfoReader(int idReader, String name, String phone, String mail, String addr,LocalDate dob) {
+        Date dobFormatInDatabase = Date.valueOf(dob);
+        boolean res = LibraryDAO.updateInfoReader(idReader,name,phone,mail,addr,dobFormatInDatabase);
+        if(res){// cập nhật lại thông tin độc giả trong danh sách độc giả
+            LibraryDAO.updateInfoReaderInReaderList(idReader,name,phone,mail,addr,dobFormatInDatabase);
+        }
+        return  res;
+    }
+
+    public static boolean checkPhoneReader(String phone) {
+        boolean result = LibraryDAO.checkPhoneReader(phone);
+        return result;
+    }
+
+    public static boolean checkEmailReader(String mail) {
+        boolean result = LibraryDAO.checkEmailReader(mail);
+        return result;
+    }
+
+    public static boolean addReader(String name, String phone, String mail, String add, LocalDate dob) {
+        boolean result = LibraryDAO.addReader(name,phone,mail,add,Date.valueOf(dob));
+        return result;
+    }
+
+    public static void findReader(String infoReader) {
+//        if(!infoReader.equals(""))
+//        {
+//            String readerPhone = null;
+//            if(infoReader.contains(" - "))
+//            {
+//                readerPhone = infoReader.split("- ")[1];
+//            }
+//            else
+//            {
+//                readerPhone = infoReader;
+//            }
+//            reader = LibraryBUS.getReaderFromPhone(readerPhone);
+//            if(reader != null) {
+//                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+//                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/FindReaderFXML.fxml"));
+//                Parent root = fxmlLoader.load();
+//                FindReaderController findReaderController = fxmlLoader.getController();
+//                findReaderController.setReader(reader);
+//                stage.setTitle("Thủ thư");
+//                stage.setScene(new Scene(root, 1000, 600));
+//            }
+//            else{
+//                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//                alert.setContentText("Thông tin độc giả không có trong hệ thống");
+//                alert.showAndWait();
+//            }
+//        }
+    }
+
+    public static String getReaderPhoneFromInputTextField(String infoReader) {
+        String readerPhone = null;
+        if(infoReader.contains(" - "))
+        {
+            readerPhone = infoReader.split("- ")[1];
+        }
+        else
+        {
+            readerPhone = infoReader;
+        }
+        return readerPhone;
     }
 }

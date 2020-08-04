@@ -132,7 +132,10 @@
                             <NumberAxis label="Số lượng" side="LEFT" />
                           </yAxis>
                         </BarChart>
-                        <PieChart />
+                        <PieChart fx:id="pieChartBookRemain" labelsVisible="false" title="Biểu đồ thống kê số lượng sách còn lại trong thư viện theo thể loại">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin></PieChart>
                      </children></VBox>
             </content>
           </Tab>

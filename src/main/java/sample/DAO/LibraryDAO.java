@@ -232,9 +232,17 @@ public class LibraryDAO {
             {
                 reader.setIsMarked(1);
             }
+            else
+            {
+                reader.setIsMarked(0);
+            }
             if(isDeleted)
             {
                 reader.setIsDeleted(1);
+            }
+            else
+            {
+                reader.setIsDeleted(0);
             }
             session.update(reader);
             transaction.commit();
@@ -292,6 +300,170 @@ public class LibraryDAO {
             ex.printStackTrace();
         } finally {
             session.close();
+        }
+    }
+
+    public static int getNumberOfBooksRemainByIdGroupBook(int idGroupBook) {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        int result = 0;
+        try {
+            String hql = "select count(b) from Books b where b.idGroupBook = :id and b.state = 0";
+            Query query = session.createQuery(hql);
+            query.setParameter("id",idGroupBook);
+            result = Integer.valueOf(query.getResultList().get(0).toString());
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+            return result;
+        }
+    }
+
+    public static Reader getReaderFromPhone(String readerPhone) {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        Reader result = null;
+        try {
+            String hql = "select r from Reader r where r.phoneReader = :phone";
+            Query query = session.createQuery(hql);
+            query.setParameter("phone",readerPhone);
+            result = (Reader) query.getResultList().get(0);
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+            return result;
+        }
+    }
+
+    public static boolean markReader(int idReader) {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        boolean res = true;
+        try {
+            Reader reader = session.get(Reader.class,idReader);
+            reader.setIsMarked(1);
+            session.update(reader);
+            transaction.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            res = false;
+        } finally {
+            session.close();
+            return res;
+        }
+    }
+
+    public static void updateMarkedReaderList(int idReader) {
+        for(Reader reader : readerList)
+        {
+            if(reader.getIdReader() == idReader) {
+                reader.setIsMarked(1);
+                break;
+            }
+        }
+    }
+
+    public static boolean updateInfoReader(int idReader, String name, String phone, String mail, String addr, Date dob) {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        boolean res = true;
+        try {
+            Reader reader = session.get(Reader.class,idReader);
+
+            reader.setNameReader(name);
+            reader.setDateOfBirth(dob);
+            reader.setAddressReader(addr);
+            reader.setPhoneReader(phone);
+            reader.setEmailReader(mail);
+            session.update(reader);
+            transaction.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            res = false;
+        } finally {
+            session.close();
+            return res;
+        }
+    }
+
+    public static void updateInfoReaderInReaderList(int idReader, String name, String phone, String mail, String addr, Date dob) {
+        for(Reader reader : readerList)
+        {
+            if(reader.getIdReader() == idReader){
+                reader.setNameReader(name);
+                reader.setPhoneReader(phone);
+                reader.setEmailReader(mail);
+                reader.setAddressReader(addr);
+                reader.setDateOfBirth(dob);
+                break;
+            }
+        }
+    }
+
+    public static boolean checkPhoneReader(String phone) {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        boolean res = true;
+        try {
+            String hql = "select r from Reader r where r.phoneReader = :phone";
+            Query query = session.createQuery(hql);
+            query.setParameter("phone",phone);
+            List list = query.getResultList();
+            if(list.size() != 0)
+            {
+                res = false;
+            }
+            transaction.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            res = false;
+        } finally {
+            session.close();
+            return res;
+        }
+    }
+
+    public static boolean checkEmailReader(String mail) {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        boolean res = true;
+        try {
+            String hql = "select r from Reader r where r.emailReader = :mail";
+            Query query = session.createQuery(hql);
+            query.setParameter("mail",mail);
+            List list = query.getResultList();
+            if(list.size() != 0)
+            {
+                res = false;
+            }
+            transaction.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            res = false;
+        } finally {
+            session.close();
+            return res;
+        }
+    }
+
+    public static boolean addReader(String name, String phone, String mail, String add, Date dob) {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        boolean res = true;
+        try {
+            Reader reader = new Reader(name,phone,mail,add,dob);
+            int id = (int) session.save(reader);
+            reader.setIdReader(id);
+            readerList.add(reader);
+            transaction.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            res = false;
+        } finally {
+            session.close();
+            return res;
         }
     }
 }

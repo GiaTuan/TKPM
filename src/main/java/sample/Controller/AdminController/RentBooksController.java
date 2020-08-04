@@ -15,18 +15,14 @@ import javafx.stage.Stage;
 import org.apache.commons.mail.EmailException;
 import sample.BUS.LibraryBUS;
 import sample.POJO.RentBook;
-import sample.Window.DetailRentBookWindow;
+import sample.Window.AdminWindow.DetailRentBookWindow;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
-import java.time.Duration;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
-import java.time.chrono.*;
 
 public class RentBooksController implements Initializable {
 

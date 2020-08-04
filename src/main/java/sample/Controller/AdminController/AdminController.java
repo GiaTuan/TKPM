@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
@@ -21,7 +22,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class AdminController implements Initializable {
+public class AdminController {
 
     @FXML
     DatePicker statisticTotalFromDate;
@@ -31,6 +32,8 @@ public class AdminController implements Initializable {
     LineChart lineChart;
     @FXML
     BarChart barchartBook;
+    @FXML
+    PieChart pieChartBookRemain;
 
     public void backBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -82,21 +85,34 @@ public class AdminController implements Initializable {
 
     public void statisticBookTabSelected(Event event) {
         barchartBook.getData().clear();
-
+        pieChartBookRemain.getData().clear();
         List<TypeBook> list = LibraryBUS.getTypeBookList();
+        drawBarChartOfBooks(list);
+        List<Integer> numberOfBooksReamain = LibraryBUS.getBooksRemainForEachType(list);
+        drawPieChartOfBooksRemain(list,numberOfBooksReamain);
+    }
+
+    private void drawPieChartOfBooksRemain(List<TypeBook> list, List<Integer> numberOfBooksReamain) {
+        for(int i = 0 ; i < list.size() ; i++)
+        {
+            PieChart.Data slice = new PieChart.Data(list.get(i).getNameType(),numberOfBooksReamain.get(i));
+        //    slice.setName(list.get(i).getNameType());
+            pieChartBookRemain.getData().add(slice);
+             //numberOfBooksReamain.get(i)
+        }
+
+    }
+
+    private void drawBarChartOfBooks(List<TypeBook> list) {
         int numberBooksOfEachType = 0;
         for(TypeBook typeBook : list)
         {
             numberBooksOfEachType = LibraryBUS.getNumberOfBooksByIdTypeBook(typeBook.getIdtypebook());
             XYChart.Series series = new XYChart.Series();
-            series.setName(typeBook.getNameType());
+         //   series.setName(typeBook.getNameType());
             series.getData().add(new XYChart.Data<>(typeBook.getNameType(),numberBooksOfEachType));
             barchartBook.getData().add(series);
         }
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        LibraryBUS.setUpData();
-    }
 }
