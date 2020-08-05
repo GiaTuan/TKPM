@@ -31,12 +31,38 @@ public class BookController implements Initializable {
         stage.setScene(new Scene(root, 1000, 600));
     }
 
+    GroupBook groupBook;
     public void findBookBtnClick(ActionEvent actionEvent) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         String info = textFieldInfoBtn.getText();
-//        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-//        Parent root = FXMLLoader.load(getClass().getResource("/fxml/LibrarianFXML/FindBookFXML.fxml"));
-//        stage.setTitle("Phân hệ thủ thư");
-//        stage.setScene(new Scene(root, 1000, 600));
+        if(!info.equals(""))
+        {
+            String idGroupBook = LibraryBUS.getIdGroupBookFromInputTextField(info);
+            try {
+                int id = Integer.valueOf(idGroupBook);
+                groupBook = LibraryBUS.getGroupBookFromId(id);
+                if(groupBook == null)
+                {
+                    alert.setContentText("Không tìm thấy sách với mã vừa nhập");
+                    alert.showAndWait();
+                }
+                else
+                {
+                    Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/FindBookFXML.fxml"));
+                    Parent root = fxmlLoader.load();
+                    FindBookController findBookController = fxmlLoader.getController();
+                    findBookController.setGroupBook(groupBook);
+                    stage.setTitle("Phân hệ thủ thư");
+                    stage.setScene(new Scene(root, 1000, 600));
+                }
+            }catch (NumberFormatException ex)
+            {
+                ex.printStackTrace();
+                alert.setContentText("Không tìm thấy sách với mã vừa nhập");
+                alert.showAndWait();
+            }
+        }
     }
 
     public void changeReaderFXMLBtnClick(ActionEvent actionEvent) throws IOException {

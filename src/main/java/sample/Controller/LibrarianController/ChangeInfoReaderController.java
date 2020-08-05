@@ -10,15 +10,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import org.controlsfx.control.textfield.TextFields;
 import sample.BUS.LibraryBUS;
-import sample.Controller.ReturnBookController;
 import sample.POJO.Reader;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -139,13 +136,13 @@ public class ChangeInfoReaderController implements Initializable {
     }
 
     public void rentBookBtnClick(ActionEvent actionEvent) throws IOException {
-//        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/FindReaderFXML.fxml"));
-//        Parent root = fxmlLoader.load();
-//        FindReaderController findReaderController = fxmlLoader.getController();
-//        findReaderController.setReader(reader);
-//        stage.setTitle("Thủ thư");
-//        stage.setScene(new Scene(root, 1000, 600));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(RentBookController.class.getClass().getResource("/fxml/LibrarianFXML/RentBookFXML.fxml"));
+        Parent root = fxmlLoader.load();
+        RentBookController rentBookControllerController = fxmlLoader.getController();
+        rentBookControllerController.setReader(reader);
+        stage.setTitle("Thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
     }
 
     public void returnBookBtnClick(ActionEvent actionEvent) throws IOException {
@@ -188,6 +185,16 @@ public class ChangeInfoReaderController implements Initializable {
     public void changeToBookFXMLBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/LibrarianFXML/BookFXML.fxml"));
+        stage.setTitle("Phân hệ thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
+    }
+
+    public void compensateBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/CompensateFXML.fxml"));
+        Parent root = fxmlLoader.load();
+        CompensateController compensateController = fxmlLoader.getController();
+        compensateController.setReader(reader);
         stage.setTitle("Phân hệ thủ thư");
         stage.setScene(new Scene(root, 1000, 600));
     }
