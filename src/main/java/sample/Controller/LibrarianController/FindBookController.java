@@ -10,7 +10,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+
 import sample.BUS.LibraryBUS;
+
 import sample.POJO.GroupBook;
 
 import java.io.IOException;
@@ -38,7 +40,7 @@ public class FindBookController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/LibrarianFXML/LibrarianFXML.fxml"));
         stage.setTitle("Phân hệ thủ thư");
         stage.setScene(new Scene(root, 1000, 600));
-    }
+}
 
     public void refreshBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -60,7 +62,15 @@ public class FindBookController implements Initializable {
     public void reportBookBtnClick(ActionEvent actionEvent) {
     }
 
-    public void enrollQueueBtnClick(ActionEvent actionEvent) {
+    public void enrollQueueBtnClick(ActionEvent actionEvent) throws IOException {
+
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/QueueBookRegisterFXML.fxml"));
+        Parent root = fxmlLoader.load();
+        QueueBookRegisterController queueBookRegisterController = fxmlLoader.getController();
+        queueBookRegisterController.setGroupBook(groupBook);
+        stage.setTitle("Phân hệ thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
     }
 
     public void changeReaderFXMLBtnClick(ActionEvent actionEvent) throws IOException {
@@ -69,6 +79,7 @@ public class FindBookController implements Initializable {
         stage.setTitle("Phân hệ thủ thư");
         stage.setScene(new Scene(root, 1000, 600));
     }
+
 
     public void setGroupBook(GroupBook groupBook) {
         this.groupBook = groupBook;

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane prefHeight="500.0" prefWidth="400" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.LibrarianController.EditRentBookDialog">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <Label text="THÔNG TIN CHI TIẾT PHIẾU MƯỢN" GridPane.columnSpan="5" GridPane.halignment="CENTER">
+            <font>
+                <Font name="System Bold" size="23.0" />
+            </font>
+        </Label>
+        <Label text="Mã phiếu mượn: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <font>
+                <Font size="16.0" />
+            </font></Label>
+        <TextField fx:id="idRent" disable="true" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+        <Label text="Số lượng sách: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+            <font>
+                <Font size="16.0" />
+            </font></Label>
+        <TextField fx:id="numBooks" disable="true" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+        <Label text="Danh sách sách: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+            <font>
+                <Font size="16.0" />
+            </font></Label>
+        <TextField fx:id="listBooks" disable="true" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+
+        <Label text="Mã độc giả mượn: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+            <font>
+                <Font size="16.0" />
+            </font></Label>
+        <TextField fx:id="idReader" disable="true" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+
+        <Label text="Ngày mượn: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <DatePicker fx:id="rentDate" disable="true" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+        <Label text="Ngày trả: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <DatePicker fx:id="returnDate" disable="true" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="7" />
+
+        <Label text="Phí mượn: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <TextField fx:id="rentFee" disable="true" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="8" />
+
+        <Label text="Phí cọc: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
+            <font>
+                <Font size="16.0" />
+            </font></Label>
+        <TextField fx:id="depositFee" disable="true" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="9" />
+
+        <Label text="Đã trả: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="10">
+            <font>
+                <Font size="16.0" />
+            </font></Label>
+        <CheckBox fx:id="isReturned" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+
+        <Label text="Đã xóa: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="11">
+            <font>
+                <Font size="16.0" />
+            </font></Label>
+        <CheckBox fx:id="isDeleted" mnemonicParsing="false" onAction="#isDeletedChange" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+        <Button mnemonicParsing="false" onAction="#changeBtnClick" text="Thay đổi" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="12" />
+        <Button mnemonicParsing="false" onAction="#cancelBtnClick" text="Hủy bỏ" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="12" />
+    </children>
+</GridPane>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane prefHeight="400.0" prefWidth="600.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.LibrarianController.QueueBookRegisterController">
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="205.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="15" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <children>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="green-background" GridPane.columnIndex="2" GridPane.columnSpan="2">
+            <children>
+                <Label layoutX="46.0" layoutY="11.0" prefHeight="35.0" text="THỦ THƯ" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <Button layoutX="384.0" layoutY="10.0" mnemonicParsing="false" prefWidth="150.0" styleClass="white-btn-background" text="SÁCH">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Button>
+                <Button layoutX="196.0" layoutY="10.0" mnemonicParsing="false" onAction="#changeReaderFXMLBtnClick" prefWidth="150.0" styleClass="white-btn-background" text="ĐỘC GIẢ">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Button>
+                <ToggleButton layoutX="367.0" mnemonicParsing="false" onAction="#backBtnClick" styleClass="white-background" AnchorPane.rightAnchor="-4.333333333333314">
+                    <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@/images/back.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </ToggleButton>
+            </children>
+        </AnchorPane>
+        <ToggleButton mnemonicParsing="false" onAction="#refreshBtnClick" text="Làm mới" GridPane.columnSpan="3" GridPane.rowIndex="1">
+            <graphic>
+                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@/images/refresh.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+            <GridPane.margin>
+                <Insets left="10.0" />
+            </GridPane.margin>
+        </ToggleButton>
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="menu-reader-background" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="7">
+            <children>
+                <Label text="THÔNG TIN SÁCH">
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="info-background">
+                    <VBox.margin>
+                        <Insets left="20.0" right="20.0" top="10.0" />
+                    </VBox.margin>
+                    <children>
+                        <Label fx:id="idGroupBook"  text="a">
+                            <font>
+                                <Font size="13.0" />
+                            </font></Label>
+                        <Label fx:id="bookName" text="b">
+                            <font>
+                                <Font size="13.0" />
+                            </font></Label>
+                        <Label fx:id="bookAuthor"  text="c">
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets top="5.0" />
+                            </VBox.margin></Label>
+                        <Label fx:id="publisher"  text="d">
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets top="5.0" />
+                            </VBox.margin></Label>
+                        <Label  fx:id="state" text="e">
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets top="5.0" />
+                            </VBox.margin></Label>
+                    </children>
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                </VBox>
+                <AnchorPane prefHeight="30.0" prefWidth="200.0">
+                    <children>
+                        <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" onAction="#listBookBtnClick" styleClass="round-btn, change-info-color" text="DANH SÁCH SÁCH" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Button>
+                        <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" onAction="#reportBookBtnClick" styleClass="round-btn, mark-color" text="BÁO CÁO SÁCH" textFill="WHITE" AnchorPane.rightAnchor="10.0">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Button>
+                    </children>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </AnchorPane>
+                <AnchorPane prefHeight="30.0" prefWidth="200.0">
+                    <children>
+                        <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" onAction="#enrollQueueBtnClick" styleClass="round-btn, extend-color" text="ĐĂNG KÝ HÀNG ĐỢI" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </AnchorPane>
+            </children></VBox>
+        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="info-reader-background" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="7">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" ĐĂNG KÝ HÀNG ĐỢI" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0"  text="Số điện thoại độc giả" />
+                  <TextField fx:id="readerPhone" />
+               </children>
+            </HBox>
+            <Button onAction="#confirmBtnClick" mnemonicParsing="false" text="Xác nhận" />
+         </children></VBox>
+    </children>
+</GridPane>

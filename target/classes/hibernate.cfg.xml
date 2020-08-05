@@ -34,6 +34,10 @@
         <mapping class="sample.POJO.Staff"></mapping>
         <mapping class="sample.POJO.Books"></mapping>
         <mapping class="sample.POJO.Bill"></mapping>
+<<<<<<< HEAD
         <mapping class="sample.POJO.Compensate"></mapping>
+=======
+        <mapping class="sample.POJO.QueueRentBook"></mapping>
+>>>>>>> origin/Đăng_kí_hàng_đợi-Đăng_Kí_Nhận_Thông_Báo-Lịch_Sử_Mượn_Sách-Gia_Hạn_Thẻ
     </session-factory>
 </hibernate-configuration>

@@ -22,6 +22,7 @@ import java.util.ResourceBundle;
 
 public class BookController implements Initializable {
 
+    GroupBook groupBook;
     @FXML
     TextField textFieldInfoBtn;
     public void backBtnClick(ActionEvent actionEvent) throws IOException {
@@ -37,6 +38,7 @@ public class BookController implements Initializable {
         String info = textFieldInfoBtn.getText();
         if(!info.equals(""))
         {
+<<<<<<< HEAD
             String idGroupBook = LibraryBUS.getIdGroupBookFromInputTextField(info);
             try {
                 int id = Integer.valueOf(idGroupBook);
