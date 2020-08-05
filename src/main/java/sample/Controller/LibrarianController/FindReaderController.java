@@ -128,13 +128,13 @@ public class FindReaderController implements Initializable {
     }
 
     public void rentBookBtnClick(ActionEvent actionEvent) throws IOException {
-//        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/FindReaderFXML.fxml"));
-//        Parent root = fxmlLoader.load();
-//        FindReaderController findReaderController = fxmlLoader.getController();
-//        findReaderController.setReader(reader);
-//        stage.setTitle("Thủ thư");
-//        stage.setScene(new Scene(root, 1000, 600));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(RentBookController.class.getClass().getResource("/fxml/LibrarianFXML/RentBookFXML.fxml"));
+        Parent root = fxmlLoader.load();
+        RentBookController rentBookControllerController = fxmlLoader.getController();
+        rentBookControllerController.setReader(reader);
+        stage.setTitle("Thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
     }
 
     public void returnBookBtnClick(ActionEvent actionEvent) throws IOException {

@@ -556,6 +556,7 @@ public class LibraryBUS {
 
     }
 
+
     public static RentBook getRentBookById(String idRentBook) {
         int id = Integer.valueOf(idRentBook);
         RentBook rentBook = LibraryDAO.getRentBookById(id);
@@ -600,6 +601,17 @@ public class LibraryBUS {
         double rentFee = calculateRentFee(rentBook);
         LibraryBUS.updatePointReaderWhenReturnBook(rentBook.getReader(),rentBook.getNumberBooksRent(),daysRent);
         LibraryDAO.updateReturnRentBook(rentBook.getIdRentBook(), Date.valueOf(LocalDate.now()), rentFee);
+    }
+
+
+    public static boolean isGroupBookIdValid(String idBook)
+    {
+        return  LibraryDAO.isGroupBookIdValid(idBook);
+    }
+
+    public static void addRentBookRecord(RentBook rentBookrecord, ArrayList<String> listRentBookId)
+    {
+        LibraryDAO.addRentBookRecord(rentBookrecord, listRentBookId);
     }
 
 }

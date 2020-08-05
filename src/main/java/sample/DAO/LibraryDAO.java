@@ -643,6 +643,7 @@ public class LibraryDAO {
         }
     }
 
+
     public static RentBook getRentBookById(int id) {
         Session session = SessionUtil.getSession();
         RentBook result = null;
@@ -685,7 +686,80 @@ public class LibraryDAO {
         } catch (HibernateException ex) {
             ex.printStackTrace();
         } finally {
-            session.close();
+            session.close();}}
+
+    public static boolean isGroupBookIdValid(String idBook)
+    {
+        Session session = SessionUtil.getSession();
+        //Transaction transaction = session.beginTransaction();
+        try {
+            String hql = "select t from Books t where t.idBook = :idBook";
+            Query query = session.createQuery(hql);
+            query.setParameter("idBook", idBook);
+
+            List<Books> book = query.getResultList();
+
+            if(book.size() != 0)
+                return true;
+
+            return false;
+
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    private static void checkAvailableStatus(int groupBookId) throws HibernateException
+    {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+
+
+        String hql = "select t from Books t where t.idGroupBook = :idGroup AND t.state = :status";
+        Query query = session.createQuery(hql);
+        query.setParameter("idGroup", groupBookId);
+        query.setParameter("status", "Sẵn sàng");
+
+        List<Books> resultList = query.getResultList();
+        if(resultList.size() == 0)
+        {
+            GroupBook groupBook = session.get(GroupBook.class, groupBookId);
+            groupBook.setIsAvailable(3);
+            session.save(groupBook);
+        }
+        transaction.commit();
+        setupGroupBookList();
+    }
+    public static void addRentBookRecord(RentBook rentBookrecord, ArrayList<String> listRentBookId)
+    {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        int groupBookId = Integer.parseInt(listRentBookId.get(0).split("_")[0]);
+        try {
+
+            for(String item : listRentBookId)
+            {
+                String hql = "select t from Books t where t.idBook = :id";
+
+                Query query = session.createQuery(hql);
+                query.setParameter("id", item);
+                List<Books> rentBook = query.getResultList();
+
+                rentBook.get(0).setState("Đang mượn");
+                session.save(rentBook.get(0));
+            }
+
+            session.save(rentBookrecord);
+
+            transaction.commit();
+
+            checkAvailableStatus(groupBookId);
+            setUpRentBookList();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+
+
         }
     }
 }
