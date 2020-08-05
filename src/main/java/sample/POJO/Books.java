@@ -1,5 +1,9 @@
 package sample.POJO;
+import org.apache.poi.ss.formula.eval.UnaryMinusEval;
+
 import javax.persistence.*;
+import java.util.List;
+
 @Entity
 @Table(name = "books")
 public class Books {
@@ -20,6 +24,18 @@ public class Books {
     @ManyToOne
     @JoinColumn(name = "idgroupbook",insertable = false,updatable = false)
     GroupBook groupBook;
+
+    @OneToMany(mappedBy = "book" ,fetch = FetchType.LAZY)
+    List<Compensate> compensateList;
+
+    public List<Compensate> getCompensateList() {
+        return compensateList;
+    }
+
+    public void addCompensateList(Compensate compensate) {
+        this.compensateList.add(compensate);
+        compensate.setBook(this);
+    }
 
     public GroupBook getGroupBook()
     {

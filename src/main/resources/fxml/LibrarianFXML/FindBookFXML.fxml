@@ -80,29 +80,36 @@
                         <Insets left="20.0" right="20.0" top="10.0" />
                     </VBox.margin>
                     <children>
+                        <Label fx:id="idLabel" text="Label">
+                            <font>
+                                <Font size="13.0" />
+                            </font></Label>
                         <Label fx:id="nameLabel" text="Label">
                             <font>
                                 <Font size="13.0" />
                             </font></Label>
-                        <Label fx:id="dobLabel" text="Label">
-                            <font>
-                                <Font size="13.0" />
-                            </font></Label>
-                        <Label fx:id="phoneLabel" text="Label">
+                        <Label fx:id="authorLabel" text="Label">
                             <font>
                                 <Font size="13.0" />
                             </font>
                             <VBox.margin>
                                 <Insets top="5.0" />
                             </VBox.margin></Label>
-                        <Label fx:id="emailLabel" text="Label">
+                        <Label fx:id="typeLabel" text="Label">
                             <font>
                                 <Font size="13.0" />
                             </font>
                             <VBox.margin>
                                 <Insets top="5.0" />
                             </VBox.margin></Label>
-                        <Label fx:id="addressLabel" text="Label">
+                        <Label fx:id="nxbLabel" text="Label">
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets top="5.0" />
+                            </VBox.margin></Label>
+                        <Label fx:id="stateLabel" text="Label">
                             <font>
                                 <Font size="13.0" />
                             </font>

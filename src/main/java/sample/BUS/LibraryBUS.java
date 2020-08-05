@@ -39,9 +39,13 @@ import java.util.UUID;
 
 public class LibraryBUS {
 
-    static final Double priceEachBookPerDay = 2000.0;
+    static final double priceEachBookPerDay = 2000.0;
+    static final double punishPriceEachBookPerDay = 5000.0;
     static final int maxDaysRent = 14;
     static final int latestDaysRent = 17;
+    static final int damageType1 = 20000;
+    static final int damageType2 = 50000;
+
 
     public static void setUpData()
     {
@@ -399,36 +403,6 @@ public class LibraryBUS {
         return result;
     }
 
-    public static void findReader(String infoReader) {
-//        if(!infoReader.equals(""))
-//        {
-//            String readerPhone = null;
-//            if(infoReader.contains(" - "))
-//            {
-//                readerPhone = infoReader.split("- ")[1];
-//            }
-//            else
-//            {
-//                readerPhone = infoReader;
-//            }
-//            reader = LibraryBUS.getReaderFromPhone(readerPhone);
-//            if(reader != null) {
-//                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-//                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/FindReaderFXML.fxml"));
-//                Parent root = fxmlLoader.load();
-//                FindReaderController findReaderController = fxmlLoader.getController();
-//                findReaderController.setReader(reader);
-//                stage.setTitle("Thủ thư");
-//                stage.setScene(new Scene(root, 1000, 600));
-//            }
-//            else{
-//                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//                alert.setContentText("Thông tin độc giả không có trong hệ thống");
-//                alert.showAndWait();
-//            }
-//        }
-    }
-
     public static String getReaderPhoneFromInputTextField(String infoReader) {
         String readerPhone = null;
         if (infoReader.contains(" - ")) {
@@ -572,7 +546,16 @@ public class LibraryBUS {
     public static Double calculateRentFee(RentBook rentBook) {
         Double result = 0.0;
         int daysRent = getDayBetween(rentBook.getRentDate().toLocalDate(),LocalDate.now());
-        result = priceEachBookPerDay*rentBook.getNumberBooksRent()*daysRent;
+        if(daysRent <= maxDaysRent)
+        {
+            result = priceEachBookPerDay*rentBook.getNumberBooksRent()*daysRent;
+        }
+        else
+        {
+            result = priceEachBookPerDay*rentBook.getNumberBooksRent()*maxDaysRent;
+            result += (daysRent-maxDaysRent)*punishPriceEachBookPerDay;
+        }
+
         return result;
     }
 
@@ -584,15 +567,15 @@ public class LibraryBUS {
         if(daysRent <= 14)
         {
             days = Math.abs(14 - daysRent);
-            point += days;
+            point += 4*days;
         }
         if(daysRent > 17)
         {
             days = Math.abs(14 - daysRent);
-            System.out.println(days);
             point -= 2*days;
         }
 
+        if(point < 0) point = 0;
         LibraryDAO.updatePointReader(reader.getIdReader(),point);
     }
 
@@ -614,4 +597,123 @@ public class LibraryBUS {
         LibraryDAO.addRentBookRecord(rentBookrecord, listRentBookId);
     }
 
+    public static double calculateCompensateFee(int selectedDamage, int numofDamages) {
+        double result = 0;
+        if(selectedDamage == 0)
+        {
+            result = damageType1*numofDamages;
+        }
+        if(selectedDamage == 1)
+        {
+            result  = damageType2*numofDamages;
+        }
+        if(result>200000 || selectedDamage == 2)
+        {
+            result = 200000;
+        }
+        return result;
+
+    }
+
+    public static boolean checkIsValidBookId(String bookId) {
+        boolean result = false;
+        try{
+            int id = Integer.valueOf(bookId);
+            result = LibraryDAO.checkIsValidBookId(id);
+        }catch (NumberFormatException ex)
+        {
+            ex.printStackTrace();;
+        } finally {
+            return result;
+        }
+    }
+
+    public static void addCompensate(int bookId, int idReader, double fee) {
+        LibraryDAO.addCompensate(bookId,idReader,fee);
+    }
+
+    public static String getIdGroupBookFromInputTextField(String info) {
+        String result = null;
+        if(info. contains(" - "))
+        {
+            result = info.split(" - ")[0];
+        }
+        else result  = info;
+        return result;
+    }
+
+    public static GroupBook getGroupBookFromId(int idGroupBook) {
+        GroupBook result = LibraryDAO.getGroupBookFromId(idGroupBook);
+        return  result;
+    }
+
+    public static boolean printReturnBook(RentBook rentBook) {
+        boolean isExported = true;
+        String fileOut =  String.valueOf(rentBook.getIdRentBook()) + "-RETURNED.docx";
+
+        XWPFDocument document= new XWPFDocument();
+        FileOutputStream fileOutputStream;
+        try {
+            fileOutputStream = new FileOutputStream(new File("ReturnFiles/" + fileOut));
+            XWPFParagraph tmpParagraph = document.createParagraph();
+            tmpParagraph.setAlignment(ParagraphAlignment.CENTER);
+            XWPFRun tmpRun = tmpParagraph.createRun();
+            //tmpRun.addBreak();
+            tmpRun.setText("PHIẾU TRẢ SÁCH");
+            tmpRun.setFontSize(18);
+            tmpRun.setBold(true);
+
+            XWPFParagraph tmpParagraph2 = document.createParagraph();
+            XWPFRun tmpRun2 = tmpParagraph2.createRun();
+           // tmpRun2.addBreak();
+            tmpRun2.setText("Tên độc giả: "+rentBook.getReader().getNameReader());
+            tmpRun2.setFontSize(16);
+
+            XWPFParagraph tmpParagraph3 = document.createParagraph();
+            XWPFRun tmpRun3 = tmpParagraph3.createRun();
+           // tmpRun3.addBreak();
+            tmpRun3.setText("Ngày trả: "+LocalDate.now().toString());
+            tmpRun3.setFontSize(16);
+
+            XWPFParagraph tmpParagraph4 = document.createParagraph();
+            XWPFRun tmpRun4 = tmpParagraph4.createRun();
+            tmpRun4.setText("Phí mượn: "+String.valueOf(calculateRentFee(rentBook)));
+            tmpRun4.setFontSize(16);
+
+            XWPFTable table = document.createTable(rentBook.getNumberBooksRent()+1,4);
+            CTTblWidth width = table.getCTTbl().addNewTblPr().addNewTblW();
+            width.setType(STTblWidth.DXA);
+            width.setW(BigInteger.valueOf(9072));
+            table.getRow(0).getCell(0).setText("STT");
+            table.getRow(0).getCell(1).setText("Sách");
+            table.getRow(0).getCell(2).setText("Thể loại");
+            table.getRow(0).getCell(3).setText("Tác giả");
+
+            String[] listOfBooksId = rentBook.getListRentBook().split(" ");
+
+            for(int i = 1 ; i <= rentBook.getNumberBooksRent() ; i++)
+            {
+                Books books = LibraryBUS.getBooksFromId(listOfBooksId[i-1]);
+                table.getRow(i).getCell(0).setText(String.valueOf(i));
+                table.getRow(i).getCell(1).setText(books.getGroupBook().getNameBook());
+                table.getRow(i).getCell(2).setText(books.getGroupBook().getTypeBook().getNameType());
+                table.getRow(i).getCell(3).setText(books.getGroupBook().getAuthor());
+            }
+            document.write(fileOutputStream);
+            fileOutputStream.close();
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+            isExported = false;
+        }
+        finally {
+            return isExported;
+        }
+    }
+
+    private static Books getBooksFromId(String s) {
+        Books result = LibraryDAO.getBooksFromId(s);
+        return result;
+    }
 }

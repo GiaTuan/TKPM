@@ -762,4 +762,64 @@ public class LibraryDAO {
 
         }
     }
+
+    public static boolean checkIsValidBookId(int bookId) {
+        Session session = SessionUtil.getSession();
+        boolean result = true;
+        try {
+            Books books = session.get(Books.class,bookId);
+            if(books == null)
+            {
+                result = false;
+            }
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+            return result;
+        }
+    }
+
+    public static void addCompensate(int bookId, int idReader, double fee) {
+        Session session = SessionUtil.getSession();
+        Transaction tx = session.beginTransaction();
+        try {
+            Compensate compensate = new Compensate(bookId,idReader,fee);
+            session.save(compensate);
+            tx.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public static GroupBook getGroupBookFromId(int idGroupBook) {
+        Session session = SessionUtil.getSession();
+        GroupBook groupBook = null;
+        try {
+            groupBook = session.get(GroupBook.class,idGroupBook);
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+            return groupBook;
+        }
+    }
+
+    public static Books getBooksFromId(String s) {
+        Session session = SessionUtil.getSession();
+        Books book = null;
+        try {
+            String hql = "select b from Books b where b.idBook = :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("id",s);
+            book = (Books) query.getResultList().get(0);
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+            return book;
+        }
+    }
 }

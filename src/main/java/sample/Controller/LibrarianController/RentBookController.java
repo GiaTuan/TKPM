@@ -18,7 +18,6 @@ import sample.BUS.LibraryBUS;
 import sample.POJO.Reader;
 import sample.POJO.RentBook;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -140,24 +139,14 @@ public class RentBookController implements Initializable {
         stage.setScene(new Scene(root, 1000, 600));
     }
 
-    public void rentBookBtnClick(ActionEvent actionEvent) throws IOException {
-//        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/FindReaderFXML.fxml"));
-//        Parent root = fxmlLoader.load();
-//        FindReaderController findReaderController = fxmlLoader.getController();
-//        findReaderController.setReader(reader);
-//        stage.setTitle("Thủ thư");
-//        stage.setScene(new Scene(root, 1000, 600));
-    }
-
     public void returnBookBtnClick(ActionEvent actionEvent) throws IOException {
-//        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/FindReaderFXML.fxml"));
-//        Parent root = fxmlLoader.load();
-//        FindReaderController findReaderController = fxmlLoader.getController();
-//        findReaderController.setReader(reader);
-//        stage.setTitle("Thủ thư");
-//        stage.setScene(new Scene(root, 1000, 600));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/ReturnBookFXML.fxml"));
+        Parent root = fxmlLoader.load();
+        ReturnBookController returnBookController = fxmlLoader.getController();
+        returnBookController.setReader(reader);
+        stage.setTitle("Thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
     }
 
     public void changeToBookFXMLBtnClick(ActionEvent actionEvent) throws IOException {
@@ -356,5 +345,14 @@ public class RentBookController implements Initializable {
     }
 
 
+    public void compensateBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/CompensateFXML.fxml"));
+        Parent root = fxmlLoader.load();
+        CompensateController compensateController = fxmlLoader.getController();
+        compensateController.setReader(reader);
+        stage.setTitle("Phân hệ thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
 
+    }
 }

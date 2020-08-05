@@ -21,6 +21,9 @@ public class Bill {
     @Column(name = "cost")
     private Double cost;
 
+    public Bill(){}
+
+
     public int getIdBill() {
         return idBill;
     }

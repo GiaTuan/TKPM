@@ -46,6 +46,18 @@ public class Reader {
     @OneToMany(mappedBy = "reader" ,fetch = FetchType.LAZY)
     List<RentBook> rentBookList;
 
+    @OneToMany(mappedBy = "readerCompensate",fetch =  FetchType.LAZY)
+    List<Compensate> compensateList;
+
+    public List<Compensate> getCompensateList() {
+        return compensateList;
+    }
+
+    public void addCompensateList(Compensate compensate) {
+        this.compensateList.add(compensate);
+        compensate.setReaderCompensate(this);
+    }
+
     public Reader(){}
 
     public Reader(String name, String phone, String mail, String addr, Date dob)

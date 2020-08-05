@@ -1,4 +1,4 @@
-package sample.Controller;
+package sample.Controller.LibrarianController;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -101,7 +101,14 @@ public class ReturnBookController implements Initializable {
         stage.setScene(new Scene(root, 1000, 600));
     }
 
-    public void rentBookBtnClick(ActionEvent actionEvent) {
+    public void rentBookBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(RentBookController.class.getClass().getResource("/fxml/LibrarianFXML/RentBookFXML.fxml"));
+        Parent root = fxmlLoader.load();
+        RentBookController rentBookControllerController = fxmlLoader.getController();
+        rentBookControllerController.setReader(reader);
+        stage.setTitle("Thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
     }
 
     public void markReaderBtnClick(ActionEvent actionEvent) {
@@ -191,8 +198,35 @@ public class ReturnBookController implements Initializable {
     }
 
     public void confirmReturn(ActionEvent actionEvent) {
-        LibraryBUS.confirmReturn(rentBook);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("Xác nhận trả sách thành công");
+        if(rentFeeLabel.getText().equals(""))
+        {
+            alert.setContentText("Chưa tính phí mượn");
+            alert.showAndWait();
+        }
+        else
+        {
+            LibraryBUS.confirmReturn(rentBook);
+            alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText("Xác nhận trả sách thành công. Bạn có muốn in phiếu trả?");
+            Optional<ButtonType> buttonType = alert.showAndWait();
+            if(buttonType.get() == ButtonType.OK)
+            {
+                LibraryBUS.printReturnBook(rentBook);
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("In phiếu trả thành công");
+                alert.showAndWait();
+            }
+        }
+    }
+
+    public void compensateBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/CompensateFXML.fxml"));
+        Parent root = fxmlLoader.load();
+        CompensateController compensateController = fxmlLoader.getController();
+        compensateController.setReader(reader);
+        stage.setTitle("Phân hệ thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
     }
 }
