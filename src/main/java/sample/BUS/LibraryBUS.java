@@ -551,4 +551,14 @@ public class LibraryBUS {
         }
 
     }
+
+    public static boolean isGroupBookIdValid(String idBook)
+    {
+        return  LibraryDAO.isGroupBookIdValid(idBook);
+    }
+
+    public static void addRentBookRecord(RentBook rentBookrecord, ArrayList<String> listRentBookId)
+    {
+        LibraryDAO.addRentBookRecord(rentBookrecord, listRentBookId);
+    }
 }
