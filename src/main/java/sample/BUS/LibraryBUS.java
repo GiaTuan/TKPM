@@ -39,6 +39,10 @@ import java.util.UUID;
 
 public class LibraryBUS {
 
+    static final Double priceEachBookPerDay = 2000.0;
+    static final int maxDaysRent = 14;
+    static final int latestDaysRent = 17;
+
     public static void setUpData()
     {
         LibraryDAO.setUpData();
@@ -551,4 +555,51 @@ public class LibraryBUS {
         }
 
     }
+
+    public static RentBook getRentBookById(String idRentBook) {
+        int id = Integer.valueOf(idRentBook);
+        RentBook rentBook = LibraryDAO.getRentBookById(id);
+        return rentBook;
+    }
+
+    public static int getDayBetween(LocalDate dateFrom,LocalDate dateTo) {
+        int days;
+        days = (int) ChronoUnit.DAYS.between(dateFrom,dateTo);
+        return days;
+    }
+
+    public static Double calculateRentFee(RentBook rentBook) {
+        Double result = 0.0;
+        int daysRent = getDayBetween(rentBook.getRentDate().toLocalDate(),LocalDate.now());
+        result = priceEachBookPerDay*rentBook.getNumberBooksRent()*daysRent;
+        return result;
+    }
+
+    public static void updatePointReaderWhenReturnBook(Reader reader, int numberOfBooks, int daysRent) {
+        int point = reader.getPoint();
+        point+= 2*numberOfBooks;
+
+        int days = 0;
+        if(daysRent <= 14)
+        {
+            days = Math.abs(14 - daysRent);
+            point += days;
+        }
+        if(daysRent > 17)
+        {
+            days = Math.abs(14 - daysRent);
+            System.out.println(days);
+            point -= 2*days;
+        }
+
+        LibraryDAO.updatePointReader(reader.getIdReader(),point);
+    }
+
+    public static void confirmReturn(RentBook rentBook) {
+        int daysRent = LibraryBUS.getDayBetween(rentBook.getRentDate().toLocalDate(),LocalDate.now());
+        double rentFee = calculateRentFee(rentBook);
+        LibraryBUS.updatePointReaderWhenReturnBook(rentBook.getReader(),rentBook.getNumberBooksRent(),daysRent);
+        LibraryDAO.updateReturnRentBook(rentBook.getIdRentBook(), Date.valueOf(LocalDate.now()), rentFee);
+    }
+
 }

@@ -2,21 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="thêm cập nhật quy định">
+      <change afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/ReturnBookController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/LibrarianFXML/ReturnBookFXML.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sample/BUS/LibraryBUS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/BUS/LibraryBUS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/AdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/BookManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/BookManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/LibrarianController/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/LibrarianController/BookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/LibrarianController/ChangeInfoReaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/LibrarianController/ChangeInfoReaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/LibrarianController/FindReaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/LibrarianController/FindReaderController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sample/DAO/LibraryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/DAO/LibraryDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/AdminFXML/BookManagerFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/AdminFXML/BookManagerFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/POJO/GroupBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/POJO/GroupBook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Window/AddGroupBookDialogWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Window/AdminWindow/AddGroupBookDialogWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Window/GroupBookDetailDialogWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Window/AdminWindow/GroupBookDetailDialogWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Window/UpdateGroupBookDialogWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Window/AdminWindow/UpdateGroupBookDialogWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/LibrarianFXML/ChangeInfoReaderFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/LibrarianFXML/ChangeInfoReaderFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/LibrarianFXML/ChangeInfoReaderFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/LibrarianFXML/ChangeInfoReaderFXML.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/sample/BUS/LibraryBUS.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/BUS/LibraryBUS.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/AdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/BookManagerController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/BookManagerController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/BookManagerController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/BookManagerController$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/BookManagerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/BookManagerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/ReaderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/ReaderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/RentBooksController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/RentBooksController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/StaffMangerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/StaffMangerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/UpdateRuleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/UpdateRuleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/LibrarianController/ChangeInfoReaderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/LibrarianController/ChangeInfoReaderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/LibrarianController/FindReaderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/LibrarianController/FindReaderController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/sample/DAO/LibraryDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/DAO/LibraryDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sample/POJO/GroupBook.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/POJO/GroupBook.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sample/Window/AddGroupBookDialogWindow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sample/Window/GroupBookDetailDialogWindow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sample/Window/UpdateGroupBookDialogWindow.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -276,10 +286,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="thêm chức năng xóa sách + lọc + tìm kiếm" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="446" y="25" key="#com.intellij.ide.util.MemberChooser" timestamp="1596424948144">
+    <state x="446" y="25" key="#com.intellij.ide.util.MemberChooser" timestamp="1596599029849">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="446" y="25" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1596424948144" />
+    <state x="446" y="25" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1596599029849" />
     <state x="366" y="30" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1596336596435" />
     <state x="366" y="30" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1280.680@0.0.1280.680" timestamp="1596336596435" />
     <state x="320" y="266" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1596336596435" />
@@ -292,22 +302,22 @@
     <state x="74" y="100" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1596336596435" />
     <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1596336596435" />
     <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1596336596435" />
-    <state width="1237" height="290" key="GridCell.Tab.0.bottom" timestamp="1596532997436">
+    <state width="1237" height="275" key="GridCell.Tab.0.bottom" timestamp="1596599473118">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="290" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596532997436" />
-    <state width="1237" height="290" key="GridCell.Tab.0.center" timestamp="1596532997436">
+    <state width="1237" height="275" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596599473118" />
+    <state width="1237" height="275" key="GridCell.Tab.0.center" timestamp="1596599473117">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="290" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1596532997436" />
-    <state width="1237" height="290" key="GridCell.Tab.0.left" timestamp="1596532997435">
+    <state width="1237" height="275" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1596599473117" />
+    <state width="1237" height="275" key="GridCell.Tab.0.left" timestamp="1596599473117">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="290" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1596532997435" />
-    <state width="1237" height="290" key="GridCell.Tab.0.right" timestamp="1596532997436">
+    <state width="1237" height="275" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1596599473117" />
+    <state width="1237" height="275" key="GridCell.Tab.0.right" timestamp="1596599473118">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="290" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1596532997436" />
+    <state width="1237" height="275" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1596599473118" />
     <state width="1237" height="290" key="GridCell.Tab.1.bottom" timestamp="1596532997436">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -328,10 +338,10 @@
     <state x="171" y="0" key="Maven.ArtifactSearchDialog/0.0.1280.680@0.0.1280.680" timestamp="1596336596435" />
     <state x="383" y="75" key="VcsDiffUtil.ChangesDialog" timestamp="1596336596435" />
     <state x="383" y="75" key="VcsDiffUtil.ChangesDialog/0.0.1280.680@0.0.1280.680" timestamp="1596336596435" />
-    <state x="337" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1596530131157">
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1596597688461">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="337" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1596530131157" />
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1596597688461" />
     <state x="605" y="98" width="609" height="536" key="find.popup" timestamp="1596336596435" />
     <state x="605" y="98" width="609" height="536" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1596336596435" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1596336596435" />

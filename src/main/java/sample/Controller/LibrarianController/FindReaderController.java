@@ -15,6 +15,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.controlsfx.control.textfield.TextFields;
 import sample.BUS.LibraryBUS;
+import sample.Controller.AdminController.RentBooksController;
+import sample.Controller.ReturnBookController;
 import sample.POJO.Reader;
 
 import java.io.IOException;
@@ -136,13 +138,13 @@ public class FindReaderController implements Initializable {
     }
 
     public void returnBookBtnClick(ActionEvent actionEvent) throws IOException {
-//        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/FindReaderFXML.fxml"));
-//        Parent root = fxmlLoader.load();
-//        FindReaderController findReaderController = fxmlLoader.getController();
-//        findReaderController.setReader(reader);
-//        stage.setTitle("Thủ thư");
-//        stage.setScene(new Scene(root, 1000, 600));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/ReturnBookFXML.fxml"));
+        Parent root = fxmlLoader.load();
+        ReturnBookController returnBookController = fxmlLoader.getController();
+        returnBookController.setReader(reader);
+        stage.setTitle("Thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
     }
 
     public void changeToBookFXMLBtnClick(ActionEvent actionEvent) throws IOException {

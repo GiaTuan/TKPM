@@ -642,4 +642,50 @@ public class LibraryDAO {
             session.close();
         }
     }
+
+    public static RentBook getRentBookById(int id) {
+        Session session = SessionUtil.getSession();
+        RentBook result = null;
+        try {
+            result = session.get(RentBook.class,id);
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+            return result;
+        }
+    }
+
+    public static void updatePointReader(int idReader, int point) {
+        Session session = SessionUtil.getSession();
+        Transaction tx = session.beginTransaction();
+        Reader reader = null;
+        try {
+            reader = session.get(Reader.class,idReader);
+            reader.setPoint(point);
+            session.save(reader);
+            tx.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public static void updateReturnRentBook(int idRentBook, Date returnDay, double rentFee) {
+        Session session = SessionUtil.getSession();
+        Transaction tx = session.beginTransaction();
+        RentBook rentBook = null;
+        try {
+            rentBook = session.get(RentBook.class,idRentBook);
+            rentBook.setReturnDate(returnDay);
+            rentBook.setRentFee(rentFee);
+            rentBook.setStateRent(1);
+            tx.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
 }
