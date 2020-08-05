@@ -36,7 +36,6 @@
         <mapping class="sample.POJO.Bill"></mapping>
 
         <mapping class="sample.POJO.Compensate"></mapping>
-
         <mapping class="sample.POJO.QueueRentBook"></mapping>
 
     </session-factory>

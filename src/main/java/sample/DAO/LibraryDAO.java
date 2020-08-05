@@ -806,20 +806,16 @@ public class LibraryDAO {
         }
     }
 
-    public static GroupBook getGroupBookFromId(int groupBookId) {
+    public static GroupBook getGroupBookFromId(int idGroupBook) {
         Session session = SessionUtil.getSession();
-
-        GroupBook result = null;
+        GroupBook groupBook = null;
         try {
-            String hql = "select r from GroupBook r where r.idGroupBook = :id";
-            Query query = session.createQuery(hql);
-            query.setParameter("id", groupBookId);
-            result = (GroupBook) query.getResultList().get(0);
+            groupBook = session.get(GroupBook.class,idGroupBook);
         } catch (HibernateException ex) {
             ex.printStackTrace();
         } finally {
             session.close();
-            return result;
+            return groupBook;
         }
     }
 
@@ -895,18 +891,7 @@ public class LibraryDAO {
         }
     }
 
-    public static GroupBook getGroupBookFromId(int idGroupBook) {
-        Session session = SessionUtil.getSession();
-        GroupBook groupBook = null;
-        try {
-            groupBook = session.get(GroupBook.class,idGroupBook);
-        } catch (HibernateException ex) {
-            ex.printStackTrace();
-        } finally {
-            session.close();
-            return groupBook;
-        }
-    }
+
 
     public static Books getBooksFromId(String s) {
         Session session = SessionUtil.getSession();

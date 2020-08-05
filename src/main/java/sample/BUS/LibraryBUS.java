@@ -728,11 +728,6 @@ public class LibraryBUS {
         return LibraryDAO.noficationResgister(idReader);
     }
 
-    public static GroupBook getGroupBookFromId(int groupBookId) {
-        GroupBook groupBook;
-        groupBook = LibraryDAO.getGroupBookFromId(groupBookId);
-        return groupBook;
-    }
 
     public static String getGroupBookFromInputTextField(String infoGroupBook) {
         String groupBook = null;

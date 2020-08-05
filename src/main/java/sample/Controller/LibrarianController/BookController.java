@@ -32,13 +32,11 @@ public class BookController implements Initializable {
         stage.setScene(new Scene(root, 1000, 600));
     }
 
-    GroupBook groupBook;
     public void findBookBtnClick(ActionEvent actionEvent) throws IOException {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         String info = textFieldInfoBtn.getText();
         if(!info.equals(""))
         {
-<<<<<<< HEAD
             String idGroupBook = LibraryBUS.getIdGroupBookFromInputTextField(info);
             try {
                 int id = Integer.valueOf(idGroupBook);
