@@ -5,7 +5,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import org.hibernate.query.criteria.internal.expression.function.AggregationFunction;
 import sample.BUS.LibraryBUS;
 import sample.POJO.*;
 import sample.SessionUtil;
@@ -461,6 +460,7 @@ public class LibraryDAO {
             Reader reader = new Reader(name,phone,mail,add,dob);
             int id = (int) session.save(reader);
             reader.setIdReader(id);
+            reader.setIsReceivedNofication(0);
             readerList.add(reader);
             transaction.commit();
         } catch (HibernateException ex) {
@@ -758,8 +758,109 @@ public class LibraryDAO {
             setUpRentBookList();
         } catch (HibernateException ex) {
             ex.printStackTrace();
+        }
+    }
 
+    public static boolean extendCard(Bill bill, Reader reader)
+    {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+
+            Reader updateReader = session.get(Reader.class, reader.getIdReader());
+
+            updateReader.setDateMember(reader.getDateMember());
+            session.save(updateReader);
+            session.save(bill);
+
+            transaction.commit();
+            setUpReaderList();
+
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean noficationResgister(int idReader)
+    {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+
+            Reader updateReader = session.get(Reader.class, idReader);
+
+            updateReader.setIsReceivedNofication(1);
+            session.save(updateReader);
+
+            transaction.commit();
+            setUpReaderList();
+
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public static GroupBook getGroupBookFromId(int groupBookId) {
+        Session session = SessionUtil.getSession();
+
+        GroupBook result = null;
+        try {
+            String hql = "select r from GroupBook r where r.idGroupBook = :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("id", groupBookId);
+            result = (GroupBook) query.getResultList().get(0);
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+            return result;
+        }
+    }
+
+    public static boolean isReaderEnrollQueueBook(int idReader, int idGroupBook)
+    {
+        Session session = SessionUtil.getSession();
+        List<QueueRentBook> result = null;
+        try {
+            String hql = "select r from QueueRentBook r where r.idGroupBook = :idGroupBook and r.idReader = :idReader";
+            Query query = session.createQuery(hql);
+
+            query.setParameter("idGroupBook", idGroupBook);
+            query.setParameter("idReader", idReader);
+
+            result = query.getResultList();
+
+            return result.size() != 0;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        } finally {
+            session.close();
 
         }
     }
+
+    public static boolean queueRentBookRegister(QueueRentBook record)
+    {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        GroupBook result = null;
+        try {
+            session.save(record);
+            transaction.commit();
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        } finally {
+            session.close();
+        }
+    }
+
 }

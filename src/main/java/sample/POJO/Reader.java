@@ -40,6 +40,17 @@ public class Reader {
     @Column(name = "point")
     int point = 0;
 
+    @Column(name = "isreceivednofication")
+    int isReceivedNofication;
+
+    public int getIsReceivedNofication() {
+        return isReceivedNofication;
+    }
+
+    public void setIsReceivedNofication(int isReceivedNofication) {
+        this.isReceivedNofication = isReceivedNofication;
+    }
+
     @Column(name = "isdeleted")
     Integer isDeleted = 0 ;
 

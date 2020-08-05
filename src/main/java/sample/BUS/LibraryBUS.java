@@ -614,4 +614,45 @@ public class LibraryBUS {
         LibraryDAO.addRentBookRecord(rentBookrecord, listRentBookId);
     }
 
+    public static boolean extendCard(Bill bill, Reader reader)
+    {
+        return LibraryDAO.extendCard(bill, reader);
+    }
+
+    public static boolean noficationResgister(int idReader)
+    {
+        return LibraryDAO.noficationResgister(idReader);
+    }
+
+    public static GroupBook getGroupBookFromId(int groupBookId) {
+        GroupBook groupBook;
+        groupBook = LibraryDAO.getGroupBookFromId(groupBookId);
+        return groupBook;
+    }
+
+    public static String getGroupBookFromInputTextField(String infoGroupBook) {
+        String groupBook = null;
+        if (infoGroupBook.contains(" - ")) {
+            groupBook = infoGroupBook.split("- ")[0].trim();
+        } else {
+            groupBook = infoGroupBook.trim();
+        }
+        return groupBook;
+    }
+
+    public static boolean isReaderEnrollQueueBook(int idReader, int idGroupBook)
+    {
+        return LibraryDAO.isReaderEnrollQueueBook(idReader, idGroupBook);
+    }
+
+    public static boolean queueRentBookRegister(QueueRentBook record)
+    {
+        return LibraryDAO.queueRentBookRegister(record);
+    }
+
+
+
+
+
+
 }

@@ -34,5 +34,6 @@
         <mapping class="sample.POJO.Staff"></mapping>
         <mapping class="sample.POJO.Books"></mapping>
         <mapping class="sample.POJO.Bill"></mapping>
+        <mapping class="sample.POJO.QueueRentBook"></mapping>
     </session-factory>
 </hibernate-configuration>

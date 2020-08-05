@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane prefHeight="400.0" prefWidth="600.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.LibrarianController.RentBookController">
+<GridPane prefHeight="400.0" prefWidth="600.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.LibrarianController.ExtendCardController">
     <rowConstraints>
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -30,9 +30,9 @@
     </rowConstraints>
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="194.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="287.0" minWidth="7.0" prefWidth="18.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="288.0" minWidth="8.0" prefWidth="288.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="205.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="15" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     </columnConstraints>
     <children>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="green-background" GridPane.columnIndex="2" GridPane.columnSpan="2">
@@ -200,7 +200,7 @@
                                 <Font name="System Bold" size="13.0" />
                             </font>
                         </Button>
-                        <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" styleClass="round-btn, get-notify-color" text="ĐĂNG KÝ NHẬN THÔNG BÁO" textFill="WHITE" AnchorPane.rightAnchor="10.0">
+                        <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" styleClass="round-btn, get-notify-color" onAction="#noficationRegisterBtnClick" text="ĐĂNG KÝ NHẬN THÔNG BÁO" textFill="WHITE" AnchorPane.rightAnchor="10.0">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
@@ -211,34 +211,21 @@
                     </VBox.margin>
                 </AnchorPane>
             </children></VBox>
-        <VBox prefHeight="339.0" prefWidth="423.0" styleClass="info-reader-background" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="7">
+        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="info-reader-background" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="7">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mượn sách" />
-            <HBox prefHeight="34.0" prefWidth="295.0">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GIA HẠN THẺ ĐỘC GIẢ" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" text="Mượn sách mới" />
-                  <Button mnemonicParsing="false" onAction="#rentBookHistoryBtnClick" text="Lịch sử mượn sách" />
+                  <Label text="Ngày hết hạn thẻ" />
+                  <TextField fx:id="outdateTextField"/>
+               </children></HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Nhập phí gia hạn" />
+                  <TextField fx:id="feeTextField"/>
                </children>
             </HBox>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mượn sách mới" />
-            <HBox prefHeight="43.0" prefWidth="295.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập số lượng mượn" />
-                  <TextField prefHeight="25.0" prefWidth="91.0" fx:id="rentBookAmount" />
-               </children>
-            </HBox>
-            <TextField fx:id="firstBook" promptText="Nhập mã sách thứ 1" />
-            <TextField fx:id="secondBook" promptText="Nhập mã sách thứ 2" />
-            <TextField fx:id="thirdBook" promptText="Nhập mã sách thứ 3" />
-            <TextField fx:id="fourBook" promptText="Nhập mã sách thứ 4" />
-            <HBox prefHeight="37.0" prefWidth="295.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Số tiền cần cọc" />
-                  <Button mnemonicParsing="false" onAction="#caculateFeeBtnClick" text="Tính tiền cọc" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" fx:id="rentBookFee" />
-               </children>
-            </HBox>
-            <Button mnemonicParsing="false" text="Xác nhận mượn" onAction="#confirmBtnClick" />
+            <Button mnemonicParsing="false" onAction="#extendBtnClick" text="Gia hạn thẻ" />
          </children></VBox>
     </children>
 </GridPane>

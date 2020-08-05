@@ -13,19 +13,20 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.controlsfx.control.textfield.TextFields;
 import sample.BUS.LibraryBUS;
-import sample.Controller.AdminController.RentBooksController;
 import sample.Controller.ReturnBookController;
+import sample.POJO.Bill;
 import sample.POJO.Reader;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class FindReaderController implements Initializable {
+public class ExtendCardController implements Initializable {
+
     @FXML
     Label nameLabel;
     @FXML
@@ -41,9 +42,14 @@ public class FindReaderController implements Initializable {
     @FXML
     Label dobLabel;
 
+    @FXML
+    private TextField outdateTextField;
+    @FXML
+    private TextField feeTextField;
+
+    private LocalDate outDate;
 
     Reader reader;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(()->{
@@ -54,6 +60,9 @@ public class FindReaderController implements Initializable {
             addressLabel.setText("Địa chỉ: "+reader.getAddressReader());
             typeLabel.setText("Hạng độc giả: "+reader.getTypeReader());
             pointLabel.setText("Điểm độc giả: "+String.valueOf(reader.getPoint()));
+
+            outDate = reader.getDateMember().toLocalDate();
+            outdateTextField.setText(outDate.plusYears(1).toString());
         });
 
     }
@@ -65,9 +74,6 @@ public class FindReaderController implements Initializable {
         stage.setScene(new Scene(root, 1000, 600));
     }
 
-    public void findReaderBtnClick(ActionEvent actionEvent) {
-
-    }
 
     public void refreshBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -147,17 +153,13 @@ public class FindReaderController implements Initializable {
         stage.setScene(new Scene(root, 1000, 600));
     }
 
-    public void extendCardBtnClick(ActionEvent actionEvent) throws IOException {
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/ExtendCardFXML.fxml"));
-        Parent root = fxmlLoader.load();
-        ExtendCardController extendCardController = fxmlLoader.getController();
-        extendCardController.setReader(reader);
-        stage.setTitle("Thủ thư");
+    public void changeToBookFXMLBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/LibrarianFXML/BookFXML.fxml"));
+        stage.setTitle("Phân hệ thủ thư");
         stage.setScene(new Scene(root, 1000, 600));
     }
-
-    public void noficationRegisterBtnClick(ActionEvent actionEvent) {
+    public void noficationRegisterBtnClick(ActionEvent actionEvent) throws IOException {
         if(reader.getIsReceivedNofication() == 1)
         {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -167,19 +169,56 @@ public class FindReaderController implements Initializable {
         else
         {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            if(LibraryBUS.noficationResgister(reader.getIdReader()))
-                alert.setContentText("Đăng ký thành công");
-            else
-                alert.setContentText("Đăng ký thất bại");
+           if(LibraryBUS.noficationResgister(reader.getIdReader()))
+               alert.setContentText("Đăng ký thành công");
+           else
+               alert.setContentText("Đăng ký thất bại");
 
             alert.showAndWait();
         }
+
     }
 
-    public void changeToBookFXMLBtnClick(ActionEvent actionEvent) throws IOException {
-        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/LibrarianFXML/BookFXML.fxml"));
-        stage.setTitle("Phân hệ thủ thư");
-        stage.setScene(new Scene(root, 1000, 600));
+    @FXML
+    private void extendBtnClick()
+    {
+        LocalDate today = LocalDate.now();
+        LocalDate subtractedDay = today.minusMonths(1);
+        double fee = Double.parseDouble(feeTextField.getText());
+
+        if(feeTextField.getText().isEmpty())
+            return;
+
+        if(outDate.isBefore(subtractedDay))
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Thẻ quá thời gian gia hạn");
+            alert.showAndWait();
+            return;
+        }
+
+        if(fee != 20000)
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Số tiền gia hạn không hợp lệ");
+            alert.showAndWait();
+            return;
+        }
+
+        reader.setDateMember(Date.valueOf(today));
+        Bill bill = new Bill();
+        bill.setTypeBill(3);
+        bill.setCreateDate(Date.valueOf(today));
+        bill.setCost(fee);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        if(LibraryBUS.extendCard(bill, reader))
+            alert.setContentText("Gia hạn thành công");
+        else
+            alert.setContentText("Gia hạn thất bại");
+
+        alert.showAndWait();
+
     }
+
 }

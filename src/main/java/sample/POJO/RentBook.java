@@ -35,6 +35,17 @@ public class RentBook {
     @Column(name = "state")
     Integer stateRent = 0;
 
+    @Column(name = "isdeleted")
+    Integer isDeleted = 0;
+
+    public Integer getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Integer isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
     @ManyToOne
     @JoinColumn(name = "idreader" ,insertable = false,updatable = false)
     Reader reader;

@@ -160,6 +160,18 @@ public class RentBookController implements Initializable {
 //        stage.setScene(new Scene(root, 1000, 600));
     }
 
+    public void rentBookHistoryBtnClick(ActionEvent actionEvent) throws IOException
+    {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/RentBookHistoryFXML.fxml"));
+        Parent root = fxmlLoader.load();
+        RentBookHistoryController rentBookHistoryController = fxmlLoader.getController();
+        rentBookHistoryController.setReader(reader);
+        stage.setTitle("Phân hệ thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
+    }
+
+
     public void changeToBookFXMLBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/LibrarianFXML/BookFXML.fxml"));
@@ -342,6 +354,7 @@ public class RentBookController implements Initializable {
         RentBook rentBookRecord = new RentBook();
 
         rentBookRecord.setStateRent(0);
+        rentBookRecord.setIsDeleted(0);
         rentBookRecord.setListRentBook(convertListRentBookToString(listRentBook));
         rentBookRecord.setNumberBooksRent(listRentBook.size());
         rentBookRecord.setIdReaderRent(reader.getIdReader());
