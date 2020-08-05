@@ -140,5 +140,10 @@ public class GroupBook {
         this.idPublisher = idPublisher;
     }
 
+    public String toString()
+    {
+        return  this.getIdGroupBook() + " - " + this.getNameBook();
+    }
+
 
 }

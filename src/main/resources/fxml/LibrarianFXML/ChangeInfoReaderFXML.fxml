@@ -32,7 +32,7 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
-                <Button layoutX="384.0" layoutY="10.0" mnemonicParsing="false" prefWidth="150.0" styleClass="white-btn-background" text="SÁCH">
+                <Button onAction="#changeToBookFXMLBtnClick" layoutX="384.0" layoutY="10.0" mnemonicParsing="false" prefWidth="150.0" styleClass="white-btn-background" text="SÁCH">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>

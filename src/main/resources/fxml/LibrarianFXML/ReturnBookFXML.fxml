@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane prefHeight="400.0" prefWidth="600.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.LibrarianController.ChangeInfoReaderController">
+<GridPane prefHeight="400.0" prefWidth="600.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.ReturnBookController">
     <rowConstraints>
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -32,7 +32,7 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
-                <Button onAction="#changeToBookFXMLBtnClick" layoutX="384.0" layoutY="10.0" mnemonicParsing="false" prefWidth="150.0" styleClass="white-btn-background" text="SÁCH">
+                <Button layoutX="384.0" layoutY="10.0" mnemonicParsing="false" onAction="#changeToBookFXMLBtnClick" prefWidth="150.0" styleClass="white-btn-background" text="SÁCH">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
@@ -61,9 +61,9 @@
                     </image>
                 </ImageView>
             </graphic>
-         <GridPane.margin>
-            <Insets left="10.0" />
-         </GridPane.margin>
+            <GridPane.margin>
+                <Insets left="10.0" />
+            </GridPane.margin>
         </ToggleButton>
         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="menu-reader-background" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="7">
             <children>
@@ -87,7 +87,10 @@
                         <Label fx:id="dobLabel" text="Label">
                             <font>
                                 <Font size="13.0" />
-                            </font></Label>
+                            </font>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin></Label>
                         <Label fx:id="phoneLabel" text="Label">
                             <font>
                                 <Font size="13.0" />
@@ -131,7 +134,7 @@
                 </VBox>
                 <AnchorPane prefHeight="30.0" prefWidth="200.0">
                     <children>
-                        <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" styleClass="round-btn, change-info-color" text="THAY ĐỔI THÔNG TIN ĐỘC GIẢ" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                        <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" onAction="#changeInfoReaderBtnClick" styleClass="round-btn, change-info-color" text="THAY ĐỔI THÔNG TIN ĐỘC GIẢ" textFill="WHITE" AnchorPane.leftAnchor="10.0">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
@@ -156,7 +159,7 @@
                                 <Font name="System Bold" size="13.0" />
                             </font>
                         </Button>
-                        <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" onAction="#returnBookBtnClick" styleClass="round-btn, return-color" text="TRẢ SÁCH" textFill="WHITE" AnchorPane.rightAnchor="10.0">
+                        <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" styleClass="round-btn, return-color" text="TRẢ SÁCH" textFill="WHITE" AnchorPane.rightAnchor="10.0">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
@@ -201,100 +204,139 @@
                     </VBox.margin>
                 </AnchorPane>
             </children></VBox>
-        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="info-reader-background" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="7">
-         <children>
-            <Label text="THAY ĐỔI THÔNG TIN ĐỘC GIẢ">
-               <font>
-                  <Font size="18.0" />
-               </font></Label>
-            <HBox prefHeight="30.0" prefWidth="200.0">
-               <children>
-                  <Label text="Mã độc giả: " />
-                  <Label fx:id="idReaderLabel" text="Label">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-            </HBox>
-             <HBox prefHeight="30.0" prefWidth="200.0">
-                 <children>
-                     <Label text="Họ tên: " />
-                  <TextField fx:id="nameReaderTextField">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </TextField>
-                 </children>
-             </HBox>
-             <HBox prefHeight="30.0" prefWidth="200.0">
-                 <children>
-                     <Label text="Ngày sinh: " />
-                     <DatePicker fx:id="dobDatePicker">
-                         <HBox.margin>
-                             <Insets left="10.0" />
-                         </HBox.margin>
-                     </DatePicker>
-                 </children>
-             </HBox>
-             <HBox prefHeight="30.0" prefWidth="200.0">
-                 <children>
-                     <Label text="Số điện thoại: " />
-                  <TextField fx:id="phoneReaderTextField">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </TextField>
-                 </children>
-             </HBox>
-             <HBox prefHeight="30.0" prefWidth="200.0">
-                 <children>
-                     <Label text="Email: " />
-                  <TextField fx:id="mailReaderTextField">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </TextField>
-                 </children>
-             </HBox>
-             <HBox prefHeight="30.0" prefWidth="200.0">
-                 <children>
-                     <Label text="Địa chỉ: " />
-                  <TextField fx:id="addrReaderTextField">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </TextField>
-                 </children>
-             </HBox>
-             <HBox prefHeight="30.0" prefWidth="200.0">
-                 <children>
-                     <Label text="Điểm độc giả: " />
-                     <Label fx:id="pointReaderLabel" text="Label">
-                         <HBox.margin>
-                             <Insets left="10.0" />
-                         </HBox.margin>
-                     </Label>
-                 </children>
-             </HBox>
-             <HBox prefHeight="30.0" prefWidth="200.0">
-                 <children>
-                     <Label text="Hạng độc giả: " />
-                     <Label fx:id="typeReaderLabel" text="Label">
-                         <HBox.margin>
-                             <Insets left="10.0" />
-                         </HBox.margin>
-                     </Label>
-                 </children>
-             </HBox>
-            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="200.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#changeInfoBtnClick" text="THAY ĐỔI THÔNG TIN" />
-               </children>
-            </HBox>
-         </children>
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="info-reader-background" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="7">
          <padding>
             <Insets left="10.0" top="10.0" />
-         </padding></VBox>
+         </padding>
+         <children>
+            <Label text="TRẢ SÁCH">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="30.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <children>
+                  <Label text="Nhập mã phiếu mượn: " />
+                  <TextField fx:id="rentIdTextField">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Button mnemonicParsing="false" onAction="#findRentBookBtnClick" text="Tìm kiếm">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <VBox fx:id="returnBookInfoVBox" visible="false">
+                <children>
+                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                <children>
+                    <Label text="Mã phiếu mượn: " />
+                    <Label fx:id="idRentBookLabel" text="Label">
+                        <HBox.margin>
+                            <Insets left="10.0" />
+                        </HBox.margin></Label>
+                </children>
+                <VBox.margin>
+                    <Insets top="5.0" />
+                </VBox.margin></HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                    <children>
+                        <Label text="Mã độc giả: " />
+                        <Label fx:id="idReaderLabel" text="Label">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin></Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="5.0" />
+                    </VBox.margin></HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                    <children>
+                        <Label text="Số lượng sách: " />
+                        <Label fx:id="numberOfBooksLabel" text="Label">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin></Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="5.0" />
+                    </VBox.margin></HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                    <children>
+                        <Label text="Danh sách mã sách: " />
+                        <Label fx:id="listBooksLabel" text="Label">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin></Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="5.0" />
+                    </VBox.margin></HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                    <children>
+                        <Label text="Ngày mượn: " />
+                        <Label fx:id="dateRentBookLabel" text="Label">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin></Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="5.0" />
+                    </VBox.margin></HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                    <children>
+                        <Label text="Phí cọc: " />
+                        <Label fx:id="depositLabel" text="Label">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin></Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="5.0" />
+                    </VBox.margin></HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                    <children>
+                        <Label text="Số ngày mượn: " />
+                        <Label fx:id="numberOfDaysRentLabel" text="Label">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin></Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="5.0" />
+                    </VBox.margin></HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                    <children>
+                        <Label text="Phí mượn: " />
+                        <Button onAction="#getRentFeeBtnClick" mnemonicParsing="false" text="Tính phí mượn">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Button>
+                        <Label fx:id="rentFeeLabel" text="">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin></Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="5.0" />
+                    </VBox.margin></HBox>
+                <HBox alignment="CENTER" prefHeight="30.0" prefWidth="200.0">
+                    <VBox.margin>
+                        <Insets top="5.0" />
+                    </VBox.margin>
+                    <children>
+                        <Button onAction="#confirmReturn" mnemonicParsing="false" text="XÁC NHẬN TRẢ" />
+                    </children></HBox>
+                </children>
+            </VBox>
+             
+         </children></VBox>
     </children>
 </GridPane>

@@ -1,4 +1,4 @@
-package sample.Window;
+package sample.Window.AdminWindow;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
