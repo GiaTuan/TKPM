@@ -592,9 +592,9 @@ public class LibraryBUS {
         return  LibraryDAO.isGroupBookIdValid(idBook);
     }
 
-    public static void addRentBookRecord(RentBook rentBookrecord, ArrayList<String> listRentBookId)
+    public static int addRentBookRecord(RentBook rentBookrecord, ArrayList<String> listRentBookId)
     {
-        LibraryDAO.addRentBookRecord(rentBookrecord, listRentBookId);
+        return LibraryDAO.addRentBookRecord(rentBookrecord, listRentBookId);
     }
 
 
@@ -749,9 +749,62 @@ public class LibraryBUS {
         return LibraryDAO.queueRentBookRegister(record);
     }
 
+
     public static void addReport(Books books, Reader reader, String infoReport) {
         LibraryDAO.addReport(books,reader,infoReport);
     }
+
+    public static boolean printRentBook(RentBook rentbookRecord, int readerID)
+    {
+        String uniqueID = UUID.randomUUID().toString();
+        String fileOut =  Integer.toString(readerID)+ "-" + Integer.toString(rentbookRecord.getIdRentBook()) + ".docx";
+
+        XWPFDocument document= new XWPFDocument();
+        FileOutputStream fileOutputStream;
+        try {
+            fileOutputStream = new FileOutputStream(new File("ReaderFiles/" + fileOut));
+            XWPFParagraph tmpParagraph = document.createParagraph();
+            tmpParagraph.setAlignment(ParagraphAlignment.CENTER);
+            XWPFRun tmpRun = tmpParagraph.createRun();
+            tmpRun.setText("PHIẾU MƯỢN SÁCH");
+            tmpRun.setFontSize(18);
+            tmpRun.setBold(true);
+
+            XWPFTable table = document.createTable(2,8);
+            CTTblWidth width = table.getCTTbl().addNewTblPr().addNewTblW();
+            width.setType(STTblWidth.DXA);
+            width.setW(BigInteger.valueOf(9072));
+            table.getRow(0).getCell(0).setText("Mã phiếu mượn");
+            table.getRow(0).getCell(1).setText("Mã độc giả");
+            table.getRow(0).getCell(2).setText("Số lượng");
+            table.getRow(0).getCell(3).setText("Danh sách sách" );
+            table.getRow(0).getCell(4).setText("Ngày mượn");
+            table.getRow(0).getCell(5).setText("Ngày trả" );
+            table.getRow(0).getCell(6).setText("Phí cọc");
+            table.getRow(0).getCell(7).setText("Phí mượn");
+
+            table.getRow(1).getCell(0).setText(Integer.toString(rentbookRecord.getIdRentBook()));
+            table.getRow(1).getCell(1).setText(Integer.toString(readerID));
+            table.getRow(1).getCell(2).setText(Integer.toString(rentbookRecord.getNumberBooksRent()));
+            table.getRow(1).getCell(3).setText(rentbookRecord.getListRentBook());
+            table.getRow(1).getCell(4).setText(rentbookRecord.getRentDate().toString());
+            table.getRow(1).getCell(5).setText(rentbookRecord.getReturnDate().toString());
+            table.getRow(1).getCell(6).setText(Double.toString(rentbookRecord.getDepositFee()));
+            table.getRow(1).getCell(7).setText(Double.toString(rentbookRecord.getRentFee()));
+
+
+            document.write(fileOutputStream);
+            fileOutputStream.close();
+            return true;
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return false;
+        }
+
+    }
+
 
     public static boolean updateRentBook(int idRentBook, boolean isReturned, boolean isDeleted) {
         boolean res = LibraryDAO.updateRentBook(idRentBook,isReturned,isDeleted);
