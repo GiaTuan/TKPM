@@ -22,6 +22,7 @@ public class LibraryDAO {
     private static List<RentBook> rentBookList;
     private static List<Staff> staffList = null;
     private static List<Publisher> publisherList = null;
+    private static List<Compensate> compensateList = null;
 
     public static void setUpData() {
         setUpTypeBookList();
@@ -31,6 +32,20 @@ public class LibraryDAO {
         setupStaffList();
         setupPublisherList();
         setupGroupBookList();
+        setupCompensateList();
+    }
+
+    private static void setupCompensateList() {
+        Session session = SessionUtil.getSession();
+        try {
+            String hql = "select c from Compensate c";
+            Query query = session.createQuery(hql);
+            compensateList = query.getResultList();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
 
     private static void setUpRentBookList() {
@@ -44,6 +59,16 @@ public class LibraryDAO {
         } finally {
             session.close();
         }
+    }
+
+    public static List<Compensate> getCompensateList(boolean isRequery)
+    {
+        if(isRequery)
+        {
+            setupCompensateList();
+            return compensateList;
+        }
+        else return compensateList;
     }
 
     public static List<RentBook> getRentBookList(boolean isRequery) {
@@ -877,12 +902,14 @@ public class LibraryDAO {
         }
     }
 
-    public static void addCompensate(int bookId, int idReader, double fee) {
+    public static void addCompensate(String bookId, int idReader, double fee) {
         Session session = SessionUtil.getSession();
         Transaction tx = session.beginTransaction();
         try {
             Compensate compensate = new Compensate(bookId,idReader,fee);
-            session.save(compensate);
+            int id = (int) session.save(compensate);
+            compensate.setIdCompensate(id);
+            compensateList.add(compensate);
             tx.commit();
         } catch (HibernateException ex) {
             ex.printStackTrace();
@@ -909,4 +936,50 @@ public class LibraryDAO {
         }
     }
 
+    public static void addReport(Books books, Reader reader, String infoReport) {
+        Session session = SessionUtil.getSession();
+        Transaction tx = session.beginTransaction();
+        try {
+            Report report = new Report(books.getIdBook(),reader.getIdReader(),infoReport);
+            session.save(report);
+            tx.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public static boolean updateRentBook(int idRentBook, boolean isReturned, boolean isDeleted) {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        boolean res = true;
+        try {
+            RentBook rentBook = session.get(RentBook.class,idRentBook);
+            if(isReturned)
+            {
+                rentBook.setStateRent(1);
+            }
+            else
+            {
+                rentBook.setStateRent(0);
+            }
+            if(isDeleted)
+            {
+                rentBook.setIsDeleted(1);
+            }
+            else
+            {
+                rentBook.setIsDeleted(0);
+            }
+            session.update(rentBook);
+            transaction.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            res = false;
+        } finally {
+            session.close();
+            return res;
+        }
+    }
 }

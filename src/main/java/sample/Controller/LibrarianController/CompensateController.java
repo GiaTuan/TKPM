@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import sample.BUS.LibraryBUS;
+import sample.POJO.Books;
 import sample.POJO.Reader;
 
 import java.io.IOException;
@@ -45,7 +46,11 @@ public class CompensateController implements Initializable {
 
 
     Reader reader;
-    public void changeToBookFXMLBtnClick(ActionEvent actionEvent) {
+    public void changeToBookFXMLBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/LibrarianFXML/BookFXML.fxml"));
+        stage.setTitle("Phân hệ thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
     }
 
     public void backBtnClick(ActionEvent actionEvent) throws IOException {
@@ -158,7 +163,7 @@ public class CompensateController implements Initializable {
         }catch (NumberFormatException ex)
         {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Số lượng sách không hợp lệ");
+            alert.setContentText("Số lượng hư hại không hợp lệ");
             alert.showAndWait();
         }
     }
@@ -166,10 +171,10 @@ public class CompensateController implements Initializable {
     public void confirmCompensate(ActionEvent actionEvent) {
         String bookId = idBookTextField.getText();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        boolean isValidBookId = LibraryBUS.checkIsValidBookId(bookId);
-        if(isValidBookId)
+        Books book = LibraryBUS.getBooksFromId(bookId);
+        if(book != null)
         {
-            LibraryBUS.addCompensate(Integer.valueOf(bookId),reader.getIdReader(),fee);
+            LibraryBUS.addCompensate(book.getIdBook(),reader.getIdReader(),fee);
             alert.setContentText("Đền bù thành công");
             alert.showAndWait();
         }

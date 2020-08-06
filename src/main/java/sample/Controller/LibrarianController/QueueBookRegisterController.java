@@ -34,6 +34,8 @@ public class QueueBookRegisterController implements Initializable {
     @FXML
     Label bookAuthor;
     @FXML
+    Label typeLabel;
+    @FXML
     Label publisher;
     @FXML
     Label state;
@@ -44,11 +46,12 @@ public class QueueBookRegisterController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(()->{
-            idGroupBook.setText("Mã đầu sách : " + groupBook.getIdGroupBook());
-            bookName.setText("Tên sách : " + groupBook.getNameBook());
-            bookAuthor.setText("Tác giả : " + groupBook.getAuthor());
-            publisher.setText("Nhà xuất bản : " + groupBook.getPublisher());
-            state.setText("Trạng thái : " + LibraryBUS.getGroupBookStateName(groupBook.getIsAvailable()));
+            idGroupBook.setText("Mã sách: " + groupBook.getIdGroupBook());
+            bookName.setText("Tên sách: " + groupBook.getNameBook());
+            bookAuthor.setText("Tác giả: " + groupBook.getAuthor());
+            typeLabel.setText("Thể loại: "+groupBook.getTypeBook().getNameType());
+            publisher.setText("Nhà xuất bản: " + groupBook.getPublisher());
+            state.setText("Trạng thái: " + LibraryBUS.getGroupBookStateName(groupBook.getIsAvailable()));
         });
     }
     public void backBtnClick(ActionEvent actionEvent) {
@@ -61,10 +64,24 @@ public class QueueBookRegisterController implements Initializable {
         stage.setScene(new Scene(root, 1000, 600));
     }
 
-    public void listBookBtnClick(ActionEvent actionEvent) {
+    public void listBookBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/ListBookFXML.fxml"));
+        Parent root = fxmlLoader.load();
+        FindBookListController findBookListController = fxmlLoader.getController();
+        findBookListController.setGroupBook(groupBook);
+        stage.setTitle("Phân hệ thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
     }
 
-    public void reportBookBtnClick(ActionEvent actionEvent) {
+    public void reportBookBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/ReportBookFXML.fxml"));
+        Parent root = fxmlLoader.load();
+        ReportBookController reportBookController = fxmlLoader.getController();
+        reportBookController.setGroupBook(groupBook);
+        stage.setTitle("Phân hệ thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
     }
 
     public void enrollQueueBtnClick(ActionEvent actionEvent) throws IOException {
