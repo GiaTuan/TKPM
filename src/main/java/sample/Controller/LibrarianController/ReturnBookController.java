@@ -16,6 +16,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import sample.BUS.LibraryBUS;
 import sample.Controller.LibrarianController.ChangeInfoReaderController;
+import sample.Controller.LibrarianController.ExtendCardController;
+import sample.Controller.LibrarianController.RentBookController;
 import sample.DAO.LibraryDAO;
 import sample.POJO.Reader;
 import sample.POJO.RentBook;
@@ -101,6 +103,7 @@ public class ReturnBookController implements Initializable {
         stage.setScene(new Scene(root, 1000, 600));
     }
 
+
     public void rentBookBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(RentBookController.class.getClass().getResource("/fxml/LibrarianFXML/RentBookFXML.fxml"));
@@ -110,6 +113,7 @@ public class ReturnBookController implements Initializable {
         stage.setTitle("Thủ thư");
         stage.setScene(new Scene(root, 1000, 600));
     }
+
 
     public void markReaderBtnClick(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -228,5 +232,41 @@ public class ReturnBookController implements Initializable {
         compensateController.setReader(reader);
         stage.setTitle("Phân hệ thủ thư");
         stage.setScene(new Scene(root, 1000, 600));
+    }
+
+    public void rentBookBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(RentBookController.class.getClass().getResource("/fxml/LibrarianFXML/RentBookFXML.fxml"));
+        Parent root = fxmlLoader.load();
+        RentBookController rentBookControllerController = fxmlLoader.getController();
+        rentBookControllerController.setReader(reader);
+        stage.setTitle("Thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
+    }
+
+    public void extendCardBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/ExtendCardFXML.fxml"));
+        Parent root = fxmlLoader.load();
+        ExtendCardController extendCardController = fxmlLoader.getController();
+        extendCardController.setReader(reader);
+        stage.setTitle("Thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
+    }
+
+    public void noficationRegisterBtnClick(ActionEvent actionEvent) {
+        if (reader.getIsReceivedNofication() == 1) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Tài khoản đã được đăng ký");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            if (LibraryBUS.noficationResgister(reader.getIdReader()))
+                alert.setContentText("Đăng ký thành công");
+            else
+                alert.setContentText("Đăng ký thất bại");
+
+            alert.showAndWait();
+        }
     }
 }

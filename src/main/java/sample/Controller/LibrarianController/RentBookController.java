@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.BUS.LibraryBUS;
+import sample.Controller.ReturnBookController;
 import sample.POJO.Reader;
 import sample.POJO.RentBook;
 
@@ -57,7 +58,9 @@ public class RentBookController implements Initializable {
     @FXML
     Text rentBookFee;
 
-    private Reader reader;
+    private static Reader reader;
+    private boolean isPrint = false;
+    private static RentBook rentBookRecord = null;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(()->{
@@ -168,7 +171,38 @@ public class RentBookController implements Initializable {
         stage.setScene(new Scene(root, 1000, 600));
     }
 
-    private void showAlert(String nofication)
+    public void extendCardBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/ExtendCardFXML.fxml"));
+        Parent root = fxmlLoader.load();
+        ExtendCardController extendCardController = fxmlLoader.getController();
+        extendCardController.setReader(reader);
+        stage.setTitle("Thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
+    }
+
+    public void noficationRegisterBtnClick(ActionEvent actionEvent) {
+
+        if(reader.getIsReceivedNofication() == 1)
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Tài khoản đã được đăng ký");
+            alert.showAndWait();
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            if(LibraryBUS.noficationResgister(reader.getIdReader()))
+                alert.setContentText("Đăng ký thành công");
+            else
+                alert.setContentText("Đăng ký thất bại");
+
+            alert.showAndWait();
+        }
+    }
+
+
+    private static void showAlert(String nofication)
     {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(nofication);
@@ -340,7 +374,7 @@ public class RentBookController implements Initializable {
         ArrayList<String> listRentBook = new ArrayList<>();
 
         listRentBook = buildListRentBook();
-        RentBook rentBookRecord = new RentBook();
+        rentBookRecord = new RentBook();
 
         rentBookRecord.setStateRent(0);
         rentBookRecord.setIsDeleted(0);
@@ -354,9 +388,23 @@ public class RentBookController implements Initializable {
         rentBookRecord.setRentFee((double)0);
         rentBookRecord.setDepositFee(Double.parseDouble(rentBookFee.getText()));
 
-        LibraryBUS.addRentBookRecord(rentBookRecord, listRentBook);
+        int recordID;
+        recordID = LibraryBUS.addRentBookRecord(rentBookRecord, listRentBook);
+
+        rentBookRecord.setIdReaderRent(recordID);
+
+        ConfirmPrintRentBook.display();
     }
 
+    public static void printRentBook()
+    {
+
+        if(LibraryBUS.printRentBook(rentBookRecord, reader.getIdReader()))
+            showAlert("In thành công");
+        else
+            showAlert("In thất bại");
+
+    }
 
     public void compensateBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
