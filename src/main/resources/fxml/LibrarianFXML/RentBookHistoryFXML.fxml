@@ -149,7 +149,7 @@
                                 <Font name="System Bold" size="13.0" />
                             </font>
                         </Button>
-                        <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" onAction="#rentBookBtnClick" styleClass="round-btn, rent-book-color" text="MƯỢN SÁCH" textFill="WHITE" AnchorPane.rightAnchor="10.0">
+                        <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" styleClass="round-btn, rent-book-color" text="MƯỢN SÁCH" textFill="WHITE" AnchorPane.rightAnchor="10.0">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
@@ -219,7 +219,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MƯỢN SÁCH" />
             <HBox prefHeight="37.0" prefWidth="295.0">
                <children>
-                  <Button mnemonicParsing="false" text="MƯỢN SÁCH MỚI" />
+                  <Button mnemonicParsing="false" onAction="#returnRentBookBtnClick" text="MƯỢN SÁCH MỚI" />
                   <Button mnemonicParsing="false" text="LỊCH SỬ MƯỢN SÁCH" />
                </children>
             </HBox>
@@ -227,26 +227,26 @@
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tìm kiếm phiếu mượn" />
-                  <TextField fx:id="idRentBookTextFied"/>
-                  <DatePicker fx:id="dateRentBookPicker"/>
-                  <Button onAction="#searchBtnClick" mnemonicParsing="false" text="Tìm" />
+                  <TextField fx:id="idRentBookTextFied" />
+                  <DatePicker fx:id="dateRentBookPicker" />
+                  <Button mnemonicParsing="false" onAction="#searchBtnClick" text="Tìm" />
                </children>
             </HBox>
             <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0">
               <columns>
-                <TableColumn minWidth="0.0" prefWidth="18.0" fx:id="idRentBookCol" text="Mã phiếu mượn" />
-                  <TableColumn minWidth="0.0" prefWidth="21.0" fx:id="idReaderCol" text="Mã độc giả" />
-                  <TableColumn minWidth="0.0" prefWidth="17.0" fx:id="numberOfRentBookCol" text="Số lượng" />
-                  <TableColumn minWidth="0.0" prefWidth="22.0" fx:id="listRentBookCol" text="Danh sách sách" />
-                  <TableColumn minWidth="0.0" prefWidth="31.0" fx:id="rentDateCol" text="Ngày mượn" />
-                  <TableColumn prefWidth="22.0" fx:id="returnDateCol" text="Ngày trả" />
-                  <TableColumn prefWidth="37.0" fx:id="despositFeeCol" text="Phí cọc" />
-                  <TableColumn prefWidth="36.0" fx:id="rentFeeCol" text="Phí mượn" />
-                  <TableColumn minWidth="0.0" fx:id="isReturn" prefWidth="26.0" text="Đã trả" />
-                  <TableColumn prefWidth="56.0" fx:id="isDeleted" text="Đã xóa" />
+                <TableColumn fx:id="idRentBookCol" minWidth="0.0" prefWidth="18.0" text="Mã phiếu mượn" />
+                  <TableColumn fx:id="idReaderCol" minWidth="0.0" prefWidth="21.0" text="Mã độc giả" />
+                  <TableColumn fx:id="numberOfRentBookCol" minWidth="0.0" prefWidth="17.0" text="Số lượng" />
+                  <TableColumn fx:id="listRentBookCol" minWidth="0.0" prefWidth="22.0" text="Danh sách sách" />
+                  <TableColumn fx:id="rentDateCol" minWidth="0.0" prefWidth="31.0" text="Ngày mượn" />
+                  <TableColumn fx:id="returnDateCol" prefWidth="22.0" text="Ngày trả" />
+                  <TableColumn fx:id="despositFeeCol" prefWidth="37.0" text="Phí cọc" />
+                  <TableColumn fx:id="rentFeeCol" prefWidth="36.0" text="Phí mượn" />
+                  <TableColumn fx:id="isReturn" minWidth="0.0" prefWidth="26.0" text="Đã trả" />
+                  <TableColumn fx:id="isDeleted" prefWidth="56.0" text="Đã xóa" />
               </columns>
             </TableView>
-            <Button onAction="#changeBtnClick" mnemonicParsing="false" text="Thay đổi" />
+            <Button mnemonicParsing="false" onAction="#changeBtnClick" text="Thay đổi" />
          </children></VBox>
     </children>
 </GridPane>

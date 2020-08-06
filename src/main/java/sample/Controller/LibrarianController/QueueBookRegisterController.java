@@ -51,7 +51,11 @@ public class QueueBookRegisterController implements Initializable {
             state.setText("Trạng thái : " + LibraryBUS.getGroupBookStateName(groupBook.getIsAvailable()));
         });
     }
-    public void backBtnClick(ActionEvent actionEvent) {
+    public void backBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/LibrarianFXML/LibrarianFXML.fxml"));
+        stage.setTitle("Phân hệ thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
     }
 
     public void refreshBtnClick(ActionEvent actionEvent) throws IOException {

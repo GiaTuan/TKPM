@@ -146,7 +146,7 @@
                                 <Font name="System Bold" size="13.0" />
                             </font>
                         </Button>
-                        <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" onAction="#rentBookBtnClick" styleClass="round-btn, rent-book-color" text="MƯỢN SÁCH" textFill="WHITE" AnchorPane.rightAnchor="10.0">
+                        <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" styleClass="round-btn, rent-book-color" text="MƯỢN SÁCH" textFill="WHITE" AnchorPane.rightAnchor="10.0">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
@@ -161,7 +161,7 @@
                 </AnchorPane>
                 <AnchorPane prefHeight="30.0" prefWidth="200.0">
                     <children>
-                        <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" styleClass="round-btn, extend-color" text="GIA HẠN THẺ" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                        <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" onAction="#extendCardBtnClick" styleClass="round-btn, extend-color" text="GIA HẠN THẺ" textFill="WHITE" AnchorPane.leftAnchor="10.0">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
@@ -200,7 +200,7 @@
                                 <Font name="System Bold" size="13.0" />
                             </font>
                         </Button>
-                        <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" styleClass="round-btn, get-notify-color" text="ĐĂNG KÝ NHẬN THÔNG BÁO" textFill="WHITE" AnchorPane.rightAnchor="10.0">
+                        <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" onAction="#noficationRegisterBtnClick" styleClass="round-btn, get-notify-color" text="ĐĂNG KÝ NHẬN THÔNG BÁO" textFill="WHITE" AnchorPane.rightAnchor="10.0">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
@@ -224,7 +224,7 @@
             <HBox prefHeight="43.0" prefWidth="295.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập số lượng mượn" />
-                  <TextField prefHeight="25.0" prefWidth="91.0" fx:id="rentBookAmount" />
+                  <TextField fx:id="rentBookAmount" prefHeight="25.0" prefWidth="91.0" />
                </children>
             </HBox>
             <TextField fx:id="firstBook" promptText="Nhập mã sách thứ 1" />
@@ -235,10 +235,10 @@
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Số tiền cần cọc" />
                   <Button mnemonicParsing="false" onAction="#caculateFeeBtnClick" text="Tính tiền cọc" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" fx:id="rentBookFee" />
+                  <Text fx:id="rentBookFee" strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
             </HBox>
-            <Button mnemonicParsing="false" text="Xác nhận mượn" onAction="#confirmBtnClick" />
+            <Button mnemonicParsing="false" onAction="#confirmBtnClick" text="Xác nhận mượn" />
          </children></VBox>
     </children>
 </GridPane>

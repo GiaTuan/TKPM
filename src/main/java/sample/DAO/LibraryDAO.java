@@ -731,10 +731,11 @@ public class LibraryDAO {
         transaction.commit();
         setupGroupBookList();
     }
-    public static void addRentBookRecord(RentBook rentBookrecord, ArrayList<String> listRentBookId)
+    public static int addRentBookRecord(RentBook rentBookrecord, ArrayList<String> listRentBookId)
     {
         Session session = SessionUtil.getSession();
         Transaction transaction = session.beginTransaction();
+        int recordID = 0;
         int groupBookId = Integer.parseInt(listRentBookId.get(0).split("_")[0]);
         try {
 
@@ -751,13 +752,16 @@ public class LibraryDAO {
             }
 
             session.save(rentBookrecord);
-
+            recordID = rentBookrecord.getIdRentBook();
             transaction.commit();
 
             checkAvailableStatus(groupBookId);
             setUpRentBookList();
+            return recordID;
+
         } catch (HibernateException ex) {
             ex.printStackTrace();
+            return recordID;
         }
     }
 

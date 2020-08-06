@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import sample.BUS.LibraryBUS;
+import sample.Controller.ReturnBookController;
 import sample.POJO.Reader;
 import sample.POJO.RentBook;
 import sample.Window.LibrarianWindow.EditRentBookDialogWindow;
@@ -195,24 +196,24 @@ public class RentBookHistoryController implements Initializable {
         stage.setScene(new Scene(root, 1000, 600));
     }
 
-    public void rentBookBtnClick(ActionEvent actionEvent) throws IOException {
-//        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/FindReaderFXML.fxml"));
-//        Parent root = fxmlLoader.load();
-//        FindReaderController findReaderController = fxmlLoader.getController();
-//        findReaderController.setReader(reader);
-//        stage.setTitle("Thủ thư");
-//        stage.setScene(new Scene(root, 1000, 600));
+    public void returnRentBookBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(RentBookController.class.getClass().getResource("/fxml/LibrarianFXML/RentBookFXML.fxml"));
+        Parent root = fxmlLoader.load();
+        RentBookController rentBookControllerController = fxmlLoader.getController();
+        rentBookControllerController.setReader(reader);
+        stage.setTitle("Thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
     }
 
     public void returnBookBtnClick(ActionEvent actionEvent) throws IOException {
-//        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/FindReaderFXML.fxml"));
-//        Parent root = fxmlLoader.load();
-//        FindReaderController findReaderController = fxmlLoader.getController();
-//        findReaderController.setReader(reader);
-//        stage.setTitle("Thủ thư");
-//        stage.setScene(new Scene(root, 1000, 600));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/ReturnBookFXML.fxml"));
+        Parent root = fxmlLoader.load();
+        ReturnBookController returnBookController = fxmlLoader.getController();
+        returnBookController.setReader(reader);
+        stage.setTitle("Thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
     }
 
     public void changeToBookFXMLBtnClick(ActionEvent actionEvent) throws IOException {
@@ -221,6 +222,9 @@ public class RentBookHistoryController implements Initializable {
         stage.setTitle("Phân hệ thủ thư");
         stage.setScene(new Scene(root, 1000, 600));
     }
+
+
+
 
     @FXML
     public void extendCardBtnClick(ActionEvent actionEvent) throws IOException {
