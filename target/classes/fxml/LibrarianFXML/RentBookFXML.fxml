@@ -136,7 +136,7 @@
                                 <Font name="System Bold" size="13.0" />
                             </font>
                         </Button>
-                        <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false"  styleClass="round-btn, rent-book-color" text="MƯỢN SÁCH" textFill="WHITE" AnchorPane.rightAnchor="10.0">
+                        <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" styleClass="round-btn, rent-book-color" text="MƯỢN SÁCH" textFill="WHITE" AnchorPane.rightAnchor="10.0">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
@@ -151,7 +151,7 @@
                 </AnchorPane>
                 <AnchorPane prefHeight="30.0" prefWidth="200.0">
                     <children>
-                        <Button onAction="#extendCardBtnClick" layoutX="14.0" layoutY="2.0" mnemonicParsing="false" styleClass="round-btn, extend-color" text="GIA HẠN THẺ" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                        <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" onAction="#extendCardBtnClick" styleClass="round-btn, extend-color" text="GIA HẠN THẺ" textFill="WHITE" AnchorPane.leftAnchor="10.0">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
@@ -190,7 +190,7 @@
                                 <Font name="System Bold" size="13.0" />
                             </font>
                         </Button>
-                        <Button onAction="#noficationRegisterBtnClick" layoutX="110.0" layoutY="2.0" mnemonicParsing="false" styleClass="round-btn, get-notify-color" text="ĐĂNG KÝ NHẬN THÔNG BÁO" textFill="WHITE" AnchorPane.rightAnchor="10.0">
+                        <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" onAction="#noficationRegisterBtnClick" styleClass="round-btn, get-notify-color" text="ĐĂNG KÝ NHẬN THÔNG BÁO" textFill="WHITE" AnchorPane.rightAnchor="10.0">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
@@ -213,7 +213,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mượn sách mới" />
             <HBox prefHeight="43.0" prefWidth="295.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập số lượng mượn: " />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập số lượng mượn" />
                   <TextField fx:id="rentBookAmount" prefHeight="25.0" prefWidth="91.0" />
                </children>
             </HBox>

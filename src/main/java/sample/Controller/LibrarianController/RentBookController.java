@@ -15,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.BUS.LibraryBUS;
-import sample.Controller.ReturnBookController;
 import sample.POJO.Reader;
 import sample.POJO.RentBook;
 
@@ -171,15 +170,6 @@ public class RentBookController implements Initializable {
         stage.setScene(new Scene(root, 1000, 600));
     }
 
-    public void extendCardBtnClick(ActionEvent actionEvent) throws IOException {
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/ExtendCardFXML.fxml"));
-        Parent root = fxmlLoader.load();
-        ExtendCardController extendCardController = fxmlLoader.getController();
-        extendCardController.setReader(reader);
-        stage.setTitle("Thủ thư");
-        stage.setScene(new Scene(root, 1000, 600));
-    }
 
     public void noficationRegisterBtnClick(ActionEvent actionEvent) {
 
@@ -417,24 +407,6 @@ public class RentBookController implements Initializable {
 
     }
 
-    public void noficationRegisterBtnClick(ActionEvent actionEvent) {
-        if(reader.getIsReceivedNofication() == 1)
-        {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Tài khoản đã được đăng ký");
-            alert.showAndWait();
-        }
-        else
-        {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            if(LibraryBUS.noficationResgister(reader.getIdReader()))
-                alert.setContentText("Đăng ký thành công");
-            else
-                alert.setContentText("Đăng ký thất bại");
-
-            alert.showAndWait();
-        }
-    }
 
     public void extendCardBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

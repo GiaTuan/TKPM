@@ -198,16 +198,8 @@ public class ChangeInfoReaderController implements Initializable {
         CompensateController compensateController = fxmlLoader.getController();
         compensateController.setReader(reader);
         stage.setTitle("Phân hệ thủ thư");
-}
-    public void rentBookBtnClick(ActionEvent actionEvent) throws IOException {
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(RentBookController.class.getClass().getResource("/fxml/LibrarianFXML/RentBookFXML.fxml"));
-        Parent root = fxmlLoader.load();
-        RentBookController rentBookControllerController = fxmlLoader.getController();
-        rentBookControllerController.setReader(reader);
-        stage.setTitle("Thủ thư");
-        stage.setScene(new Scene(root, 1000, 600));
     }
+
 
     public void extendCardBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

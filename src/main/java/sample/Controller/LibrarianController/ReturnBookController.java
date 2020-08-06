@@ -104,15 +104,6 @@ public class ReturnBookController implements Initializable {
     }
 
 
-    public void rentBookBtnClick(ActionEvent actionEvent) throws IOException {
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(RentBookController.class.getClass().getResource("/fxml/LibrarianFXML/RentBookFXML.fxml"));
-        Parent root = fxmlLoader.load();
-        RentBookController rentBookControllerController = fxmlLoader.getController();
-        rentBookControllerController.setReader(reader);
-        stage.setTitle("Thủ thư");
-        stage.setScene(new Scene(root, 1000, 600));
-    }
 
 
     public void markReaderBtnClick(ActionEvent actionEvent) {
