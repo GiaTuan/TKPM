@@ -37,6 +37,7 @@
 
         <mapping class="sample.POJO.Compensate"></mapping>
         <mapping class="sample.POJO.QueueRentBook"></mapping>
+        <mapping class="sample.POJO.Report"></mapping>
 
     </session-factory>
 </hibernate-configuration>

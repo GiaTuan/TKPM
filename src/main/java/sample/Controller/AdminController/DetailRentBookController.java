@@ -40,8 +40,6 @@ public class DetailRentBookController implements Initializable {
 
     RentBook rentBook;
 
-    boolean defaultIsReturned = false;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(()->{
@@ -61,8 +59,12 @@ public class DetailRentBookController implements Initializable {
             depositFee.setText(rentBook.getDepositFee().toString());
             if(rentBook.getStateRent() == 1)
             {
-                defaultIsReturned = true;
                 isReturned.setSelected(true);
+            }
+
+            if(rentBook.getIsDeleted() == 1)
+            {
+                isDeleted.setSelected(true);
             }
         });
 
@@ -71,7 +73,7 @@ public class DetailRentBookController implements Initializable {
     public static boolean isChanged = false;
     public void changeBtnClick(ActionEvent actionEvent) {
         isChanged = true;
-        boolean isUpdated = LibraryBUS.updateIsReturnedRentBook(rentBook.getIdRentBook(),isReturned.isSelected());
+        boolean isUpdated = LibraryBUS.updateRentBook(rentBook.getIdRentBook(),isReturned.isSelected(),isDeleted.isSelected());
         if(isUpdated)
         {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

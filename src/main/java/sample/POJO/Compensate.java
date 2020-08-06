@@ -16,7 +16,7 @@ public class Compensate {
     int idReader;
 
     @Column(name = "idbook")
-    int idBook;
+    String idBook;
 
     @Column(name = "compensatefee")
     double compensateFee;
@@ -31,21 +31,9 @@ public class Compensate {
     @JoinColumn(name = "idreader" , insertable = false , updatable = false)
     Reader readerCompensate;
 
-    @ManyToOne
-    @JoinColumn(name = "idbook", insertable = false, updatable =  false)
-    Books book;
-
-    public Books getBook() {
-        return book;
-    }
-
-    public void setBook(Books book) {
-        this.book = book;
-    }
-
     public Compensate(){}
 
-    public Compensate(int idBook, int idReader,double fee)
+    public Compensate(String idBook, int idReader,double fee)
     {
         this.idBook = idBook;
         this.idReader = idReader;
@@ -70,11 +58,11 @@ public class Compensate {
         this.idReader = idReader;
     }
 
-    public int getIdBook() {
+    public String getIdBook() {
         return idBook;
     }
 
-    public void setIdBook(int idBook) {
+    public void setIdBook(String idBook) {
         this.idBook = idBook;
     }
 

@@ -105,6 +105,13 @@
                             <VBox.margin>
                                 <Insets top="5.0" />
                             </VBox.margin></Label>
+                        <Label fx:id="typeLabel" text="Label">
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets top="5.0" />
+                            </VBox.margin></Label>
                         <Label fx:id="publisher"  text="d">
                             <font>
                                 <Font size="13.0" />

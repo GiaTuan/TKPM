@@ -69,6 +69,11 @@
                <font>
                   <Font size="14.0" />
                </font></Button>
+            <Button mnemonicParsing="false" onAction="#manangeCompensateBtnClick" text="Quản lý bồi thường">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
          </children>
       </VBox>
       <Label text="QUẢN LÝ" textFill="#93d468" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER">

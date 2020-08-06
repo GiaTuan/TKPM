@@ -1,8 +1,6 @@
 package sample.Controller.LibrarianController;
 
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,22 +8,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.BUS.LibraryBUS;
+import sample.DAO.LibraryDAO;
 import sample.POJO.Books;
 import sample.POJO.GroupBook;
+import sample.POJO.Reader;
 
-import java.awt.print.Book;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
-public class FindBookListController implements Initializable {
+public class ReportBookController implements Initializable {
     @FXML
     Label idLabel;
     @FXML
@@ -39,15 +37,13 @@ public class FindBookListController implements Initializable {
     @FXML
     Label stateLabel;
     @FXML
-    TableView booksTableView;
+    TextField idBookTextField;
     @FXML
-    TableColumn<Books,String> idBookCol;
+    TextField phoneReaderTextField;
     @FXML
-    TableColumn<Books,String> stateBookCol;
-
+    TextArea infoReportTextArea;
 
     GroupBook groupBook;
-
     public void changeReaderFXMLBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/LibrarianFXML/ReaderFXML.fxml"));
@@ -69,13 +65,12 @@ public class FindBookListController implements Initializable {
         stage.setScene(new Scene(root, 1000, 600));
     }
 
-
-    public void reportBookBtnClick(ActionEvent actionEvent) throws IOException {
+    public void listBookBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/ReportBookFXML.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/ListBookFXML.fxml"));
         Parent root = fxmlLoader.load();
-        ReportBookController reportBookController = fxmlLoader.getController();
-        reportBookController.setGroupBook(groupBook);
+        FindBookListController findBookListController = fxmlLoader.getController();
+        findBookListController.setGroupBook(groupBook);
         stage.setTitle("Phân hệ thủ thư");
         stage.setScene(new Scene(root, 1000, 600));
     }
@@ -98,23 +93,49 @@ public class FindBookListController implements Initializable {
             authorLabel.setText("Tác giả: "+groupBook.getAuthor());
             typeLabel.setText("Thể loại: "+groupBook.getTypeBook().getNameType());
             nxbLabel.setText("Nhà xuất bản: "+groupBook.getPublisher());
+
             String state = LibraryBUS.getGroupBookStateName(groupBook.getIsAvailable());
             stateLabel.setText("Trạng thái: "+state);
-            setUpTableListBook();
         });
     }
 
-    private void setUpTableListBook() {
-        idBookCol.setCellValueFactory(new PropertyValueFactory<>("idBook"));
-        stateBookCol.setCellValueFactory(new PropertyValueFactory<>("state"));
-    //    System.out.println(groupBook.getIdGroupBook());
-        List<Books> bookList = LibraryBUS.getBookList(groupBook.getIdGroupBook());
-        ObservableList<Books> booksObservableList = FXCollections.observableArrayList();
-        booksObservableList.addAll(bookList);
-        booksTableView.setItems(booksObservableList);
+    public void setGroupBook(GroupBook groupBook) {
+        this.groupBook= groupBook;
     }
 
-    public void setGroupBook(GroupBook groupBook) {
-        this.groupBook = groupBook;
+    public void confirmReportBtnClick(ActionEvent actionEvent) {
+        String idBook = idBookTextField.getText();
+        String phoneReader = phoneReaderTextField.getText();
+        String infoReport = infoReportTextArea.getText();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        if(!idBook.equals("") && !phoneReader.equals("") && !infoReport.equals(""))
+        {
+            Books books = LibraryBUS.getBooksFromId(idBook);
+            if(books != null)
+            {
+                Reader reader = LibraryBUS.getReaderFromPhone(phoneReader);
+                if(reader != null)
+                {
+                    LibraryBUS.addReport(books,reader,infoReport);
+                    alert.setContentText("Báo cáo thành công");
+                    alert.showAndWait();
+                }
+                else
+                {
+                    alert.setContentText("Số điện thoại không hợp lệ");
+                    alert.showAndWait();
+                }
+            }
+            else
+            {
+                alert.setContentText("Mã sách không hợp lệ");
+                alert.showAndWait();
+            }
+        }
+        else
+        {
+            alert.setContentText("Chưa điền đủ thông tin");
+            alert.showAndWait();
+        }
     }
 }

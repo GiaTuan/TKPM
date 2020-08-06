@@ -59,11 +59,17 @@ public class FindBookController implements Initializable {
         stage.setScene(new Scene(root, 1000, 600));
     }
 
-    public void reportBookBtnClick(ActionEvent actionEvent) {
+    public void reportBookBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/ReportBookFXML.fxml"));
+        Parent root = fxmlLoader.load();
+        ReportBookController reportBookController = fxmlLoader.getController();
+        reportBookController.setGroupBook(groupBook);
+        stage.setTitle("Phân hệ thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
     }
 
     public void enrollQueueBtnClick(ActionEvent actionEvent) throws IOException {
-
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/QueueBookRegisterFXML.fxml"));
         Parent root = fxmlLoader.load();

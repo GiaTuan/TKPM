@@ -1,22 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<GridPane prefHeight="400.0" prefWidth="600.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.LibrarianController.QueueBookRegisterController">
+<GridPane prefHeight="400.0" prefWidth="600.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.LibrarianController.ReportBookController">
     <rowConstraints>
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -90,15 +80,15 @@
                         <Insets left="20.0" right="20.0" top="10.0" />
                     </VBox.margin>
                     <children>
-                        <Label fx:id="idGroupBook"  text="a">
+                        <Label fx:id="idLabel" text="Label">
                             <font>
                                 <Font size="13.0" />
                             </font></Label>
-                        <Label fx:id="bookName" text="b">
+                        <Label fx:id="nameLabel" text="Label">
                             <font>
                                 <Font size="13.0" />
                             </font></Label>
-                        <Label fx:id="bookAuthor"  text="c">
+                        <Label fx:id="authorLabel" text="Label">
                             <font>
                                 <Font size="13.0" />
                             </font>
@@ -112,14 +102,14 @@
                             <VBox.margin>
                                 <Insets top="5.0" />
                             </VBox.margin></Label>
-                        <Label fx:id="publisher"  text="d">
+                        <Label fx:id="nxbLabel" text="Label">
                             <font>
                                 <Font size="13.0" />
                             </font>
                             <VBox.margin>
                                 <Insets top="5.0" />
                             </VBox.margin></Label>
-                        <Label  fx:id="state" text="e">
+                        <Label fx:id="stateLabel" text="Label">
                             <font>
                                 <Font size="13.0" />
                             </font>
@@ -138,7 +128,7 @@
                                 <Font name="System Bold" size="13.0" />
                             </font>
                         </Button>
-                        <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" onAction="#reportBookBtnClick" styleClass="round-btn, mark-color" text="BÁO CÁO SÁCH" textFill="WHITE" AnchorPane.rightAnchor="10.0">
+                        <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" styleClass="round-btn, mark-color" text="BÁO CÁO SÁCH" textFill="WHITE" AnchorPane.rightAnchor="10.0">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
@@ -164,16 +154,60 @@
                     </VBox.margin>
                 </AnchorPane>
             </children></VBox>
-        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="info-reader-background" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="7">
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="info-reader-background" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="7">
+         <padding>
+            <Insets left="10.0" top="10.0" />
+         </padding>
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" ĐĂNG KÝ HÀNG ĐỢI" />
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <Label text="BÁO CÁO SÁCH">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0"  text="Số điện thoại độc giả" />
-                  <TextField fx:id="readerPhone" />
+                  <Label text="Mã sách: " />
+                  <TextField fx:id="idBookTextField">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </TextField>
                </children>
             </HBox>
-            <Button onAction="#confirmBtnClick" mnemonicParsing="false" text="Xác nhận" />
+             <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                 <VBox.margin>
+                     <Insets top="10.0" />
+                 </VBox.margin>
+                 <children>
+                     <Label text="Số điện thoại độc giả: " />
+                     <TextField fx:id="phoneReaderTextField">
+                         <HBox.margin>
+                             <Insets left="10.0" />
+                         </HBox.margin>
+                     </TextField>
+                 </children>
+             </HBox>
+             <HBox prefHeight="100.0" prefWidth="200.0">
+                 <VBox.margin>
+                     <Insets top="10.0" />
+                 </VBox.margin>
+                 <children>
+                     <Label text="Nội dung báo cáo: " />
+                     <TextArea fx:id="infoReportTextArea">
+                         <HBox.margin>
+                             <Insets left="10.0" />
+                         </HBox.margin>
+                     </TextArea>
+                 </children>
+             </HBox>
+            <Button onAction="#confirmReportBtnClick" mnemonicParsing="false" text="XÁC NHẬN BÁO CÁO">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
          </children></VBox>
     </children>
 </GridPane>

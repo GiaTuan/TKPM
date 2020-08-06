@@ -629,7 +629,7 @@ public class LibraryBUS {
         }
     }
 
-    public static void addCompensate(int bookId, int idReader, double fee) {
+    public static void addCompensate(String bookId, int idReader, double fee) {
         LibraryDAO.addCompensate(bookId,idReader,fee);
     }
 
@@ -713,7 +713,7 @@ public class LibraryBUS {
         }
     }
 
-    private static Books getBooksFromId(String s) {
+    public static Books getBooksFromId(String s) {
         Books result = LibraryDAO.getBooksFromId(s);
         return result;
     }
@@ -749,4 +749,17 @@ public class LibraryBUS {
         return LibraryDAO.queueRentBookRegister(record);
     }
 
+    public static void addReport(Books books, Reader reader, String infoReport) {
+        LibraryDAO.addReport(books,reader,infoReport);
+    }
+
+    public static boolean updateRentBook(int idRentBook, boolean isReturned, boolean isDeleted) {
+        boolean res = LibraryDAO.updateRentBook(idRentBook,isReturned,isDeleted);
+        return  res;
+    }
+
+    public static List<Compensate> getCompensateList(boolean isRequery)
+    {
+        return LibraryDAO.getCompensateList(isRequery);
+    }
 }

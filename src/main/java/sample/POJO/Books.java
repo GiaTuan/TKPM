@@ -25,17 +25,6 @@ public class Books {
     @JoinColumn(name = "idgroupbook",insertable = false,updatable = false)
     GroupBook groupBook;
 
-    @OneToMany(mappedBy = "book" ,fetch = FetchType.LAZY)
-    List<Compensate> compensateList;
-
-    public List<Compensate> getCompensateList() {
-        return compensateList;
-    }
-
-    public void addCompensateList(Compensate compensate) {
-        this.compensateList.add(compensate);
-        compensate.setBook(this);
-    }
 
     public GroupBook getGroupBook()
     {
