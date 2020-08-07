@@ -10,6 +10,7 @@ import sample.POJO.*;
 import sample.SessionUtil;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class LibraryDAO {
     private static List<Staff> staffList = null;
     private static List<Publisher> publisherList = null;
     private static List<Compensate> compensateList = null;
+    private static List<Report> reportList = null;
 
     public static void setUpData() {
         setUpTypeBookList();
@@ -33,6 +35,7 @@ public class LibraryDAO {
         setupPublisherList();
         setupGroupBookList();
         setupCompensateList();
+        setupReportList();
     }
 
     private static void setupCompensateList() {
@@ -54,6 +57,28 @@ public class LibraryDAO {
             String hql = "select r from RentBook r";
             Query query = session.createQuery(hql);
             rentBookList = query.getResultList();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public static List<Report> getReportList(boolean isRequery) {
+        if(isRequery)
+        {
+            setupReportList();
+            return reportList;
+        }
+        else return reportList;
+    }
+
+    private static void setupReportList() {
+        Session session = SessionUtil.getSession();
+        try {
+            String hql = "select r from Report r";
+            Query query = session.createQuery(hql);
+            reportList = query.getResultList();
         } catch (HibernateException ex) {
             ex.printStackTrace();
         } finally {
@@ -984,6 +1009,72 @@ public class LibraryDAO {
         } finally {
             session.close();
             return res;
+        }
+    }
+
+    public static void deleteCompensate(int idCompensate) {
+        Session session = SessionUtil.getSession();
+        Transaction tx = session.beginTransaction();
+        try {
+            Compensate compensate = session.get(Compensate.class,idCompensate);
+            compensate.setState(1);
+            tx.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public static void updateStateCompensate(int idCompensate) {
+        for(Compensate compensate : compensateList)
+        {
+            if(compensate.getIdCompensate() == idCompensate)
+            {
+                compensate.setState(1);
+            }
+        }
+    }
+
+    public static void deleteReport(int idReport) {
+        Session session = SessionUtil.getSession();
+        Transaction tx = session.beginTransaction();
+        try {
+            Report report = session.get(Report.class,idReport);
+            report.setIsDeleted(1);
+            updateStateDeleteReport(idReport);
+            tx.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    private static void updateStateDeleteReport(int idReport) {
+        for(Report report : reportList)
+        {
+            if(report.getIdReport() == idReport)
+            {
+                report.setIsDeleted(1);
+            }
+        }
+    }
+
+    public static List<RentBook> getListFromDateToDate(LocalDate fromDate, LocalDate toDate) {
+        Session session = SessionUtil.getSession();
+        List<RentBook> list = null;
+        try {
+            String hql = "select b from RentBook b where b.returnDate between :from and :to order by returnDate asc";
+            Query query = session.createQuery(hql);
+            query.setParameter("from",Date.valueOf(fromDate));
+            query.setParameter("to",Date.valueOf(toDate));
+            list = query.getResultList();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+            return list;
         }
     }
 }

@@ -12,6 +12,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 import sample.BUS.LibraryBUS;
@@ -19,7 +20,9 @@ import sample.POJO.TypeBook;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class AdminController {
@@ -33,6 +36,7 @@ public class AdminController {
     BarChart barchartBook;
     @FXML
     PieChart pieChartBookRemain;
+
 
     public void backBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -79,8 +83,22 @@ public class AdminController {
     }
 
     public void watchStatisticTotalClick(ActionEvent actionEvent) {
+        LocalDate fromDate = statisticTotalFromDate.getValue();
+        LocalDate toDate = statisticTotalToDate.getValue();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        if(fromDate != null && toDate != null)
+        {
+            Map<LocalDate,Double> total = LibraryBUS.getTotalIncome(fromDate,toDate);
+            drawLineChartOfIncome(total);
+        }
+        else
+        {
+            alert.setContentText("Không đủ thông tin");
+            alert.showAndWait();
+        }
 
     }
+
 
     public void statisticBookTabSelected(Event event) {
         barchartBook.getData().clear();
@@ -95,11 +113,19 @@ public class AdminController {
         for(int i = 0 ; i < list.size() ; i++)
         {
             PieChart.Data slice = new PieChart.Data(list.get(i).getNameType(),numberOfBooksReamain.get(i));
-        //    slice.setName(list.get(i).getNameType());
             pieChartBookRemain.getData().add(slice);
-             //numberOfBooksReamain.get(i)
         }
 
+    }
+
+    private void drawLineChartOfIncome(Map<LocalDate, Double> total) {
+        lineChart.getData().clear();
+        XYChart.Series series = new XYChart.Series();
+        for(Map.Entry<LocalDate,Double> item : total.entrySet())
+        {
+            series.getData().add(new XYChart.Data<>(item.getKey().toString(),item.getValue()));
+        }
+        lineChart.getData().add(series);
     }
 
     private void drawBarChartOfBooks(List<TypeBook> list) {
@@ -108,7 +134,6 @@ public class AdminController {
         {
             numberBooksOfEachType = LibraryBUS.getNumberOfBooksByIdTypeBook(typeBook.getIdtypebook());
             XYChart.Series series = new XYChart.Series();
-         //   series.setName(typeBook.getNameType());
             series.getData().add(new XYChart.Data<>(typeBook.getNameType(),numberBooksOfEachType));
             barchartBook.getData().add(series);
         }
@@ -117,6 +142,13 @@ public class AdminController {
     public void manangeCompensateBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/CompensateFXML.fxml"));
+        stage.setTitle("Phân hệ quản lý");
+        stage.setScene(new Scene(root, 1000, 600));
+    }
+
+    public void mangeReportBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/ReportBookFXML.fxml"));
         stage.setTitle("Phân hệ quản lý");
         stage.setScene(new Scene(root, 1000, 600));
     }

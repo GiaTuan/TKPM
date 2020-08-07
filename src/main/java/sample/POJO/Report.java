@@ -10,6 +10,14 @@ public class Report {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int idReport;
 
+    public Integer getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Integer isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
     @Column(name = "idreader")
     int idReader;
 
@@ -19,12 +27,16 @@ public class Report {
     @Column (name ="detail")
     String detailReport;
 
+    @Column (name = "isdeleted")
+    Integer isDeleted;
+
     public Report(){}
 
     public Report(String idBook, int idReader, String infoReport) {
         this.idBook = idBook;
         this.idReader = idReader;
         this.detailReport = infoReport;
+        this.isDeleted = 0;
     }
 
     public int getIdReport() {

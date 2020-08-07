@@ -2,23 +2,50 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="thêm cập nhật quy định">
+      <change afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/DetailReportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/ReportBookController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/sample/Window/AdminWindow/DetailReportWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/DetailReportFXML.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/ReportBookFXML.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/LibrarianController/ChangeInfoReaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/LibrarianController/ChangeInfoReaderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/LibrarianController/RentBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/LibrarianController/RentBookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/LibrarianController/RentBookHistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/LibrarianController/RentBookHistoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/LibrarianController/ReturnBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/LibrarianController/ReturnBookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/LibrarianFXML/ChangeInfoReaderFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/LibrarianFXML/ChangeInfoReaderFXML.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/LibrarianFXML/RentBookFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/LibrarianFXML/RentBookFXML.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/LibrarianFXML/RentBookHistoryFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/LibrarianFXML/RentBookHistoryFXML.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/LibrarianFXML/ReturnBookFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/LibrarianFXML/ReturnBookFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/BUS/LibraryBUS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/BUS/LibraryBUS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/BookManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/BookManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/BooksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/BooksController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/CompensateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/CompensateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/ReaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/ReaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/RentBooksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/RentBooksController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/StaffMangerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/StaffMangerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/UpdateRuleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/UpdateRuleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/DAO/LibraryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/DAO/LibraryDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/POJO/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/POJO/Report.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/AdminFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/AdminFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/BookManagerFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/BookManagerFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/BooksFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/BooksFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/CompensateFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/CompensateFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/ReaderFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/ReaderFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/RentBooksFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/RentBooksFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/StaffManagerFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/StaffManagerFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/UpdateRuleFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/AdminFXML/UpdateRuleFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/AdminFXML/AdminFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/AdminFXML/AdminFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/AdminFXML/BookManagerFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/AdminFXML/BookManagerFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/AdminFXML/BooksFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/AdminFXML/BooksFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/AdminFXML/CompensateFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/AdminFXML/CompensateFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/AdminFXML/ReaderFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/AdminFXML/ReaderFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/AdminFXML/RentBooksFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/AdminFXML/RentBooksFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/AdminFXML/StaffManagerFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/AdminFXML/StaffManagerFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/AdminFXML/UpdateRuleFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/AdminFXML/UpdateRuleFXML.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/sample/BUS/LibraryBUS.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/BUS/LibraryBUS.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/LibrarianController/ChangeInfoReaderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/LibrarianController/ChangeInfoReaderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/LibrarianController/FindBookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/LibrarianController/FindBookController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/LibrarianController/QueueBookRegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/LibrarianController/QueueBookRegisterController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/LibrarianController/RentBookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/LibrarianController/RentBookController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/LibrarianController/RentBookHistoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/LibrarianController/RentBookHistoryController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/LibrarianController/ReturnBookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/LibrarianController/ReturnBookController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/AdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/BookManagerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/BookManagerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/BooksController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/BooksController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/CompensateController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/CompensateController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/ReaderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/ReaderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/RentBooksController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/RentBooksController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/StaffMangerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/StaffMangerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/UpdateRuleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Controller/AdminController/UpdateRuleController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/sample/DAO/LibraryDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/DAO/LibraryDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sample/POJO/Report.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/POJO/Report.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -278,10 +305,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="thêm chức năng xóa sách + lọc + tìm kiếm" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="446" y="25" key="#com.intellij.ide.util.MemberChooser" timestamp="1596689505825">
+    <state x="446" y="25" key="#com.intellij.ide.util.MemberChooser" timestamp="1596772183808">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="446" y="25" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1596689505825" />
+    <state x="446" y="25" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1596772183808" />
     <state x="366" y="30" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1596336596435" />
     <state x="366" y="30" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1280.680@0.0.1280.680" timestamp="1596336596435" />
     <state x="320" y="266" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1596336596435" />
@@ -294,38 +321,38 @@
     <state x="74" y="100" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1596336596435" />
     <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1596336596435" />
     <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1596336596435" />
-    <state width="1237" height="168" key="GridCell.Tab.0.bottom" timestamp="1596717382905">
+    <state width="1237" height="125" key="GridCell.Tab.0.bottom" timestamp="1596797245689">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="168" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596717382905" />
-    <state width="1237" height="168" key="GridCell.Tab.0.center" timestamp="1596717382905">
+    <state width="1237" height="125" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596797245689" />
+    <state width="1237" height="125" key="GridCell.Tab.0.center" timestamp="1596797245688">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="168" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1596717382905" />
-    <state width="1237" height="168" key="GridCell.Tab.0.left" timestamp="1596717382905">
+    <state width="1237" height="125" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1596797245688" />
+    <state width="1237" height="125" key="GridCell.Tab.0.left" timestamp="1596797245688">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="168" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1596717382905" />
-    <state width="1237" height="168" key="GridCell.Tab.0.right" timestamp="1596717382905">
+    <state width="1237" height="125" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1596797245688" />
+    <state width="1237" height="125" key="GridCell.Tab.0.right" timestamp="1596797245689">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="168" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1596717382905" />
-    <state width="1237" height="290" key="GridCell.Tab.1.bottom" timestamp="1596532997436">
+    <state width="1237" height="125" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1596797245689" />
+    <state width="1237" height="125" key="GridCell.Tab.1.bottom" timestamp="1596797245691">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="290" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596532997436" />
-    <state width="1237" height="290" key="GridCell.Tab.1.center" timestamp="1596532997436">
+    <state width="1237" height="125" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596797245691" />
+    <state width="1237" height="125" key="GridCell.Tab.1.center" timestamp="1596797245690">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="290" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1596532997436" />
-    <state width="1237" height="290" key="GridCell.Tab.1.left" timestamp="1596532997436">
+    <state width="1237" height="125" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1596797245690" />
+    <state width="1237" height="125" key="GridCell.Tab.1.left" timestamp="1596797245689">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="290" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1596532997436" />
-    <state width="1237" height="290" key="GridCell.Tab.1.right" timestamp="1596532997436">
+    <state width="1237" height="125" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1596797245689" />
+    <state width="1237" height="125" key="GridCell.Tab.1.right" timestamp="1596797245691">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="290" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1596532997436" />
+    <state width="1237" height="125" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1596797245691" />
     <state x="171" y="0" key="Maven.ArtifactSearchDialog" timestamp="1596336596435" />
     <state x="171" y="0" key="Maven.ArtifactSearchDialog/0.0.1280.680@0.0.1280.680" timestamp="1596336596435" />
     <state x="383" y="75" key="VcsDiffUtil.ChangesDialog" timestamp="1596336596435" />
@@ -334,10 +361,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="93" y="93" width="1095" height="495" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1280.680@0.0.1280.680" timestamp="1596643609576" />
-    <state x="337" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1596706749984">
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1596793690838">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="337" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1596706749984" />
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1596793690838" />
     <state x="450" y="258" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596717266098">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -363,9 +390,14 @@
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/ReportBookController.java</url>
+          <line>94</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/sample/Controller/AdminController/AdminController.java</url>
-          <line>89</line>
-          <option name="timeStamp" value="9" />
+          <line>90</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -9,43 +9,48 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import sample.BUS.LibraryBUS;
-import sample.POJO.Compensate;
+import sample.POJO.Report;
+import sample.Window.AdminWindow.DetailReportWindow;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
-
-public class CompensateController implements Initializable {
-
+public class ReportBookController implements Initializable {
 
     @FXML
-    TableView denBuTableView;
+    TableView reportTableView;
     @FXML
-    TableColumn<Compensate,Integer> idDBCol;
+    TableColumn<Report,Integer> idReportCol;
     @FXML
-    TableColumn<Compensate,Integer> idReaderCol;
+    TableColumn<Report,String> idBookCol;
     @FXML
-    TableColumn<Compensate,String> idBookCool;
+    TableColumn<Report,Integer> idReaderCol;
     @FXML
-    TableColumn<Compensate,Double> feeDBCol;
+    TableColumn<Report,String> detailCol;
     @FXML
-    TableColumn<Compensate, Date> dateDBCol;
-    @FXML
-    TableColumn<Compensate,Integer> isDeletedCol;
-    @FXML
-    ComboBox typeCombobox;
+    TableColumn<Report,Integer> deleteCol;
+
+    ObservableList<Report> reportObservableList;
 
     public void backBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/ChooseAuthorizationFXML.fxml"));
+        stage.setTitle("Phân hệ quản lý");
+        stage.setScene(new Scene(root, 1000, 600));
+    }
+
+    public void manageStatisticBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/AdminFXML.fxml"));
         stage.setTitle("Phân hệ quản lý");
         stage.setScene(new Scene(root, 1000, 600));
     }
@@ -85,58 +90,59 @@ public class CompensateController implements Initializable {
         stage.setScene(new Scene(root, 1000, 600));
     }
 
-    public void manageStatisticBtnClick(ActionEvent actionEvent) throws IOException {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        List<Report> list = LibraryBUS.getReportList(false);
+        setupReportTable(list);
+    }
+
+    private void setupReportTable(List<Report> list) {
+        reportObservableList = FXCollections.observableArrayList();
+        reportObservableList.addAll(list);
+
+        idReportCol.setCellValueFactory(new PropertyValueFactory<>("idReport"));
+        idBookCol.setCellValueFactory(new PropertyValueFactory<>("idBook"));
+        idReaderCol.setCellValueFactory(new PropertyValueFactory<>("idReader"));
+        detailCol.setCellValueFactory(new PropertyValueFactory<>("detailReport"));
+        deleteCol.setCellValueFactory(new PropertyValueFactory<>("isDeleted"));
+        reportTableView.setItems(reportObservableList);
+    }
+
+    public void manangeCompensateBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/AdminFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/CompensateFXML.fxml"));
         stage.setTitle("Phân hệ quản lý");
         stage.setScene(new Scene(root, 1000, 600));
     }
 
-    ObservableList<Compensate> compensateObservableList;
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        List<Compensate> compensateList = LibraryBUS.getCompensateList(false);
-        setupCompensateTable(compensateList);
+    public void detailReportBtnClick(ActionEvent actionEvent) throws IOException {
+        Report report = (Report) reportTableView.getSelectionModel().getSelectedItem();
+        DetailReportWindow.display(report);
     }
 
-    private void setupCompensateTable(List<Compensate> list) {
-        idDBCol.setCellValueFactory(new PropertyValueFactory<>("idCompensate"));
-        idReaderCol.setCellValueFactory(new PropertyValueFactory<>("idReader"));
-        idBookCool.setCellValueFactory(new PropertyValueFactory<>("idBook"));;
-        feeDBCol.setCellValueFactory(new PropertyValueFactory<>("compensateFee"));
-        dateDBCol.setCellValueFactory(new PropertyValueFactory<>("date"));
-        isDeletedCol.setCellValueFactory(new PropertyValueFactory<>("state"));
-        compensateObservableList = FXCollections.observableArrayList();
-        compensateObservableList.addAll(list);
-        denBuTableView.setItems(compensateObservableList);
-
-    }
-
-    public void deleteCompensateBtnClick(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setContentText("Bạn muốn tiếp tục xóa?");
-        Optional<ButtonType> buttonType = alert.showAndWait();
-        if(buttonType.get() == ButtonType.OK) {
-            Compensate compensate = (Compensate) denBuTableView.getSelectionModel().getSelectedItem();
-            LibraryBUS.deleteCompensate(compensate);
-            denBuTableView.refresh();
-            alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Xóa thành công");
+    public void deleteBtnClick(ActionEvent actionEvent) {
+        Report report = (Report) reportTableView.getSelectionModel().getSelectedItem();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        if(report.getIsDeleted() == 1)
+        {
+            alert.setContentText("Báo cáo đã được xóa trước đó");
+            alert.showAndWait();
+        }
+        else
+        {
+            LibraryBUS.deleteReport(report);
+            reportTableView.refresh();
+            alert.setContentText("Xoá báo cáo thành công");
             alert.showAndWait();
         }
     }
 
+    @FXML
+    ComboBox typeCombobox;
     public void findBtnClick(ActionEvent actionEvent) {
-        int index = typeCombobox.getSelectionModel().getSelectedIndex();
-        ObservableList<Compensate> tempList = LibraryBUS.filterCompensateList(compensateObservableList,index);
-        denBuTableView.setItems(tempList);
-    }
-
-    public void mangeReportBtnClick(ActionEvent actionEvent) throws IOException {
-        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/ReportBookFXML.fxml"));
-        stage.setTitle("Phân hệ quản lý");
-        stage.setScene(new Scene(root, 1000, 600));
+        int type = typeCombobox.getSelectionModel().getSelectedIndex();
+        ObservableList<Report> resultList = LibraryBUS.filterReportList(reportObservableList,type);
+        reportTableView.setItems(resultList);
+        reportTableView.refresh();
     }
 }
