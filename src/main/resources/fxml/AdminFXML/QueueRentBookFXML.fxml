@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -19,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="400.0" prefWidth="750.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AdminController.BookManagerController">
+<GridPane prefHeight="400.0" prefWidth="750.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AdminController.QueueRentBookController">
     <columnConstraints>
         <ColumnConstraints minWidth="10.0" prefWidth="150.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -90,21 +87,21 @@
         </Label>
         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="1" GridPane.rowSpan="7">
             <children>
-                <Label text="Danh sách sách">
+                <Label text="Chi tiết quản lí sách">
                     <font>
                         <Font name="System Italic" size="16.0" />
                     </font>
                 </Label>
                 <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="450.0">
                     <children>
-                        <Label text="Lọc:">
+                        <Label text="Tên đầu sách">
                             <font>
                                 <Font size="16.0" />
                             </font>
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin></Label>
-                        <TextField fx:id="filterText" prefHeight="25.0" prefWidth="434.0" promptText="Điền thông tin độc giả">
+                        <TextField fx:id="groupBookName" editable="false" prefHeight="25.0" prefWidth="434.0">
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
@@ -114,42 +111,13 @@
                         <Insets top="10.0" />
                     </VBox.margin>
                 </HBox>
-                <HBox prefHeight="32.0" prefWidth="200.0">
-                    <children>
-                        <Label text="Hiển thị:">
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </Label>
-                        <ComboBox fx:id="displayMode" onAction="#comboBoxSlected" prefWidth="150.0" value="Tất cả sách">
-                            <items>
-                                <FXCollections fx:factory="observableArrayList">
-                                    <String fx:value="Tất cả sách" />
-                                    <String fx:value="Sách đang mượn" />
-                                    <String fx:value="Sách quá hạn" />
-                                </FXCollections>
-                            </items>
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </ComboBox>
-                    </children>
-                    <VBox.margin>
-                        <Insets top="10.0" />
-                    </VBox.margin>
-                </HBox>
                 <TableView fx:id="table" prefHeight="500.0" prefWidth="200.0">
                     <columns>
-                        <TableColumn fx:id="id" prefWidth="38.0" text="ID" />
-                        <TableColumn fx:id="name" prefWidth="166.0" text="Tên" />
-                        <TableColumn fx:id="type" prefWidth="73.0" text="Thể loại" />
-                        <TableColumn fx:id="amount" prefWidth="65.0" text="Số lượng" />
-                        <TableColumn fx:id="author" prefWidth="68.0" text="Tác giả" />
-                        <TableColumn fx:id="publisher" prefWidth="105.0" text="Nhà xuất bản" />
-                        <TableColumn fx:id="status" prefWidth="84.0" text="Tình trạng" />
+                        <TableColumn fx:id="idCol" prefWidth="54.99998474121094" text="ID" />
+                        <TableColumn fx:id="readerNameCol" prefWidth="181.0" text="Mã độc giả" />
+                        <TableColumn fx:id="registerDateCol" prefWidth="162.0" text="Ngày đăng ký" />
+                        <TableColumn fx:id="pointCol" prefWidth="109.0" text="Điểm" />
+                        <TableColumn fx:id="isDeletedCol" prefWidth="91.0" text="Đã xóa" />
                     </columns>
                     <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
@@ -157,19 +125,8 @@
                 </TableView>
                 <HBox prefHeight="32.0" prefWidth="200.0" spacing="20.0">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#printBtnClick" prefHeight="29.0" prefWidth="102.0" text="Xuất biểu mẫu" />
-                        <Button mnemonicParsing="false" onAction="#updateDetailGroupBook" prefHeight="25.0" prefWidth="104.0" text="Sửa thông tin">
-                            <HBox.margin>
-                                <Insets />
-                            </HBox.margin>
-                            <font>
-                                <Font size="14.0" />
-                            </font>
-                        </Button>
-                  <Button mnemonicParsing="false" onAction="#deleteGroupBook" text="Xóa" />
-                  <Button mnemonicParsing="false" onAction="#viewRentBookBtnClick" text="Xem hàng đợi" />
-                  <Button mnemonicParsing="false" onAction="#viewDetailGroupBook" text="Xem chi tiết" />
-                  <Button mnemonicParsing="false" onAction="#addBook" text="Thêm" />
+                        <Button mnemonicParsing="false" onAction="#manageBookBtnClick" prefHeight="29.0" prefWidth="102.0" text="Trở về" />
+                        <Button mnemonicParsing="false" onAction="#deletedBtnClick" text="Xóa" />
                     </children>
                     <padding>
                         <Insets left="10.0" />

@@ -815,4 +815,42 @@ public class LibraryBUS {
     {
         return LibraryDAO.getCompensateList(isRequery);
     }
+
+    public static Reader getReaderFromId(int idReader)
+    {
+        return LibraryDAO.getReaderFromId(idReader);
+    }
+
+    public static List<QueueRentBook> getQueueRentBookFromGroupBookId(int groupBookId)
+    {
+        return LibraryDAO.getQueueRentBookFromGroupBookId(groupBookId);
+    }
+
+    public static void updateQueueRentBookStatus(QueueRentBook queueRentBook)
+    {
+        LibraryDAO.updateQueueRentBookStatus(queueRentBook);
+    }
+
+    public static int getReaderTypeByTypeName(String typeName)
+    {
+        String level1 = "Tay mơ";
+        String level2 = "Khai sáng";
+        String level3 = "Mọt sách";
+        String level4 = "Cao thủ";
+        String level5 = "Giáo sư";
+        if(typeName.compareTo(level1) == 0)
+            return 1;
+        if(typeName.compareTo(level2) == 0)
+            return 2;
+        if(typeName.compareTo(level3) == 0)
+            return 3;
+        if(typeName.compareTo(level4) == 0)
+            return 4;
+        if(typeName.compareTo(level5) == 0)
+            return 5;
+        else
+            return 0;
+    }
+
+
 }

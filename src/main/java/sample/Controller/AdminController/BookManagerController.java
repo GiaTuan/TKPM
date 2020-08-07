@@ -291,5 +291,18 @@ public class BookManagerController implements Initializable {
 
     }
 
+    @FXML
+    private void viewRentBookBtnClick(ActionEvent actionEvent) throws IOException
+    {
+        if(table.getSelectionModel().isEmpty())
+            return;
+
+        QueueRentBookController.setGroupBook((GroupBook)table.getSelectionModel().getSelectedItem());
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/QueueRentBookFXML.fxml"));
+        stage.setTitle("Phân hệ quản lý");
+        stage.setScene(new Scene(root, 1000, 600));
+    }
+
 }
 
