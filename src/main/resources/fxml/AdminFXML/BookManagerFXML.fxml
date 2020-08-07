@@ -177,6 +177,7 @@
                             </font>
                         </Button>
                   <Button mnemonicParsing="false" onAction="#deleteGroupBook" text="Xóa" />
+                  <Button mnemonicParsing="false" onAction="#viewRentBookBtnClick" text="Xem hàng đợi" />
                   <Button mnemonicParsing="false" onAction="#viewDetailGroupBook" text="Xem chi tiết" />
                   <Button mnemonicParsing="false" onAction="#addBook" text="Thêm" />
                     </children>

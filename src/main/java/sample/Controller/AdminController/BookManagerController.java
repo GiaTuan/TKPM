@@ -291,6 +291,7 @@ public class BookManagerController implements Initializable {
 
     }
 
+
     public void manangeCompensateBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/CompensateFXML.fxml"));
@@ -304,5 +305,19 @@ public class BookManagerController implements Initializable {
         stage.setTitle("Phân hệ quản lý");
         stage.setScene(new Scene(root, 1000, 600));
     }
+
+    @FXML
+    private void viewRentBookBtnClick(ActionEvent actionEvent) throws IOException
+    {
+        if(table.getSelectionModel().isEmpty())
+            return;
+
+        QueueRentBookController.setGroupBook((GroupBook)table.getSelectionModel().getSelectedItem());
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/QueueRentBookFXML.fxml"));
+        stage.setTitle("Phân hệ quản lý");
+        stage.setScene(new Scene(root, 1000, 600));
+    }
+
 }
 
