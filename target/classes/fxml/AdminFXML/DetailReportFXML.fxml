@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane prefHeight="500.0" prefWidth="400" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AdminController.DetailReportController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <Label text="THÔNG TIN BÁO CÁO CHI TIẾT" GridPane.columnSpan="5" GridPane.halignment="CENTER">
+            <font>
+                <Font name="System Bold" size="23.0" />
+            </font>
+        </Label>
+        <Label text="Mã báo cáo: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <font>
+                <Font size="16.0" />
+            </font></Label>
+        <TextField fx:id="idReportTextField" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+
+        <Label text="Mã sách: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <font>
+                <Font size="16.0" />
+            </font></Label>
+        <TextField fx:id="idBookTextField" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+        <Label text="Mã độc giả: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+            <font>
+                <Font size="16.0" />
+            </font></Label>
+        <TextField fx:id="idReaderTextField" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+        <Label text="Nội dung báo cáo: " GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+            <font>
+                <Font size="16.0" />
+            </font></Label>
+        <TextArea fx:id="detailReportTextArea" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+        <Button mnemonicParsing="false" onAction="#cancelBtnClick" text="Hủy bỏ" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+    </children>
+</GridPane>

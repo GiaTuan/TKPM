@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane prefHeight="400.0" prefWidth="600.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AdminController.CompensateController">
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<GridPane prefHeight="400.0" prefWidth="600.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AdminController.ReportBookController">
     <columnConstraints>
         <ColumnConstraints minWidth="10.0" prefWidth="150.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -70,16 +70,17 @@
                     <font>
                         <Font size="14.0" />
                     </font></Button>
-                <Button mnemonicParsing="false" styleClass="round-btn" text="Quản lý đền bù">
+                <Button mnemonicParsing="false" onAction="#manangeCompensateBtnClick" styleClass="round-btn" text="Quản lý đền bù">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#mangeReportBtnClick" styleClass="round-btn" text="Quản lý báo cáo">
+                <Button mnemonicParsing="false" styleClass="round-btn" text="Quản lý báo cáo">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Button>
+
             </children>
         </VBox>
         <Label text="QUẢN LÝ" textFill="#93d468" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER">
@@ -89,50 +90,49 @@
         </Label>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="1" GridPane.rowSpan="7">
          <children>
-            <Label text="QUẢN LÝ ĐỀN BÙ">
-               <font>
-                  <Font size="18.0" />
-               </font>
+            <Label text="QUẢN LÝ BÁO CÁO">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
             </Label>
              <HBox prefHeight="30.0" prefWidth="200.0">
                  <VBox.margin>
                      <Insets top="10.0" />
                  </VBox.margin>
-               <children>
-                  <Label text="Hiển thị: ">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin></Label>
-                  <ComboBox fx:id="typeCombobox" prefWidth="150.0" value="Tất cả">
-                      <items>
-                          <FXCollections fx:factory="observableArrayList">
-                              <String fx:value="Tất cả" />
-                              <String fx:value="Đền bù chưa xóa" />
-                              <String fx:value="Đền bù đã xóa" />
-                          </FXCollections>
-                      </items>
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </ComboBox>
-                  <Button onAction="#findBtnClick" mnemonicParsing="false" text="Tìm">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
+                 <children>
+                     <Label text="Hiển thị: ">
+                         <HBox.margin>
+                             <Insets left="10.0" />
+                         </HBox.margin></Label>
+                     <ComboBox fx:id="typeCombobox" prefWidth="150.0" value="Tất cả">
+                         <items>
+                             <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="Tất cả" />
+                                 <String fx:value="Báo cáo chưa xóa" />
+                                 <String fx:value="Báo cáo đã xóa" />
+                             </FXCollections>
+                         </items>
+                         <HBox.margin>
+                             <Insets left="10.0" />
+                         </HBox.margin>
+                     </ComboBox>
+                     <Button onAction="#findBtnClick" mnemonicParsing="false" text="Tìm kiếm">
+                         <HBox.margin>
+                             <Insets left="10.0" />
+                         </HBox.margin>
+                     </Button>
+                 </children>
              </HBox>
-            <TableView fx:id="denBuTableView" prefHeight="200.0" prefWidth="200.0">
+            <TableView fx:id="reportTableView" prefHeight="200.0" prefWidth="200.0">
               <columns>
-                  <TableColumn fx:id="idDBCol" prefWidth="75.0" text="Mã đền bù" />
+                  <TableColumn fx:id="idReportCol" prefWidth="75.0" text="Mã báo cáo" />
+                  <TableColumn fx:id="idBookCol" prefWidth="75.0" text="Mã sách" />
                   <TableColumn fx:id="idReaderCol" prefWidth="75.0" text="Mã độc giả" />
-                  <TableColumn fx:id="idBookCool" prefWidth="75.0" text="Mã sách" />
-                  <TableColumn fx:id="feeDBCol" prefWidth="75.0" text="Mã phí đền bù" />
-                  <TableColumn fx:id="dateDBCol" prefWidth="75.0" text="Ngày đền bù" />
-                  <TableColumn fx:id="isDeletedCol" prefWidth="75.0" text="Đã xóa" />
+                  <TableColumn fx:id="detailCol" prefWidth="200.0" text="Nội dung báo cáo" />
+                  <TableColumn fx:id="deleteCol" prefWidth="200.0" text="Đã xóa" />
               </columns>
                <VBox.margin>
                   <Insets top="10.0" />
@@ -143,13 +143,19 @@
                   <Insets top="10.0" />
                </VBox.margin>
                <children>
-                  <Button mnemonicParsing="false" onAction="#deleteCompensateBtnClick" prefWidth="100.0" text="Xóa">
+                  <Button onAction="#detailReportBtnClick" mnemonicParsing="false" text="Xem chi tiết">
                      <font>
-                        <Font size="16.0" />
+                        <Font size="18.0" />
                      </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#deleteBtnClick" text="Xóa báo cáo">
                      <HBox.margin>
                         <Insets left="10.0" />
-                     </HBox.margin></Button>
+                     </HBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
                </children>
             </HBox>
          </children>

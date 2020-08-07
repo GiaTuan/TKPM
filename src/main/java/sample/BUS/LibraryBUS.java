@@ -1,5 +1,6 @@
 package sample.BUS;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -33,9 +34,7 @@ import sample.POJO.Reader;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class LibraryBUS {
 
@@ -815,4 +814,71 @@ public class LibraryBUS {
     {
         return LibraryDAO.getCompensateList(isRequery);
     }
+
+    public static void deleteCompensate(Compensate compensate) {
+        LibraryDAO.deleteCompensate(compensate.getIdCompensate());
+        updateStateCompensate(compensate.getIdCompensate());
+    }
+
+    private static void updateStateCompensate(int idCompensate) {
+        LibraryDAO.updateStateCompensate(idCompensate);
+    }
+
+    public static ObservableList<Compensate> filterCompensateList(ObservableList<Compensate> compensateObservableList, int index) {
+        ObservableList<Compensate> result = compensateObservableList;
+
+        if(index == 1)
+        {
+            result = result.filtered(compensate -> compensate.getState() == 0);
+        }
+        if(index == 2)
+        {
+            result = result.filtered(compensate -> compensate.getState() == 1);
+        }
+        return result;
+    }
+
+    public static List<Report> getReportList(boolean isRequery)
+    {
+        return LibraryDAO.getReportList(isRequery);
+    }
+
+    public static void deleteReport(Report report) {
+        LibraryDAO.deleteReport(report.getIdReport());
+    }
+
+    public static ObservableList<Report> filterReportList(ObservableList<Report> reportObservableList, int type) {
+        ObservableList<Report> res = reportObservableList;
+        if(type == 1)
+        {
+            res = res.filtered(report -> report.getIsDeleted() == 0);
+        }
+        if(type == 2)
+        {
+            res = res.filtered(report -> report.getIsDeleted() == 1);
+        }
+
+        return res;
+    }
+
+    public static Map<LocalDate, Double> getTotalIncome(LocalDate fromDate, LocalDate toDate) {
+        Map<LocalDate,Double> res = new LinkedHashMap<>();
+        List<RentBook> list = LibraryDAO.getListFromDateToDate(fromDate,toDate);
+
+        LocalDate key;
+        for(RentBook item : list)
+        {
+            key = item.getReturnDate().toLocalDate();
+            if(res.containsKey(key))
+            {
+                res.put(key, res.get(key) + item.getRentFee());
+            }
+            else
+            {
+                res.put(key,item.getRentFee());
+            }
+        }
+        return res;
+    }
+
 }

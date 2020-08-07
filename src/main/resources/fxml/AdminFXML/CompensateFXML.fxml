@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -68,7 +70,12 @@
                     <font>
                         <Font size="14.0" />
                     </font></Button>
-                <Button mnemonicParsing="false" text="Quản lý đền bù">
+                <Button mnemonicParsing="false" styleClass="round-btn" text="Quản lý đền bù">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#mangeReportBtnClick" styleClass="round-btn" text="Quản lý báo cáo">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -90,12 +97,40 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
+             <HBox prefHeight="30.0" prefWidth="200.0">
+                 <VBox.margin>
+                     <Insets top="10.0" />
+                 </VBox.margin>
+               <children>
+                  <Label text="Hiển thị: ">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin></Label>
+                  <ComboBox fx:id="typeCombobox" prefWidth="150.0" value="Tất cả">
+                      <items>
+                          <FXCollections fx:factory="observableArrayList">
+                              <String fx:value="Tất cả" />
+                              <String fx:value="Đền bù chưa xóa" />
+                              <String fx:value="Đền bù đã xóa" />
+                          </FXCollections>
+                      </items>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <Button onAction="#findBtnClick" mnemonicParsing="false" text="Tìm">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+             </HBox>
             <TableView fx:id="denBuTableView" prefHeight="200.0" prefWidth="200.0">
               <columns>
                   <TableColumn fx:id="idDBCol" prefWidth="75.0" text="Mã đền bù" />
                   <TableColumn fx:id="idReaderCol" prefWidth="75.0" text="Mã độc giả" />
                   <TableColumn fx:id="idBookCool" prefWidth="75.0" text="Mã sách" />
-                  <TableColumn fx:id="feeDBCol" prefWidth="75.0" text="Mã phí đền bù"/>
+                  <TableColumn fx:id="feeDBCol" prefWidth="75.0" text="Mã phí đền bù" />
                   <TableColumn fx:id="dateDBCol" prefWidth="75.0" text="Ngày đền bù" />
                   <TableColumn fx:id="isDeletedCol" prefWidth="75.0" text="Đã xóa" />
               </columns>
@@ -103,6 +138,20 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </TableView>
+            <HBox prefHeight="30.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#deleteCompensateBtnClick" prefWidth="100.0" text="Xóa">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin></Button>
+               </children>
+            </HBox>
          </children>
       </VBox>
     </children>
