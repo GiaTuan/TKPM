@@ -1012,6 +1012,7 @@ public class LibraryDAO {
         }
     }
 
+
     public static void deleteCompensate(int idCompensate) {
         Session session = SessionUtil.getSession();
         Transaction tx = session.beginTransaction();
@@ -1023,6 +1024,20 @@ public class LibraryDAO {
             ex.printStackTrace();
         } finally {
             session.close();
+        }
+    }
+
+   public static Reader getReaderFromId(int idReader)
+    {
+        Session session = SessionUtil.getSession();
+        Reader reader = null;
+        try {
+            reader = session.get(Reader.class,idReader);
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+            return reader;
         }
     }
 
@@ -1075,6 +1090,43 @@ public class LibraryDAO {
         } finally {
             session.close();
             return list;
+        }
+    }
+
+    public static List<QueueRentBook> getQueueRentBookFromGroupBookId(int groupBookId)
+    {
+        Session session = SessionUtil.getSession();
+        List<QueueRentBook> queueRentBookList = null;
+        try {
+            String hql = "select b from QueueRentBook b where b.idGroupBook = :id";
+
+            Query query = session.createQuery(hql);
+            query.setParameter("id", groupBookId);
+            queueRentBookList = query.getResultList();
+
+            return queueRentBookList;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return queueRentBookList;
+        } finally {
+            session.close();
+        }
+    }
+
+    public static void updateQueueRentBookStatus(QueueRentBook queueRentBook)
+    {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+
+            QueueRentBook updateRecord = session.get(QueueRentBook.class, queueRentBook.getIdQueueRentBook());
+            updateRecord.setIsDeleted(queueRentBook.getIsDeleted());
+            session.update(updateRecord);
+            transaction.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 }
