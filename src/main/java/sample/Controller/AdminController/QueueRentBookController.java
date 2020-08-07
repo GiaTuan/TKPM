@@ -187,4 +187,17 @@ public class QueueRentBookController implements Initializable {
     }
 
 
+    public void manangeCompensateBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/CompensateFXML.fxml"));
+        stage.setTitle("Phân hệ quản lý");
+        stage.setScene(new Scene(root, 1000, 600));
+    }
+
+    public void mangeReportBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdminFXML/ReportBookFXML.fxml"));
+        stage.setTitle("Phân hệ quản lý");
+        stage.setScene(new Scene(root, 1000, 600));
+    }
 }
