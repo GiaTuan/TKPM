@@ -91,7 +91,7 @@
          <children>
             <Label text="QUẢN LÝ MƯỢN SÁCH">
                <font>
-                  <Font name="System Italic" size="16.0" />
+                  <Font name="System Italic" size="18.0" />
                </font>
                <VBox.margin>
                   <Insets top="10.0" />

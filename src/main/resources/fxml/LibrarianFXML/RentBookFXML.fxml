@@ -173,7 +173,7 @@
                                 <Font name="System Bold" size="13.0" />
                             </font>
                         </Button>
-                        <Button onAction="#compensateBtnClick" layoutX="110.0" layoutY="2.0" mnemonicParsing="false" styleClass="round-btn, compensate-color" text="ĐỀN BÙ" textFill="WHITE" AnchorPane.rightAnchor="10.0">
+                        <Button layoutX="110.0" layoutY="2.0" mnemonicParsing="false" onAction="#compensateBtnClick" styleClass="round-btn, compensate-color" text="ĐỀN BÙ" textFill="WHITE" AnchorPane.rightAnchor="10.0">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
@@ -201,46 +201,94 @@
                     </VBox.margin>
                 </AnchorPane>
             </children></VBox>
-        <VBox prefHeight="339.0" prefWidth="423.0" styleClass="info-reader-background" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="7">
+        <VBox alignment="TOP_CENTER" prefHeight="339.0" prefWidth="423.0" styleClass="info-reader-background" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="7">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mượn sách" />
-            <HBox prefHeight="34.0" prefWidth="295.0">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MƯỢN SÁCH">
+               <font>
+                  <Font size="18.0" />
+               </font></Text>
+            <HBox alignment="CENTER" prefHeight="34.0" prefWidth="295.0">
                <children>
-                  <Button mnemonicParsing="false" text="Mượn sách mới" />
-                  <Button mnemonicParsing="false" onAction="#rentBookHistoryBtnClick" text="Lịch sử mượn sách" />
+                  <Button mnemonicParsing="false" text="MƯỢN SÁCH MỚI">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font></Button>
+                  <Button mnemonicParsing="false" onAction="#rentBookHistoryBtnClick" text="LỊCH SỬ MƯỢN SÁCH">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font></Button>
                </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </HBox>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mượn sách mới" />
-            <HBox prefHeight="43.0" prefWidth="295.0">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MƯỢN SÁCH MỚI">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font></Text>
+            <HBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="295.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập số lượng mượn" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập số lượng mượn: " />
                   <TextField fx:id="rentBookAmount" prefHeight="25.0" prefWidth="91.0" />
                </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </HBox>
              <HBox>
-                 <TextField fx:id="firstBook"  promptText="Nhập mã sách thứ 1">
+                 <TextField fx:id="firstBook" promptText="Nhập mã sách thứ 1">
                     </TextField>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
              </HBox>
              <HBox>
-                 <TextField fx:id="secondBook"  promptText="Nhập mã sách thứ 2">
+                 <TextField fx:id="secondBook" promptText="Nhập mã sách thứ 2">
                      </TextField>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
              </HBox>
              <HBox>
                  <TextField fx:id="thirdBook" promptText="Nhập mã sách thứ 3">
                     </TextField>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
              </HBox>
              <HBox>
                  <TextField fx:id="fourBook" promptText="Nhập mã sách thứ 4">
                     </TextField>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
              </HBox>
-            <HBox prefHeight="37.0" prefWidth="295.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="295.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Số tiền cần cọc: " />
                   <Button mnemonicParsing="false" onAction="#caculateFeeBtnClick" text="Tính tiền cọc" />
                   <Text fx:id="rentBookFee" strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </HBox>
-            <Button mnemonicParsing="false" onAction="#confirmBtnClick" text="Xác nhận mượn" />
-         </children></VBox>
+            <Button mnemonicParsing="false" onAction="#confirmBtnClick" text="Xác nhận mượn">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin></Button>
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding></VBox>
     </children>
 </GridPane>

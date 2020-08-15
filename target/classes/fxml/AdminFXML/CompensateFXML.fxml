@@ -91,7 +91,7 @@
          <children>
             <Label text="QUẢN LÝ ĐỀN BÙ">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Italic" size="18.0" />
                </font>
                <VBox.margin>
                   <Insets top="10.0" />
@@ -118,7 +118,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </ComboBox>
-                  <Button onAction="#findBtnClick" mnemonicParsing="false" text="Tìm">
+                  <Button mnemonicParsing="false" onAction="#findBtnClick" text="Tìm">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>

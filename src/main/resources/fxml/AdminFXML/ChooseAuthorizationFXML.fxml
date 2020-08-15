@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AdminController.SignInController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AdminController.ChooseTypeUserController">
    <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
@@ -29,12 +29,12 @@
                </image></ImageView>
          </graphic>
       </ToggleButton>
-      <Button onAction="#librarianBtnClick" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" styleClass="green-btn-background" text="THỦ THƯ" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+      <Button fx:id="librarianBtn" onAction="#librarianBtnClick" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" styleClass="green-btn-background" text="THỦ THƯ" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <font>
             <Font name="System Bold" size="32.0" />
          </font>
       </Button>
-      <Button onAction="#adminBtnClick" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" styleClass="green-btn-background-2" text="QUẢN LÝ" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+      <Button fx:id="adminBtn" onAction="#adminBtnClick" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" styleClass="green-btn-background-2" text="QUẢN LÝ" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <font>
             <Font name="System Bold" size="32.0" />
          </font>

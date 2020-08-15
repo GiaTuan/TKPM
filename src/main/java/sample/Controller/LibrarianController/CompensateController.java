@@ -184,4 +184,14 @@ public class CompensateController implements Initializable {
             alert.showAndWait();
         }
     }
+
+    public void extendCardBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LibrarianFXML/ExtendCardFXML.fxml"));
+        Parent root = fxmlLoader.load();
+        ExtendCardController extendCardController = fxmlLoader.getController();
+        extendCardController.setReader(reader);
+        stage.setTitle("Thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
+    }
 }

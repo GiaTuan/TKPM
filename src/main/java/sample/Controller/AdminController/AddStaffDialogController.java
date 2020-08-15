@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -33,7 +34,7 @@ public class AddStaffDialogController implements Initializable {
     @FXML
     CheckBox isAdminAcount;
     @FXML
-    Text nofication;
+    Label nofication;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -68,8 +69,7 @@ public class AddStaffDialogController implements Initializable {
         newStaff.setEmailStaff(email.getText());
         newStaff.setPhoneStaff(phone.getText());
         newStaff.setAdmin(isAdminAcount.isSelected());
-        newStaff.setPassword(LibraryBUS.hashPassword("123456"));
-
+        newStaff.setPassword(LibraryBUS.hashPassword(password.getText()));
         return newStaff;
     }
 

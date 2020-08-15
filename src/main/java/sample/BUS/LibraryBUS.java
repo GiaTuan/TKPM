@@ -919,4 +919,8 @@ public class LibraryBUS {
     }
 
 
+    public static Staff checkValidUser(String user, String pass) {
+        String hashPassword = hashPassword(pass);
+        return LibraryDAO.checkValidUser(user,hashPassword);
+    }
 }

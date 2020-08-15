@@ -1129,4 +1129,23 @@ public class LibraryDAO {
             session.close();
         }
     }
+
+    public static Staff checkValidUser(String user, String hashPassword) {
+        Session session = SessionUtil.getSession();
+        Staff res = null;
+        try {
+            String hql = "select s from Staff s where s.username = :user and s.password = :pass";
+            Query query = session.createQuery(hql);
+            query.setParameter("user",user);
+            query.setParameter("pass",hashPassword);
+            List result = query.getResultList();
+            if(result.size() > 0)
+                res = (Staff) result.get(0);
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+            return res;
+        }
+    }
 }

@@ -198,6 +198,7 @@ public class ChangeInfoReaderController implements Initializable {
         CompensateController compensateController = fxmlLoader.getController();
         compensateController.setReader(reader);
         stage.setTitle("Phân hệ thủ thư");
+        stage.setScene(new Scene(root, 1000, 600));
     }
 
 

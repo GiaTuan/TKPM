@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
 <GridPane prefHeight="400.0" prefWidth="600.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AdminController.ReportBookController">
     <columnConstraints>
         <ColumnConstraints minWidth="10.0" prefWidth="150.0" />
@@ -95,7 +95,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Italic" size="18.0" />
                </font>
             </Label>
              <HBox prefHeight="30.0" prefWidth="200.0">
@@ -119,7 +119,7 @@
                              <Insets left="10.0" />
                          </HBox.margin>
                      </ComboBox>
-                     <Button onAction="#findBtnClick" mnemonicParsing="false" text="Tìm kiếm">
+                     <Button mnemonicParsing="false" onAction="#findBtnClick" text="Tìm kiếm">
                          <HBox.margin>
                              <Insets left="10.0" />
                          </HBox.margin>
@@ -143,12 +143,15 @@
                   <Insets top="10.0" />
                </VBox.margin>
                <children>
-                  <Button onAction="#detailReportBtnClick" mnemonicParsing="false" text="Xem chi tiết">
+                  <Button mnemonicParsing="false" onAction="#detailReportBtnClick" text="XEM CHI TIẾT">
                      <font>
                         <Font size="18.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#deleteBtnClick" text="Xóa báo cáo">
+                  <Button mnemonicParsing="false" onAction="#deleteBtnClick" text="XÓA BÁO CÁO">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>

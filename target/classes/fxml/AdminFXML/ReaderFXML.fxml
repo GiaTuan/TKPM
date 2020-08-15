@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
 <GridPane prefHeight="400.0" prefWidth="600.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AdminController.ReaderController">
     <columnConstraints>
         <ColumnConstraints minWidth="10.0" prefWidth="150.0" />
@@ -91,7 +91,7 @@
          <children>
             <Label text="DANH SÁCH ĐỘC GIẢ">
                <font>
-                  <Font name="System Italic" size="16.0" />
+                  <Font name="System Italic" size="18.0" />
                </font>
             </Label>
             <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="450.0">
@@ -111,9 +111,9 @@
                    <ComboBox fx:id="typeFilterComboBox" prefWidth="150.0" value="Lọc theo tên">
                        <items>
                             <FXCollections fx:factory="observableArrayList">
-                                <String fx:value="Lọc theo tên"></String>
-                                <String fx:value="Lọc theo số điện thoại"></String>
-                                <String fx:value="Lọc theo email"></String>
+                                <String fx:value="Lọc theo tên" />
+                                <String fx:value="Lọc theo số điện thoại" />
+                                <String fx:value="Lọc theo email" />
                             </FXCollections>
                        </items>
                        <HBox.margin>
@@ -138,17 +138,17 @@
                   <ComboBox fx:id="typeDisplayComboBox" prefWidth="150.0" value="Tất cả độc giả">
                       <items>
                           <FXCollections fx:factory="observableArrayList">
-                              <String fx:value="Tất cả độc giả"></String>
-                              <String fx:value="Độc giả còn hoạt động"></String>
-                              <String fx:value="Độc giả bị đánh dấu"></String>
-                              <String fx:value="Độc giả bị xóa"></String>
+                              <String fx:value="Tất cả độc giả" />
+                              <String fx:value="Độc giả còn hoạt động" />
+                              <String fx:value="Độc giả bị đánh dấu" />
+                              <String fx:value="Độc giả bị xóa" />
                           </FXCollections>
                       </items>
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </ComboBox>
-                  <Button onAction="#findReaderBtnClick" mnemonicParsing="false" text="Tìm kiếm">
+                  <Button mnemonicParsing="false" onAction="#findReaderBtnClick" text="Tìm kiếm">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
