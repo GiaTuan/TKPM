@@ -99,7 +99,13 @@
                 <Font size="16.0" />
             </font></Label>
         <CheckBox fx:id="isDeleted" mnemonicParsing="false" onAction="#isDeletedChange" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
-        <Button mnemonicParsing="false" onAction="#changeBtnClick" text="Thay đổi" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="12" />
-        <Button mnemonicParsing="false" onAction="#cancelBtnClick" text="Hủy bỏ" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="12" />
+        <Button mnemonicParsing="false" onAction="#changeBtnClick" styleClass="round-btn, change-info-color, librarian-white-text" text="Thay đổi" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="12">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <Button mnemonicParsing="false" onAction="#cancelBtnClick" styleClass="round-btn, rent-book-color, librarian-white-text" text="Hủy bỏ" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="12">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
     </children>
 </GridPane>

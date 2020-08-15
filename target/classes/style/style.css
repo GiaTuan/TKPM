@@ -102,3 +102,28 @@
 -fx-background-color: black;
 }
 
+.admin-green-background{
+    -fx-background-color: #6AAC3E;
+}
+
+.admin-dialog-title {
+    -fx-font-weight: bold;
+    -fx-fill: white;
+    -fx-font-size: 24px;
+}
+
+.admin-btn{
+    -fx-text-fill: white;
+    -fx-background-color: #93D468;
+}
+
+.librarian-white-text{
+    -fx-text-fill: white;
+}
+
+.librarian-confirm-btn{
+    -fx-text-fill: white;
+    -fx-background-color: #3795EC;
+    -fx-background-radius: 50px;
+}
+

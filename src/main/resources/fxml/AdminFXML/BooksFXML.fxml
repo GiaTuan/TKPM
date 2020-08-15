@@ -139,9 +139,18 @@
             </HBox>
                 <HBox prefHeight="32.0" prefWidth="200.0" spacing="20.0">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#manageBookBtnClick" prefHeight="29.0" prefWidth="102.0" text="Trở về" />
-                        <Button mnemonicParsing="false" onAction="#deletedBtnClick" text="Xóa" />
-                        <Button mnemonicParsing="false" onAction="#deletedAllBtnClick" text="Xóa hết" />
+                        <Button mnemonicParsing="false" onAction="#manageBookBtnClick" prefHeight="29.0" prefWidth="102.0" styleClass="admin-btn" text="Trở về">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                        <Button mnemonicParsing="false" onAction="#deletedBtnClick" styleClass="admin-btn" text="Xóa">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                        <Button mnemonicParsing="false" onAction="#deletedAllBtnClick" styleClass="admin-btn" text="Xóa hết">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
                     </children>
                     <padding>
                         <Insets left="10.0" />

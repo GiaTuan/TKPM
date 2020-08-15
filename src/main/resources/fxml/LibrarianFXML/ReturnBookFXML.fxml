@@ -235,7 +235,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button mnemonicParsing="false" onAction="#findRentBookBtnClick" text="Tìm kiếm">
+                  <Button mnemonicParsing="false" onAction="#findRentBookBtnClick" styleClass="round-btn, rent-book-color, librarian-white-text" text="Tìm kiếm">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
@@ -324,7 +324,7 @@
                 <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
                     <children>
                         <Label text="Phí mượn: " />
-                        <Button mnemonicParsing="false" onAction="#getRentFeeBtnClick" text="Tính phí mượn">
+                        <Button mnemonicParsing="false" onAction="#getRentFeeBtnClick" styleClass="round-btn, rent-book-color, librarian-white-text" text="Tính phí mượn">
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
@@ -342,7 +342,7 @@
                         <Insets top="5.0" />
                     </VBox.margin>
                     <children>
-                        <Button mnemonicParsing="false" onAction="#confirmReturn" text="XÁC NHẬN TRẢ" />
+                        <Button mnemonicParsing="false" onAction="#confirmReturn" styleClass="round-btn, change-info-color, librarian-white-text" text="XÁC NHẬN TRẢ" />
                     </children></HBox>
                 </children>
             </VBox>

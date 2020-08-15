@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.collections.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="400.0" prefWidth="600.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AdminController.ReportBookController">
+<GridPane prefHeight="400.0" prefWidth="600.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AdminController.ReportBookController">
     <columnConstraints>
         <ColumnConstraints minWidth="10.0" prefWidth="150.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -119,7 +129,7 @@
                              <Insets left="10.0" />
                          </HBox.margin>
                      </ComboBox>
-                     <Button mnemonicParsing="false" onAction="#findBtnClick" text="Tìm kiếm">
+                     <Button mnemonicParsing="false" onAction="#findBtnClick" styleClass="admin-btn" text="Tìm kiếm">
                          <HBox.margin>
                              <Insets left="10.0" />
                          </HBox.margin>
@@ -143,20 +153,20 @@
                   <Insets top="10.0" />
                </VBox.margin>
                <children>
-                  <Button mnemonicParsing="false" onAction="#detailReportBtnClick" text="XEM CHI TIẾT">
+                  <Button mnemonicParsing="false" onAction="#detailReportBtnClick" styleClass="admin-btn" text="XEM CHI TIẾT">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#deleteBtnClick" text="XÓA BÁO CÁO">
+                  <Button mnemonicParsing="false" onAction="#deleteBtnClick" styleClass="admin-btn" text="XÓA BÁO CÁO">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                      <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Button>
                </children>

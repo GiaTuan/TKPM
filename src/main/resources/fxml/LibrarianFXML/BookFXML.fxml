@@ -70,7 +70,7 @@
                         <Insets left="10.0" />
                     </HBox.margin>
                 </TextField>
-                <Button mnemonicParsing="false" onAction="#findBookBtnClick" text="Tìm sách" textFill="WHITE">
+                <Button mnemonicParsing="false" onAction="#findBookBtnClick" styleClass="round-btn, change-info-color, librarian-white-text" text="Tìm sách" textFill="WHITE">
                     <HBox.margin>
                         <Insets left="10.0" />
                     </HBox.margin>

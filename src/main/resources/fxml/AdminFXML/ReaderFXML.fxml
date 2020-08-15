@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.collections.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="400.0" prefWidth="600.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AdminController.ReaderController">
+<GridPane prefHeight="400.0" prefWidth="600.0" styleClass="white-background" stylesheets="/style/style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AdminController.ReaderController">
     <columnConstraints>
         <ColumnConstraints minWidth="10.0" prefWidth="150.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -148,7 +159,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </ComboBox>
-                  <Button mnemonicParsing="false" onAction="#findReaderBtnClick" text="Tìm kiếm">
+                  <Button mnemonicParsing="false" onAction="#findReaderBtnClick" styleClass="admin-btn" text="Tìm kiếm">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
@@ -173,17 +184,17 @@
             </TableView>
             <HBox prefHeight="32.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#exportReaderFromBtnClick" text="XUẤT BIỂU MẨU ĐỘC GIẢ">
+                  <Button mnemonicParsing="false" onAction="#exportReaderFromBtnClick" styleClass="admin-btn" text="XUẤT BIỂU MẨU ĐỘC GIẢ">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#detailReaderBtnClick" text="XEM CHI TIẾT &amp; THAY ĐỔI">
+                  <Button mnemonicParsing="false" onAction="#detailReaderBtnClick" styleClass="admin-btn" text="XEM CHI TIẾT &amp; THAY ĐỔI">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                      <font>
-                        <Font size="16.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                   </Button>
                </children>
